@@ -1,0 +1,261 @@
+html *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+
+body{
+    background-color: #151515;
+}
+.header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.3rem;
+    color: white;
+    padding: 5vh 5vw;
+    z-index: 50;
+}
+
+.isologo {
+    display: flex;
+    /* flex:1; */
+}
+.nav-unlog{
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+
+}
+
+.navbar {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar a{
+    margin: 0 1vw;
+    text-decoration: none;
+    color: white;
+}
+
+.unlog{
+    margin-left: 5vw;
+}
+
+/* HERO */
+
+.hero {
+    width: 100%;
+    min-height: 120vh;
+    background: url('../assets/hero.jpg') no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 200px;
+    
+}
+
+.hero .logo{
+    /* position: absolute; */
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero .slogan{
+    width: 100%;
+    height: 30vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* CALL TO ACTION */
+.cta-plane{
+    position: relative;
+    z-index: 40;
+}
+.cta{
+    width: 30vw;
+    height: 12vh;
+    background-color: #00000077;
+    border: white solid 1px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 40;
+    /* border-radius: 8px; */
+}
+
+.plane{
+    position: absolute;
+    width: 30px;
+    top: 30px;
+    left: 25px;
+    z-index: -1;
+    transition: 2.5s;
+}
+
+.transitionHero{
+    position: absolute;
+    /* background-color: white; */
+
+    top: 100vh;
+    width: 100%;
+    height: 20vh;
+    
+    background-image: linear-gradient(180deg, transparent , #151515 );
+}
+
+.cta-plane:hover > img{
+    /* left: 230px;
+    top: 10px; */
+
+    animation-name: plane;
+    animation-duration: 2s;
+    /* animation-iteration-count: infinite; */
+}
+
+@keyframes plane{
+    0% {
+        top: 30px;
+        left: 10%;
+    }
+    20% {
+        top: 30px;
+        left: 20%;
+    }
+
+    100% {
+      top: 10px;
+      left: 90%;
+    }
+  }
+
+
+
+
+.containerSlider{
+    position: relative;
+}
+
+
+.carousel {
+  background: transparent;
+  /* width: 70%; */
+  margin-bottom: 20vh;
+}
+
+
+
+.carousel-cell {
+  width: 66%;
+  height: 90vh;
+  margin-right: 10px;
+  /* background: #8C8; */
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  /* counter-increment: gallery-cell; */
+}
+
+/* cell number */
+/* .carousel-cell:before {
+  display: block;
+  text-align: center;
+  opacity: .3;
+  
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+} */
+
+.citySlider{
+    border: black solid 1px;
+    width: 45%;
+    height: 45%;
+    /* min-width: 60vw; */
+    
+    overflow: hidden;
+  
+
+    
+}
+
+.imgSlider{
+    background-image: url('https://picsum.photos/seed/picsum/200/300');
+    background-size: cover;
+    background-position: center;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: scale(1);
+    transition: transform 1s ease-in-out;
+}
+
+.imgSlider:hover{
+    
+    transform: scale(1.2);
+
+    transition: transform .8s ease-in-out;
+
+}
+
+
+.footer {
+    background-color: rgb(56, 56, 56);
+    height: 30vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.df-row{
+    display: flex;
+}
+
+.df-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.total-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
