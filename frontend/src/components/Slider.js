@@ -1,7 +1,9 @@
 import React from 'react'
-import Slide from './Slide'
+import Carousel from './slider/Carousel'
+
 
 const Slider = () => {
+
 
     const citiesCarrousel = [
         [
@@ -34,18 +36,13 @@ const Slider = () => {
         citiesCarrouselResponsive.push(array1, array2)
     })
 
+    let carrouselSize = window.screen.width < 468 ? citiesCarrouselResponsive : citiesCarrousel
 
     return (
-        <div className="containerSlider">
-            <div className="carousel" data-flickity={'{ "autoPlay": true, "wrapAround": true }'} >
-                {
-                    citiesCarrousel.map((citiesGroup, index) => {
-                        return <Slide key={index} citiesGroup={citiesGroup} />
-                    })
-                }
-            </div>
-            <div className="divSlider"></div>
+        <div>
+            <Carousel carrouselSize={carrouselSize}/>
         </div>
+
     )
 }
 

@@ -1,13 +1,13 @@
+import {NavLink} from 'react-router-dom'
+
 const Hero = () => {
     return (
         <header className="header">
             <div className="isologo">isologo</div>
             <div className="nav-unlog">
                 <nav className="navbar" >
-                    <a href="#">Home</a>
-                    <a href="#">Cities</a>
-                    <a href="#">Log In</a>
-                    <a href="#">Sign Up</a>
+                    <NavLink exact to="/"><span>Home</span></NavLink>
+                    <NavLink to="/cities"><span>Cities</span></NavLink>
                 </nav>
                 <div className="unlog">imagen</div>
             </div>
