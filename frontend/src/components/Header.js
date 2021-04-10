@@ -1,22 +1,13 @@
-// import { NavLink } from 'react-router-dom'
 import React, { useState } from 'react'
 import { Navbar } from './Navbar'
+import { Link } from 'react-router-dom'
+
 
 const Hero = () => {
 
     const [navbar, setNavbar] = useState({
         visible: false
     });
-
-
-    // let scrollPrev = window.scrollY
-
-    // window.addEventListener("scroll", (e) => {
-    //     // let scrollNow = e.path[1].scrollY
-    //     // console.log(window.pageYOffset)
-    //     console.log(e.screenTop)
-
-    // })
 
     const callNavbar = () => {
         setNavbar({ visible: !navbar.visible })
@@ -27,14 +18,16 @@ const Hero = () => {
 
     return (
         <header className="header">
-            <div className="isologo">isologo</div>
+            <Link exact to="/">
+                <div className="isologo"><div className="isologo-img" style={{ backgroundImage: "url('./assets/isotype.png')" }}></div></div>
+            </Link>
             <div className="nav-unlog">
                 {
                     navbarResponsiveSize
                         ? <div className={ navbar.visible ? 'responsiveNavOpen' : 'responsiveNavClose' } > <Navbar /> </div>
                         : <nav className="navbar"> <Navbar /> </nav>
                 }
-                <div className="unlog">imagen</div>
+                <div className="unlog" ><div className="unlog-img" style={{backgroundImage: "url('./assets/unlog.png')"}}></div></div>
                 <div className="toggleNav" onClick={ callNavbar }>&equiv;</div> 
             </div>
         </header>
