@@ -12,10 +12,12 @@ html *{
 body{
     background-color: #151515;
 }
+
 .header {
     position: absolute;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     font-size: 1.3rem;
     color: white;
@@ -23,49 +25,33 @@ body{
     z-index: 50;
     transition: 1s;
     background-color: #ffffff44;
-    /* background-color: #d88d1d; */
-
 }
-
-/* .header:hover{
-    background-color: #ffffff66;
-    transition: 1s;
-} */
 
 .link{
     transition: .5s;
-    /* color: var(--fcolor); */
     font-size: 1.5rem;
     font-weight: 600;
 }
 
 .active{
     color: #ffa871;
-
 }
 
 .link:hover{
     color: #ffa871;
     transition: .5s;
-
 }
-
-
 
 .isologo {
     display: flex;
-    
 }
 
 .isologo-img{
-    position: absolute;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 50px;
-    height: 50px;
-    /* box-shadow: 1px 3px 25px 8px white; */
-
+    width: 6.5vh;
+    height: 6.5vh;
 }
 
 .nav-unlog{
@@ -93,13 +79,7 @@ body{
 }
 
 
-
-
-
-
-
 /* HERO */
-
 .hero {
     width: 100%;
     min-height: 100vh;
@@ -109,7 +89,6 @@ body{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
     font-size: 2rem;
     color: white;
     margin-bottom: 200px;
@@ -117,8 +96,6 @@ body{
 }
 
 .hero .logo{
-    /* position: absolute; */
-    
     width: 100%;
     height: 50vh;
     display: flex;
@@ -137,7 +114,6 @@ body{
 .hero .slogan{
     width: 100%;
     height: 30vh;
-
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -154,6 +130,28 @@ body{
     height: 3vw;
 }
 
+.citiesHero{
+    min-height: 100vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-top: 10vh;
+}
+
+.citiesHero > div {
+    background-color: #000000cc;
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.citiesHero h2 {
+    color: #ffffffaa;
+    font-size: 2.3rem;
+    /* mix-blend-mode: overlay; */
+}
 
 
 /* CALL TO ACTION */
@@ -164,41 +162,35 @@ body{
     margin-top: 2vh;
 
 }
+
 .cta{
     width: 23vw;
     height: 8.5vh;
-    /* background-color: #00000077; */
     background-color: var(--scolor);
     border: none;
     border: #ffffff11 solid 4px;
-    /* border: #2d003d55 solid 5px; */
     border-radius: 10px;
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
     cursor: pointer;
     z-index: 40;
-    /* border-radius: 8px; */
 }
-
 
 .plane{
     position: absolute;
-    width: 50px;
-    top: 15%;
-    left: -20%;
+    width: 3.2vw;
+    top: 1vh;
+    left: -30%;
     z-index: 10;
     transition: 2.5s ease-in-out;
     transform: rotate(45deg)
 }
 
 .cta-plane:hover > .cta p{
-    /* color: red; */
     animation-name: titulo;
     animation-duration: 3s;
 }
-
-
 
 @keyframes titulo{
     0% {
@@ -212,17 +204,10 @@ body{
     }
 }
 
-
 .cta-plane:hover > img{
-    /* left: 230px;
-    top: 10px; */
     animation-name: plane;
     animation-duration: 3s;
-    
-    /* animation-iteration-count: infinite; */
 }
-
-
 
 @keyframes plane{
     0% {
@@ -233,15 +218,11 @@ body{
     }
   }
 
-
 .transitionHero{
     position: absolute;
-    /* background-color: white; */
-
     top: 80vh;
     width: 100%;
     height: 20vh;
-    
     background-image: linear-gradient(180deg, transparent , #151515 );
 }
 
@@ -254,59 +235,39 @@ body{
     text-align: center;
     font-size: 3rem;
     margin-bottom: 10vh;
-    
 }
-
 
 .containerSlider{
     position: relative;
     width: 70%;
     margin: 0 auto;
-  
 }
-
 
 .carousel {
-  background: transparent;
-  /* width: 70%; */
-  margin-bottom: 5vh;
-  /* background-color: red; */
-
+    background: transparent;
+    margin-bottom: 5vh;
 }
-
-
 
 .carousel-cell {
-  width: 100%;
-  height: 90vh;
-  /* margin: 0 200px; */
-  margin-right: 30px;
-  /* background: #8C8; */
-  border-radius: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  /* counter-increment: gallery-cell; */
+    width: 100%;
+    height: 90vh;
+    margin-right: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-
-
 .citySlider{
-    /* border: black solid 1px; */
-    /* box-shadow: 1px 3px 25px 8px #2c003d66; */
     width: 45%;
     height: 45%;
-    /* min-width: 60vw; */
     width: 30vw;
     height: 40vh;
-    
-    
     overflow: hidden;
 }
 
 .imgSlider{
-    /* background-image: url('https://picsum.photos/seed/picsum/200/300'); */
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -314,7 +275,6 @@ body{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
     transform: scale(1);
     transition: transform 1s ease-in-out;
     padding: 5% 0;
@@ -325,8 +285,6 @@ body{
     transition: transform .8s ease-in-out;
 }
 
-
-
 .titImgSlider{
     position: absolute;
     opacity: 1;
@@ -334,34 +292,22 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    
     text-align: center;
-    background-color: #00000055
-;
-    /* background-color: red; */
+    background-color: #00000055;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* color: #ffffffcc; */
-    /* color: transparent; */
     transition: 1.5s;
-
 }
 
 .titImgSlider .tit{
     color: #ffffffbb;
-    /* color: transparent; */
     font-size: 3.5rem;
-    /* mix-blend-mode: overlay; */
-    /* mix-blend-mode:overlay; */
-    
 }
-
 
 .imgSlider:hover > .titImgSlider{
     opacity: 0;
     transition: .7s;
-
 }
 
 .dot{
@@ -369,20 +315,20 @@ body{
 }
 
 .footer {
-    /* background-color: rgb(56, 56, 56); */
     background-image: linear-gradient(0deg, #2d003d , #151515 );
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: white;
-    padding: 15vh 0 2vh 0;
+    padding: 10vh 0 1vh 0;
     height: 40vh;
+    margin-top: 20vh;
 }
 
 .divFooter{
     display: flex;
-    width: 70%;
+    width: 80%;
     justify-content: space-between;
 }
 
@@ -390,68 +336,61 @@ body{
     color: white;
     font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 80px;
+}
+
+.navigation-social{
+    display: flex;
+    width: 70%;
+    padding-right: 10%;
+    justify-content: space-between;
 }
 
 .social{
     font-size: 2rem;
     width: 10%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
 }
 
-.social > *{
+.socialIcon{
+    display: flex;
+}
+
+.socialIcon > *{
     cursor: pointer;
+    margin-right: 2vw;
 }
 
 .linkFooter{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
-
 }
 
 .linkFooter .link {
-    font-size: 1rem;
-
+    font-size: .9rem;
+    text-align: center;
     color: white;
     text-decoration: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.df-row{
-    display: flex;
+.logo-footer{
+    width: 20vw;
+    height: 100%;
 }
 
-.df-column{
-    display: flex;
-    flex-direction: column;
-}
-
-.total-center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.logo-img-footer{
+    background-size: 50%;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 300px;
 }
 
 
-
+/* RESPONSIVE MENU BUTTON */
 
 .responsiveNavClose{
     visibility: hidden;
@@ -460,8 +399,25 @@ body{
     left: 0;
     width: 100%;
     height: 0vh;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5vh;
     transition: .5s;
+}
+
+.responsiveNavClose a {
+    opacity: 0;
+    transition: .5s;
+    text-decoration: none;
+    color: white;
+    margin: 6vh 0;
+}
+
+.responsiveNavClose .link {
+    opacity: 0;
+    transition: .5s;
+    font-size: 2rem;
 }
 
 .responsiveNavOpen{
@@ -471,8 +427,26 @@ body{
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: black;
+    background-color: #000000f1;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5vh;
+}
+
+.responsiveNavOpen a {
+    opacity: 1;
     transition: .5s;
+    text-decoration: none;
+    color: white;
+    margin: 6vh 0;
+}
+
+.responsiveNavOpen .link {
+    opacity: 1;
+    transition: .5s;
+    font-size: 2rem;
 }
 
 .toggleNav{
@@ -482,25 +456,214 @@ body{
 
 
 
+
+
 /* ------------------------------------------------------------- RESPONSIVE ----------------------------------------------------------------------------------------- */
 
-@media (max-width: 479px) {
+
+@media (max-width: 1024px) {
     .header{
         position: fixed;
-        background-color: rgb(66, 4, 102);
+        background-color: #420466;
+        background-color: #470e68;
         height: 8vh;
         padding: 3vw 3vh;
     }
 
+    .navbar{
+        display: none;
+    }
+    
+    .isologo-img{
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .unlog-img{
+        width: 5vh;
+        height: 5vh;
+    }
+
     .hero{
-        min-height: 120vh;
+        min-height: 100vh;
         background-position: center;
-  
+    }
+
+    .flickity-button{
+        display: none;
+    }
+
+    .toggleNav{
+        display: block;
+        z-index: 100;
+        font-size: 3rem;
+        cursor: pointer;
+        margin-left: 3vh;
+    }
+
+    .hero .slogan{
+        padding: 0 3vw;
+    }
+    
+    .slogan h1{
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+
+    .cta-plane{
+        position: relative;
+        z-index: 40;
+        overflow: hidden;
+    }
+
+    .cta{
+        width: 40vw;
+        height: 8.5vh;
+        font-size: 1.4rem;
+    }
+    
+    .plane{
+        width: 3.5vh;
+        top: 3.1vh;
+    }
+
+    .transitionHero{
+        position: absolute;
+        top: 80vh;
+        width: 100%;
+        height: 20vh;
+        background-image: linear-gradient(180deg, transparent , #151515 );
+    }
+
+    .titImgSlider .tit{
+        font-size: 2rem;
+    }
+
+    .footer{
+        margin-top: 20vh;
+    }
+}   
+
+
+
+@media (max-width: 799px) {
+    .header{
+        position: fixed;
+        background-color: #420466;
+        background-color: #470e68;
+        height: 8vh;
+        padding: 3vw 3vh;
+    }
+
+    .navbar{
+        display: none;
+    }
+    
+    .isologo-img{
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .unlog-img{
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .hero{
+        min-height: 100vh;
+        background-position: center;
+    }
+
+    .flickity-button{
+        display: none;
+    }
+
+    .toggleNav{
+        display: block;
+        z-index: 100;
+        font-size: 3rem;
+        cursor: pointer;
+        margin-left: 3vh;
+    }
+
+    .hero .slogan{
+        padding: 0 3vw;
+    }
+    
+    .slogan h1{
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+    .cta-plane{
+        position: relative;
+        z-index: 40;
+        overflow: hidden;
+    }
+
+    .cta{
+        width: 40vw;
+        height: 8.5vh;
+        font-size: 1.4rem;
+    }
+    
+    .plane{
+        width: 3.5vh;
+        top: 3.1vh;
+    }
+
+    .transitionHero{
+        position: absolute;
+        top: 80vh;
+        width: 100%;
+        height: 20vh;
+        background-image: linear-gradient(180deg, transparent , #151515 );
+    }
+
+
+    .titImgSlider .tit{
+        font-size: 2rem;
+    }
+
+    .footer{
+        margin-top: 20vh;
+    }
+}   
+
+
+/*  mobile-landscape: */
+
+@media (max-width: 599px) {
+    .header{
+        position: fixed;
+        background-color: #420466;
+        background-color: #470e68;
+        height: 8vh;
+        padding: 3vw 3vh;
+    }
+
+    .navbar{
+        display: none;
+    }
+    
+    .isologo-img{
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .unlog-img{
+        width: 5vh;
+        height: 5vh;
+    }
+
+    .hero{
+        min-height: 100vh;
+        background-position: center;
     }
 
     .citySlider{
         min-width: 80vw;
-        /* margin-bottom: 10vh; */
     }
     
     .containerSlider{
@@ -516,8 +679,54 @@ body{
     .toggleNav{
         display: block;
         z-index: 100;
-        /* color: red; */
-        font-size: 2rem;
+        font-size: 3rem;
         cursor: pointer;
+        margin-left: 3vh;
+    }
+
+    .hero .slogan{
+        padding: 0 3vw;
+    }
+    
+    .slogan h1{
+        text-align: center;
+        font-size: 1.3rem;
+    }
+
+    .cta-plane{
+        position: relative;
+        z-index: 40;
+        overflow: hidden;
+    }
+
+    .cta{
+        width: 70vw;
+        height: 8.5vh;
+        font-size: 1.3rem;
+    }
+    
+    .plane{
+        width: 3.5vh;
+        top: 3.1vh;
+    }
+
+    .transitionHero{
+        position: absolute;
+        top: 80vh;
+        width: 100%;
+        height: 20vh;
+        background-image: linear-gradient(180deg, transparent , #151515 );
+    }
+
+    .footer{
+        margin-top: 20vh;
+    }
+  
+    .navigation-social{
+        width: 100%;
+    }
+        
+    .logo-footer{
+        display: none;
     }
 }   

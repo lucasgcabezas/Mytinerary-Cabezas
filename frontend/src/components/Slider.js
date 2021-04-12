@@ -1,9 +1,7 @@
 import React from 'react'
 import Carousel from './slider/Carousel'
 
-
 const Slider = () => {
-
 
     const citiesCarrousel = [
         [
@@ -33,21 +31,19 @@ const Slider = () => {
     citiesCarrousel.map((arraySlide) => {
         let array1 = arraySlide.slice(0, 2)
         let array2 = arraySlide.slice(-2)
-        citiesCarrouselResponsive.push(array1, array2)
+        return citiesCarrouselResponsive.push(array1, array2)
     })
 
-    let carrouselSize = window.screen.width < 468 ? citiesCarrouselResponsive : citiesCarrousel
+    let carrouselSize = window.screen.width < 500 ? citiesCarrouselResponsive : citiesCarrousel
 
     return (
         <div>
             <h2 className="titSlider">Popular MYtineraries</h2>
-
-            <Carousel carrouselSize={carrouselSize}/>
+            <Carousel carrouselSize={carrouselSize} />
         </div>
 
     )
 }
-
 export default Slider
 
 

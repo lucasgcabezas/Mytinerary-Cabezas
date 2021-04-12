@@ -10,7 +10,6 @@ const flickityOptions = {
 const Carousel = ({ carrouselSize }) => {
     return (
         <div className="containerSlider">
-
             <Flickity
                 className={'carousel'} // default ''
                 elementType={'div'} // default 'div'
@@ -28,5 +27,4 @@ const Carousel = ({ carrouselSize }) => {
         </div>
     )
 }
-
 export default Carousel

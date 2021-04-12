@@ -5,7 +5,6 @@ import Home from './pages/Home'
 import Cities from './pages/Cities'
 import { BrowserRouter, Route } from 'react-router-dom'
 
-
 export default class App extends React.Component {
     render() {
         return (
