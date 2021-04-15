@@ -1,18 +1,21 @@
-html *{
+:root {
     --fcolor: #2d003d ;
     --scolor: #d88d1d;
+}
 
+html *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
-
 body{
     background-color: #151515;
 }
 
+
+/* HEADER Y NAVBAR */
 .header {
     position: absolute;
     display: flex;
@@ -59,7 +62,6 @@ body{
     justify-content: flex-end;
     align-items: center;
     width: 50%;
-
 }
 
 .navbar {
@@ -92,7 +94,6 @@ body{
     font-size: 2rem;
     color: white;
     margin-bottom: 200px;
-    
 }
 
 .hero .logo{
@@ -150,7 +151,6 @@ body{
 .citiesHero h2 {
     color: #ffffffaa;
     font-size: 2.3rem;
-    /* mix-blend-mode: overlay; */
 }
 
 
@@ -160,7 +160,6 @@ body{
     z-index: 40;
     overflow: hidden;
     margin-top: 2vh;
-
 }
 
 .cta{
@@ -216,7 +215,7 @@ body{
     100% {
         left: 110%;
     }
-  }
+}
 
 .transitionHero{
     position: absolute;
@@ -229,7 +228,6 @@ body{
 
 
 /* SLIDER */
-
 .titSlider{
     color: white;
     text-align: center;
@@ -314,6 +312,50 @@ body{
     background-color: #d88d1d !important;
 }
 
+
+
+
+
+
+
+
+.citiesContainer {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardCity{
+    /* background-color: red; */
+    width: 90%;
+    height: 25vh;
+    margin: 2vh 0;
+    box-shadow: -1px 7px 19px -2px rgba(0,0,0,0.62);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
 .footer {
     background-image: linear-gradient(0deg, #2d003d , #151515 );
     display: flex;
@@ -458,13 +500,22 @@ body{
 
 
 
-/* ------------------------------------------------------------- RESPONSIVE ----------------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+/* --------------------------------------------------------------------- RESPONSIVE DESKTOP ----------------------------------------------------------------------------------------- */
 
 
 @media (max-width: 1024px) {
     .header{
         position: fixed;
-        background-color: #420466;
         background-color: #470e68;
         height: 8vh;
         padding: 3vw 3vh;
@@ -545,6 +596,7 @@ body{
     }
 }   
 
+/* --------------------------------------------------------------------- RESPONSIVE TABLET ----------------------------------------------------------------------------------------- */
 
 
 @media (max-width: 799px) {
@@ -632,7 +684,7 @@ body{
 }   
 
 
-/*  mobile-landscape: */
+/* --------------------------------------------------------------------- RESPONSIVE MOBILE ----------------------------------------------------------------------------------------- */
 
 @media (max-width: 599px) {
     .header{

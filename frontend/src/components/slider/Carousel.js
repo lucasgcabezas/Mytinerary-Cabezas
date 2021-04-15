@@ -1,13 +1,14 @@
 import Slide from './Slide'
 import Flickity from 'react-flickity-component'
 
-const flickityOptions = {
-    initialIndex: 1,
-    wrapAround: true,
-    autoPlay: true
-}
-
 const Carousel = ({ carrouselSize }) => {
+
+    const flickityOptions = {
+        initialIndex: 1,
+        wrapAround: true,
+        autoPlay: true,
+    }
+
     return (
         <div className="containerSlider">
             <Flickity

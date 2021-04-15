@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Navbar } from './Navbar'
 
 const Footer = () => {
     return (
@@ -12,10 +13,7 @@ const Footer = () => {
                     <div className="navigation-social">
                         <div className="linkFooter">
                             <span className="footerTitle">Navigation</span>
-                            <Link className="link" to="/"><span>Home</span></Link>
-                            <Link className="link" to="/cities"><span>Cities</span></Link>
-                            <Link className="link" to="/"><span >Log In</span></Link>
-                            <Link className="link" to="/"><span >Sign Up</span></Link>
+                            <Navbar />
                         </div>
                         <div className="social">
                             <span className="footerTitle">Social</span>

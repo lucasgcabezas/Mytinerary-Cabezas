@@ -1,6 +1,6 @@
 import React from 'react'
 
-const City = ({ oneCity }) => {
+const Card = ({ oneCity }) => {
     return (
         <div className="citySlider">
             <div className="imgSlider" style={{ backgroundImage: `url(${oneCity.img})` }}>
@@ -11,5 +11,5 @@ const City = ({ oneCity }) => {
         </div>
     )
 }
-export default City
+export default Card
 

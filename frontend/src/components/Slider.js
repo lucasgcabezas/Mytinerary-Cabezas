@@ -41,7 +41,6 @@ const Slider = () => {
             <h2 className="titSlider">Popular MYtineraries</h2>
             <Carousel carrouselSize={carrouselSize} />
         </div>
-
     )
 }
 export default Slider
