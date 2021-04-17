@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from 'react'
+import Preloader from './Preloader'
+import Footer from './Footer'
+import axios from 'axios'
+
 
 const Itineraries = (props) => {
+    const [idCity, setidCity] = useState(props.match.params.id)
+    const [infoCity, setInfoCity] = useState({
+        loading: true
+    })
 
-    // const [idCity, setIdCity] = useState(null)
-    const [nameCity, setNameCity] = useState(null)
-    const [imgCity, setImgCity] = useState(null)
 
     useEffect(() => {
-        // setIdCity(props.match.params.id)
-        setNameCity(props.match.params.name)
-        setImgCity(props.match.params.img)
+        axios.get('http://localhost:4000/api/city/' + idCity)
+            .then(response => setInfoCity({ city: response.data.answer, loading: false }))
+            // .catch(error => this.props.history.push('/error'))
     }, [])
 
-
-    // console.log(props.match.params)
+    if (infoCity.loading) {
+        return <Preloader />
+    }
 
     return (
-        <div className="cityItineraries" style={{ backgroundImage: `url('./assets/${imgCity}')` }}>
-
-            <p style={{ color: 'white' }}> {nameCity}</p>
-
-
+        <div style={{ transition: '1s' }}>
+            <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${infoCity.city.img}')` }}>
+                <p className="cityTitle"> {infoCity.city.name}</p>
+            </div>
+            <div className="cta-plane">
+                <div> THE SITE IS UNDER CONSTRUCTION!</div>
+                <button className="cta"><p>Back to Cities</p></button>
+            </div>
+            <Footer />
         </div>
     )
 }
-
 export default Itineraries

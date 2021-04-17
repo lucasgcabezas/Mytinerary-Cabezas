@@ -1,9 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const City = ({ city: { name, img, country, phrase, id } }) => {
+const City = ({ city: { name, img, country, phrase, _id } }) => {
     return (
-        <NavLink to={`/itineraries/${id}/${name}/${img}`}>
+        <Link to={`/itineraries/${_id}`}>
             <div className="cardCity" style={{ backgroundImage: `url('./assets/${img}')` }}>
                 <div>
                     <span>{phrase}</span>
@@ -14,7 +14,7 @@ const City = ({ city: { name, img, country, phrase, id } }) => {
                 </div>
                 <p>{name}</p>
             </div>
-        </NavLink>
+        </Link>
 
     )
 }
