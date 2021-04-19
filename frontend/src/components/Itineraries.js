@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Preloader from './Preloader'
 import Footer from './Footer'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 const Itineraries = (props) => {
@@ -14,7 +15,7 @@ const Itineraries = (props) => {
     useEffect(() => {
         axios.get('http://localhost:4000/api/city/' + idCity)
             .then(response => setInfoCity({ city: response.data.answer, loading: false }))
-            // .catch(error => this.props.history.push('/error'))
+        // .catch(error => this.props.history.push('/error'))
     }, [])
 
     if (infoCity.loading) {
@@ -22,16 +23,20 @@ const Itineraries = (props) => {
     }
 
     return (
-        <div style={{ transition: '1s' }}>
-            <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${infoCity.city.img}')` }}>
-                <p className="cityTitle"> {infoCity.city.name}</p>
-            </div>
-            <div className="cta-plane">
-                <div> THE SITE IS UNDER CONSTRUCTION!</div>
-                <button className="cta"><p>Back to Cities</p></button>
+        <>
+            <div className="itinerariesContainer" >
+                <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${infoCity.city.img}')` }}>
+                    <p className="cityTitle"> {infoCity.city.name}</p>
+                </div>
+                <div className="notCities">
+                    <p className="underConstruction">{infoCity.city.name} itineraries are under construction!</p>
+                </div>
+                <div className="cta-plane">
+                    <Link to="/cities"><button className="cta"><p>Back to Cities</p></button></Link>
+                </div>
             </div>
             <Footer />
-        </div>
+        </>
     )
 }
 export default Itineraries

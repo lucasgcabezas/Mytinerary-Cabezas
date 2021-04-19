@@ -1,10 +1,6 @@
 const AdminCard = ({ cityToShow: { name, country, img, phrase, _id }, borrarTarea, idForm }) => {
     return (
         <div>
-
-            {/* <p>{name}</p>
-            <p>{img}</p>
-            <p>{_id}</p> */}
             <form>
                 <input placeholder={name}></input>
                 <input placeholder={country}></input>

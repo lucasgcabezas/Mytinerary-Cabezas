@@ -1,9 +1,9 @@
 import React from 'react'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
-import City from '../components/City'
-import axios from 'axios'
 import Preloader from '../components/Preloader'
+import City from '../components/City'
+import Footer from '../components/Footer'
+import axios from 'axios'
 
 
 export default class Home extends React.Component {
@@ -28,9 +28,9 @@ export default class Home extends React.Component {
         return (
             <>
                 <Header />
-                <div className="citiesHero" style={{ backgroundImage: "url('./assets/cities.jpg" }}>
-                    <div>
-                        <h2>Under construction!</h2>
+                <div className="citiesHero" style={{ backgroundImage: "url('./assets/cities.jpg')" }}>
+                    <div className="logo">
+                        <div className="logo-img" style={{ backgroundImage: "url('./assets/logotype.png')" }}></div>
                     </div>
                 </div>
                 {
@@ -42,7 +42,7 @@ export default class Home extends React.Component {
                             </div>
                             {
                                 this.state.citiesFiltered.length === 0
-                                    ? <p style={{ color: 'white' }}>NOT FOUND CITIES </p>
+                                    ? <div className="notCities"><div style={{ backgroundImage: 'url("./assets/suitcase.png")' }} className="img" ></div><p>The destination you are looking for is not available yet!</p></div>
                                     : this.state.citiesFiltered.map((city) => <City key={city._id} city={city} />)
                             }
                         </div>

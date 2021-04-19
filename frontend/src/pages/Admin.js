@@ -36,49 +36,25 @@ export default class Admin extends React.Component {
         })
         .then(response => this.setState({ citiesArray: response.data.answer, citiesFiltered: response.data.answer, loading: false, }))
 
-
         document.getElementById("formAdmin").reset()
     }
 
     selectCity = (e) => {
-        // this.setState({  })
         axios.get('http://localhost:4000/api/city/' + e.target.value)
             .then(response => this.setState({ cityToShow: response.data.answer, loading: false, selectedCityId: e.target.value }))
     }
 
 
-    borrarTarea = (e) => {
+    deleteCity = (e) => {
         e.preventDefault()
-        
-
-        const idABorrar = e.target.dataset.idborrar
-        axios.delete('http://localhost:4000/api/city/' + idABorrar)
+        const idDelete = e.target.dataset.idborrar
+        axios.delete('http://localhost:4000/api/city/' + idDelete)
             .then(response => {
                 this.setState({ citiesArray: this.state.citiesArray.filter(city => city._id !== response.data.answer._id) })
             })
-
     }
-
-    // modificarTarea = (e) => {
-    //     const idADarPorHecho = e.target.dataset.numero
-    //     axios.put('http://localhost:4000/api/tarea/'+idADarPorHecho, {
-    //         terminada: true
-    //     })
-    //     .then(response => {
-    //         this.setState({
-    //             tareas: this.state.tareas.map(tarea => {
-    //                 if (tarea._id === response.data.respuesta._id) {
-    //                    tarea = response.data.respuesta
-    //                 } 
-    //                 return tarea
-    //             })
-    //         })
-    //     })
-    // }
-
-
+    
     render() {
-        // console.log( this.state.cityToShow.name)
         return (
             <>
                 <Header />
@@ -101,8 +77,7 @@ export default class Admin extends React.Component {
                     </select>
                     {
                         this.state.selectedCityId !== 'selector'
-                            ? <AdminCard cityToShow={this.state.cityToShow} borrarTarea={this.borrarTarea} />
-                            // ? <p>que cagada</p>
+                            ? <AdminCard cityToShow={this.state.cityToShow} borrarTarea={this.deleteCity} />
                             : <p>No seleccionaste ninguna ciudad</p>
                     }
                 </div>
