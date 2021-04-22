@@ -11,9 +11,9 @@ html * {
     /* font-family: 'Lexend', sans-serif; */
 }
 
-body {
+/* body {
     background-color: #151515;
-}
+} */
 
 a {
     text-decoration: none;
@@ -200,6 +200,9 @@ a {
 }
 
 .transitionHero {
+    display: none;
+
+
     position: absolute;
     top: 80vh;
     width: 100%;
@@ -212,7 +215,8 @@ a {
 
 /* SLIDER */
 .titSlider {
-    color: white;
+    /* color: white; */
+
     text-align: center;
     font-size: 3rem;
     margin-bottom: 10vh;
@@ -299,12 +303,13 @@ a {
 /* -------------------------------------------------------------------------------------- CITIES */
 
 .citiesHero {
-    min-height: 85vh;
+    min-height: 100vh;
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     padding-top: 10vh;
+    margin-bottom: 2vh;
 }
 
 .citiesHero .logo {
@@ -333,17 +338,32 @@ a {
     text-decoration: none;
 }
 
+.filterContainer{
+    background-color: #00000099;
+    /* background-color: #ffffff55; */
+    position: absolute;
+    top: 75vh;
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+
+}
+
 .cityFilter {
-    margin: 4vh 0 2vh 0;
     width: 50vw;
     padding: 2.5vh 1.5vw;
+    padding: 3vh 2vw;
     border-radius: 5px;
     border: none;
     outline: none;
     font-size: 1.1rem;
+    /* background-color: black; */
 }
 
-.notCities{
+.itinerary{
     background-color: var(--scolor);
     width: 50vw;
     height: 50vh;
@@ -383,7 +403,7 @@ a {
     justify-content: center;
     align-items: center;
     transform: scale(.995);
-    opacity: .7;
+    opacity: .9;
     overflow: hidden;
     transition: 2s;
 }
@@ -418,10 +438,11 @@ a {
 
 .cardCity:hover {
     background-position-x: center;
-    background-position-y: 70%;
+    background-position-y: 65%;
     opacity: 1;
-    transform: scale(1.02);
-    transition: 3s ease-in-out;
+    transform: scale(1.04);
+    transition: 1.4s ease-in-out;
+    box-shadow: -1px 7px 19px 1px #0000009e;
 }
 
 .cardCity:hover>div {
@@ -435,7 +456,7 @@ a {
     bottom: 0;
     width: 100%;
     height: 20%;
-    transition: .8s;
+    transition: 1.2s;
     color: white;
 }
 
@@ -796,7 +817,6 @@ a {
 }
 
 /* --------------------------------------------------------------------- RESPONSIVE DESKTOP ----------------------------------------------------------------------------------------- */
-
 @media (max-width: 1024px) {
     .header {
         position: fixed;
@@ -825,9 +845,9 @@ a {
     .toggleNav {
         display: block;
         z-index: 100;
-        font-size: 3rem;
+        font-size: 2.3rem;
         cursor: pointer;
-        margin-left: 3vh;
+        margin-left: 2vh;
     }
     .hero .slogan {
         padding: 0 3vw;
@@ -881,28 +901,15 @@ a {
         transition: 2s;
         text-shadow: 4px 4px 3px #000000;
     }
-
+    .cardCity:hover>div  {
+        display: none;
+    }
 
     
 }
 
 /* --------------------------------------------------------------------- RESPONSIVE TABLET ----------------------------------------------------------------------------------------- */
-
 @media (max-width: 799px) {
-    .header {
-        position: fixed;
-        background-color: #420466;
-        background-color: #470e68;
-        height: 8vh;
-        padding: 3vw 3vh;
-    }
-    .navbar {
-        display: none;
-    }
-    .isologo-img {
-        width: 5vh;
-        height: 5vh;
-    }
     .unlog-img {
         width: 5vh;
         height: 5vh;
@@ -914,13 +921,7 @@ a {
     .flickity-button {
         display: none;
     }
-    .toggleNav {
-        display: block;
-        z-index: 100;
-        font-size: 3rem;
-        cursor: pointer;
-        margin-left: 3vh;
-    }
+ 
     .hero .slogan {
         padding: 0 3vw;
     }
@@ -962,21 +963,9 @@ a {
 }
 
 /* --------------------------------------------------------------------- RESPONSIVE MOBILE ----------------------------------------------------------------------------------------- */
-
 @media (max-width: 599px) {
     .header {
-        position: fixed;
-        background-color: #420466;
-        background-color: #470e68;
-        height: 8vh;
-        padding: 3vw 3vh;
-    }
-    .navbar {
-        display: none;
-    }
-    .isologo-img {
-        width: 5vh;
-        height: 5vh;
+        padding: 3vw 2vh;
     }
     .unlog-img {
         width: 5vh;
@@ -997,13 +986,7 @@ a {
     .flickity-button {
         display: none;
     }
-    .toggleNav {
-        display: block;
-        z-index: 100;
-        font-size: 3rem;
-        cursor: pointer;
-        margin-left: 3vh;
-    }
+   
     .hero .slogan {
         padding: 0 3vw;
     }
@@ -1041,8 +1024,6 @@ a {
         margin-top: 20vh;
     }
 
-   
-
     .navigation-social {
         width: 100%;
     }
@@ -1064,10 +1045,7 @@ a {
         font-size: 1.8rem;
         width: 90%;
     }
-
-    /* .navigation-social {
-        flex-direction: column;
-        
-        justify-content: center;
-    } */
+    .cityItinerariesHero .cityTitle {
+        font-size: 3.2rem;
+    }
 }

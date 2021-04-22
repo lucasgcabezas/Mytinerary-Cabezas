@@ -10,14 +10,12 @@ const Slider = () => {
             { name: 'Berlin', img: './assets/berlin.jpg', id: 3 },
             { name: 'Paris', img: './assets/paris.jpg', id: 4 }
         ],
-
         [
             { name: 'New York', img: './assets/newyork.jpg', id: 5 },
             { name: 'San Andres', img: './assets/sanandres.jpeg', id: 6 },
             { name: 'Santorini', img: './assets/santorini.jpg', id: 7 },
             { name: 'Tokyo', img: './assets/tokyo.jpg', id: 8 }
         ],
-
         [
             { name: 'Abu Dhabi', img: './assets/abudhabi.jpg', id: 9 },
             { name: 'Miami', img: './assets/miami.jpg', id: 10 },
@@ -34,7 +32,7 @@ const Slider = () => {
         return citiesCarrouselResponsive.push(array1, array2)
     })
 
-    let carrouselSize = window.screen.width < 500 ? citiesCarrouselResponsive : citiesCarrousel
+    let carrouselSize = window.screen.width < 650 ? citiesCarrouselResponsive : citiesCarrousel
 
     return (
         <div>

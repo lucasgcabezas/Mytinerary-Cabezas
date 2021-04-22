@@ -4,7 +4,7 @@ import React from 'react'
 import Home from './pages/Home'
 import Admin from './pages/Admin'
 import Cities from './pages/Cities'
-import Itineraries from './components/Itineraries'
+import Itineraries from './pages/Itineraries'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 export default class App extends React.Component {
