@@ -366,13 +366,52 @@ a {
 .itinerary{
     background-color: var(--scolor);
     width: 50vw;
-    height: 50vh;
+    min-height: 30vh;
     margin-top: 5vh;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     border-radius: 5px;
+    transition: .5s;
+
 }
+
+.showItinerary{
+    background-color: var(--scolor);
+    width: 50vw;
+    min-height: 70vh;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    transition: .5s;
+
+}
+.itinerary * {
+    height: 5vh;
+}
+
+.itinerary div{
+    display: flex; 
+}
+
+.showItinerary div{
+    display: flex; 
+}
+
+.itinerary div *{
+    margin-left: 2vw;
+}
+
+.showItinerary div *{
+    margin-left: 2vw;
+}
+
+
+
 
 .notCities .img {
     background-size: cover;

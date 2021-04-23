@@ -8,7 +8,9 @@ import cityActions from '../redux/actions/cityActions'
 
 const MainCities = ({ loadAllCities, filterCity, loading, citiesFiltered }) => {
 
-    useEffect(() => { loadAllCities() }, []);
+    useEffect(() => {
+        loadAllCities()
+    }, []);
 
     return (
         <>
@@ -39,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     loadAllCities: cityActions.allCities,
-    filterCity: cityActions.filterCity
+    filterCity: cityActions.filterCity,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainCities)

@@ -1,27 +1,67 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
-import cityActions from '../redux/actions/cityActions'
 import { connect } from 'react-redux'
 
+import itineraryActions from '../redux/actions/itineraryActions'
+
 import Header from '../components/Header'
+import Preloader from '../components/Preloader'
 import Itinerary from '../components/Itinerary'
 import Footer from '../components/Footer'
+import ScrollToTop from '../components/ScrollToTop'
 
 
 const Itineraries = (props) => {
 
-    useEffect(() => { props.oneCityId(props.match.params.id) }, [])
+    <ScrollToTop />
+
+    const [cityState, setCityState] = useState({
+        oneCity: {},
+        preloaderCity: true,
+        errorCity: false
+    });
+
+    useEffect(() => {
+        props.loadSelectedItineraries(props.match.params.id)
+
+        if (props.allCities.length > 0) {
+            setCityState({ oneCity: props.allCities.find(city => city._id === props.match.params.id), preloaderCity: false, errorCity: props.errorCity })
+        } else {
+            props.getOneCity(props.match.params.id)
+        }
+
+        return () => { props.removeItineraries() }
+    }, [])
+
+    useEffect(() => {
+        if (props.oneCityBackup !== undefined && props.allCities.length===0) {
+            setCityState({ ...cityState, oneCity: props.oneCityBackup, preloaderCity: false, errorCity: props.errorCity })
+        }
+    }, [props.oneCityBackup])
 
     var headerItineraries = true
+
+    const { oneCity, preloaderCity, errorCity } = cityState
+
+    if (preloaderCity || props.preloaderItinerary) {
+        return <Preloader />
+    }
 
     return (
         <>
             <Header headerItineraries={headerItineraries} />
             <div className="itinerariesContainer" >
-                <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${props.oneCity.img}')` }}>
-                    <p className="cityTitle"> {props.oneCity.name}</p>
+                <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${cityState.oneCity.img}')` }}>
+                    <p className="cityTitle"> {oneCity.name}</p>
                 </div>
-                <Itinerary />
+                {
+                    errorCity || props.errorItinerary
+                        ? <p>Ha ocurrido un problema con la base de datos</p>
+                        : props.selectedItineraries.length === 0
+                            ? <p> No hay itinerarios</p>
+                            : props.selectedItineraries.map(itinerary => <Itinerary key={itinerary._id} itinerary={itinerary} />)
+                }
                 <div className="cta-plane">
                     <Link to="/cities"><button className="cta"><p>Back to Cities</p></button></Link>
                 </div>
@@ -31,14 +71,22 @@ const Itineraries = (props) => {
     )
 }
 
+
 const mapStateToProps = state => {
     return {
-        oneCity: state.cityReducer.city
+        allCities: state.cityReducer.citiesArray,
+        selectedItineraries: state.itineraryReducer.selectedItineraries,
+        preloaderItinerary: state.itineraryReducer.preloader,
+        oneCityBackup: state.itineraryReducer.oneCity,
+        errorCity: state.cityReducer.error,
+        errorItinerary: state.itineraryReducer.error
     }
 }
 
 const mapDispatchToProps = {
-    oneCityId: cityActions.oneCity
+    loadSelectedItineraries: itineraryActions.getItineraries,
+    getOneCity: itineraryActions.getOneCity,
+    removeItineraries: itineraryActions.removeItineraries
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itineraries)
