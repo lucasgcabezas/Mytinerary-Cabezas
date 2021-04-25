@@ -4,7 +4,7 @@ const cityActions = {
     allCities: () => {
         return (dispatch, getState) => {
             // localhost
-            axios.get('http://192.168.0.143:4000/api/cities')
+            axios.get('http://localhost:4000/api/cities')
                 .then(response => {
                     if (response.data.success) {
                         dispatch({
@@ -18,7 +18,7 @@ const cityActions = {
                         dispatch({ type: 'ERROR_CITY', payload: true })
                     }
                 })
-            // .catch(dispatch({ type: 'ERROR_CITY', payload: true }))
+            .catch(error => dispatch({ type: 'ERROR_CITY', payload: true }))
 
             // console.log('pudimos importar todas las cities! -cityActions-')
         }

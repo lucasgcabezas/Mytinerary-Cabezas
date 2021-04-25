@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -59,7 +58,7 @@ const Itineraries = (props) => {
                     errorCity || props.errorItinerary
                         ? <p>Ha ocurrido un problema con la base de datos</p>
                         : props.selectedItineraries.length === 0
-                            ? <p> No hay itinerarios</p>
+                            ? <div className="noItineraries" style={{backgroundImage : "url('/assets/pattern.png')"}}><p>Itineraries have not been added yet!</p><p>Come back soon!</p></div>
                             : props.selectedItineraries.map(itinerary => <Itinerary key={itinerary._id} itinerary={itinerary} />)
                 }
                 <div className="cta-plane">

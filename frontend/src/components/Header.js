@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar } from './Navbar'
 
-const Hero = ({headerItineraries}) => {
-    
+const Hero = ({ headerItineraries }) => {
+
     const [navbar, setNavbar] = useState({ visible: false })
 
     const callNavbar = () => { setNavbar({ visible: !navbar.visible }) }
@@ -11,7 +11,8 @@ const Hero = ({headerItineraries}) => {
     let navbarResponsiveSize = window.screen.width < 1024
 
     return (
-        <header className="header" style={ headerItineraries && {backgroundColor : '#00000077'}}>
+        // <header className="header" style={ headerItineraries && {backgroundColor : '#00000077'}}>
+        <header className={headerItineraries ? 'headerItinerary ' : 'header'}>
             <div className="isologo">
                 <Link to="/"> <div className="isologo-img" style={{ backgroundImage: "url('/assets/isotype.png')" }}></div> </Link>
             </div>

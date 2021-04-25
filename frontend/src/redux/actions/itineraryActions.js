@@ -4,7 +4,7 @@ const itineraryActions = {
     getItineraries: (cityId) => {
         return (dispatch, getState) => {
             // localhost
-            axios.get('http://192.168.0.143:4000/api/itineraries/' + cityId)
+            axios.get('http://localhost:4000/api/itineraries/' + cityId)
                 .then(response => {
                     if (response.data.success) {
                         dispatch({ type: 'GET_ITINERARIES', payload: { selectedItineraries: response.data.response, error: false, preloader: false } })
@@ -19,7 +19,7 @@ const itineraryActions = {
     getOneCity: (cityId) => {
         return (dispatch, getState) => {
             // localhost
-            axios.get('http://192.168.0.143:4000/api/city/' + cityId)
+            axios.get('http://localhost:4000/api/city/' + cityId)
                 .then(response => {
                     if (response.data.success) {
                         dispatch({ type: 'GET_ONECITY', payload: { oneCity: response.data.answer, error: false, preloader: false } })
