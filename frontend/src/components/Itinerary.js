@@ -4,49 +4,46 @@ import React, { useState } from 'react'
 const Itinerary = ({ itinerary: { title, authorName, authorPic, price, duration, likes, hashtags, img } }) => {
 
     const [cardTrigger, setCardTrigger] = useState(false)
-    const [mouse, setMouse] = useState({
-        position: 280,
-        angleToApply: -4
-    })
+    const [angleToApply, setAngleToApply] = useState(0)
 
     const positionMouse = (e) => {
         let actualposition = e.pageX
         switch (actualposition > 200 && actualposition < 1150) {
 
             case actualposition > 250 && actualposition < 230:
-                setMouse({ position: actualposition, angleToApply: -4 })
+                setAngleToApply(-4)
                 break;
 
             case actualposition > 300 && actualposition < 330:
-                setMouse({ position: actualposition, angleToApply: -3 })
+                setAngleToApply(-3)
                 break;
 
             case actualposition > 400 && actualposition < 430:
-                setMouse({ position: actualposition, angleToApply: -2 })
+                setAngleToApply(-2)
                 break;
 
             case actualposition > 500 && actualposition < 530:
-                setMouse({ position: actualposition, angleToApply: -1 })
+                setAngleToApply(-1)
                 break;
 
             case actualposition > 600 && actualposition < 630:
-                setMouse({ position: actualposition, angleToApply: 0 })
+                setAngleToApply(0)
                 break;
 
             case actualposition > 700 && actualposition < 730:
-                setMouse({ position: actualposition, angleToApply: 1 })
+                setAngleToApply(1)
                 break;
 
             case actualposition > 800 && actualposition < 830:
-                setMouse({ position: actualposition, angleToApply: 2 })
+                setAngleToApply(2)
                 break;
 
             case actualposition > 900 && actualposition < 930:
-                setMouse({ position: actualposition, angleToApply: 3 })
+                setAngleToApply(3)
                 break;
 
             case actualposition > 1000 && actualposition < 1030:
-                setMouse({ position: actualposition, angleToApply: 4 })
+                setAngleToApply(4)
                 break;
 
             default:
@@ -63,10 +60,8 @@ const Itinerary = ({ itinerary: { title, authorName, authorPic, price, duration,
 
     return (
         <div className={cardTrigger ? 'showItinerary' : 'itinerary'} onMouseMove={(e) => positionMouse(e)}>
-
             <div className="info" style={{ backgroundImage: `url('/assets/itineraries/${img}')` }}>
-                <div className="mouseMove" style={{ transform: `rotate(${mouse.angleToApply}deg)`, transition: '.1s' }}></div>
-
+                <div className="mouseMove" style={{ transform: `rotate(${angleToApply}deg)`, transition: '.1s' }}></div>
                 <div className="titleSectionItinerary">
                     <p className="titleItinerary">{title}</p>
                 </div>

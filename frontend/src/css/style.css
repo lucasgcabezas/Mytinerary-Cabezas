@@ -377,16 +377,33 @@ a {
     /* background-color: black; */
 }
 
+.notCities{
+    box-shadow: #00000055 0px 5px 10px 0px ;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40vh;
+    width: 50vw;
+    margin-top: 5vh;
+}
+
 .notCities .img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 15vw;
-    width: 15vw;
+    font-size: 12rem;
+    color: var(--scolor);
+    background-color: #ffffffee;
+    padding: 15px;
+
 }
 
 .notCities p {
     font-size: 2rem;
-    width: 40%;
+    width: 50%;
+    color: var(--scolor);
+    background-color: #ffffffee;
+    padding: 15px;
+    font-weight: bold;
+
 }
 
 
@@ -497,9 +514,6 @@ a {
     align-items: center;
 }
 
-.itinerariesContainer .notCities{
-    height: 40vh;
-}
 
 .cityItinerariesHero .cityTitle {
     color: #ffffff;
@@ -526,6 +540,8 @@ a {
 
 .noItineraries {
     /* background-color: yellow; */
+    position: relative;
+    
     margin: 10vh 0 5Vh 0;
     width: 50vw;
     height: 35vh;
@@ -535,16 +551,48 @@ a {
     flex-direction: column;
     border-radius: 5px;
     box-shadow: #00000055 0px 5px 10px 0px ;
+    overflow: hidden;
+    transition-duration: 1s;
 }
 
-.noItineraries > * {
+
+
+.noItineraries p {
+    z-index: 30;
     color: var(--scolor);
     font-weight: bold;
-    font-size: 1.8rem;
-    background-color: #ffffffee;
+    font-size: 2rem;
     padding: 2px 10px;
-    /* backdrop-filter: blur(2px); */
+    transition-duration: 1s;
 }
+
+ .divNoItineraries{
+    position: absolute;
+    background-color: var(--fcolor);
+    height: 100%;
+    width: 100%;
+    transition-duration: 1s;
+    opacity: .92;
+
+
+}
+.noItineraries:hover {
+    box-shadow: #000000bb 0px 5px 18px 5px ;
+    transition-duration: 1s;
+}
+
+
+.noItineraries:hover  p{
+    font-size: 2.2rem;
+    transition-duration: 1s;
+}
+
+
+.noItineraries:hover .divNoItineraries{
+    opacity: .85;
+    transition-duration: 1s;
+}
+
 
 
 /* ----------------------------------------------------------------------------------------------ITINERARY */
@@ -1143,23 +1191,27 @@ a {
         height: 20vh;
         background-image: linear-gradient(180deg, transparent, #151515);
     }
+
     .titImgSlider .tit {
         font-size: 2rem;
     }
+
     .footer {
         margin-top: 20vh;
     }
+
     .cityFilter {
         width: 90vw;
     }
+
     .notCities{
         width: 90vw;
-    }    
-
-    .itinerariesContainer .notCities{
-        height: 40vh;
-        width: 90vw ;
+    }  
+    
+    .notCities .img{
+        font-size: 10rem;
     }
+
     .cityItinerariesHero .cityTitle {
         color: #ffffff;
         font-size: 4rem;
@@ -1167,6 +1219,7 @@ a {
         transition: 2s;
         text-shadow: 4px 4px 3px #000000;
     }
+
     .cardCity:hover>div  {
         display: none;
     }
@@ -1174,6 +1227,9 @@ a {
     .itinerary,
     .showItinerary{
         width: 90vw;
+    }
+    .noItineraries p {
+        font-size: 1.5rem;
     }
     
 }
@@ -1227,10 +1283,11 @@ a {
         margin-top: 20vh;
     }
     .notCities .img {
-        height: 20vw;
-        width: 20vw;
+       font-size: 7rem;
     }
-
+    .notCities p{
+        font-size: 1.5rem;
+    }
 
 
     .itinerary{
@@ -1298,6 +1355,10 @@ a {
     
     .commentsItinerary{
         font-size: 1.5rem;
+    }
+
+    .noItineraries p {
+        font-size: 1.1rem;
     }
     
 }
@@ -1377,12 +1438,11 @@ a {
     }   
 
     .notCities .img {
-        height: 30vw;
-        width: 30vw;
+        margin-top: 3vh;
     }
 
     .notCities p {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         width: 90%;
     }
     .cityItinerariesHero .cityTitle {
@@ -1415,5 +1475,9 @@ a {
     .hashtag >*{
         margin: 0 .5vw;
         font-size: .8rem;
+    }
+
+    .noItineraries p {
+        font-size: .7rem;
     }
 }

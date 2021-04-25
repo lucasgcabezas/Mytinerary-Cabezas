@@ -58,7 +58,7 @@ const Itineraries = (props) => {
                     errorCity || props.errorItinerary
                         ? <p>Ha ocurrido un problema con la base de datos</p>
                         : props.selectedItineraries.length === 0
-                            ? <div className="noItineraries" style={{backgroundImage : "url('/assets/pattern.png')"}}><p>Itineraries have not been added yet!</p><p>Come back soon!</p></div>
+                            ? <div className="noItineraries" style={{backgroundImage : "url('/assets/pattern.png')"}}><div className="divNoItineraries"></div><p>Itineraries have not been added yet!</p><p>Come back soon!</p></div>
                             : props.selectedItineraries.map(itinerary => <Itinerary key={itinerary._id} itinerary={itinerary} />)
                 }
                 <div className="cta-plane">
