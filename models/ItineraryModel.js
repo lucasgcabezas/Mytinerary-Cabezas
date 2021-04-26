@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const itinerarySchema = new mongoose.Schema({
     title: { type: String, required: true },
+    img: { type: String, required: true },
     authorName: { type: String, required: true },
     authorPic: { type: String, required: true },
     price: { type: Number, required: true, min: 1, max: 5 },

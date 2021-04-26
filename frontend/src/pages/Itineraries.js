@@ -13,8 +13,6 @@ import ScrollToTop from '../components/ScrollToTop'
 
 const Itineraries = (props) => {
 
-    <ScrollToTop />
-
     const [cityState, setCityState] = useState({
         oneCity: {},
         preloaderCity: true,
@@ -34,7 +32,7 @@ const Itineraries = (props) => {
     }, [])
 
     useEffect(() => {
-        if (props.oneCityBackup !== undefined && props.allCities.length===0) {
+        if (props.oneCityBackup !== undefined && props.allCities.length === 0) {
             setCityState({ ...cityState, oneCity: props.oneCityBackup, preloaderCity: false, errorCity: props.errorCity })
         }
     }, [props.oneCityBackup])
@@ -49,6 +47,7 @@ const Itineraries = (props) => {
 
     return (
         <>
+            <ScrollToTop />
             <Header headerItineraries={headerItineraries} />
             <div className="itinerariesContainer" >
                 <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${cityState.oneCity.img}')` }}>
@@ -56,9 +55,9 @@ const Itineraries = (props) => {
                 </div>
                 {
                     errorCity || props.errorItinerary
-                        ? <p>Ha ocurrido un problema con la base de datos</p>
+                        ? <p>A database error happened </p>
                         : props.selectedItineraries.length === 0
-                            ? <div className="noItineraries" style={{backgroundImage : "url('/assets/pattern.png')"}}><div className="divNoItineraries"></div><p>Itineraries have not been added yet!</p><p>Come back soon!</p></div>
+                            ? <div className="noItineraries" style={{ backgroundImage: "url('/assets/pattern.png')" }}><div className="divNoItineraries"></div><p>Itineraries have not been added yet!</p><p>Come back soon!</p></div>
                             : props.selectedItineraries.map(itinerary => <Itinerary key={itinerary._id} itinerary={itinerary} />)
                 }
                 <div className="cta-plane">

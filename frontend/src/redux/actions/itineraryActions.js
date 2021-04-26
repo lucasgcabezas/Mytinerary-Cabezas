@@ -3,7 +3,6 @@ import axios from 'axios'
 const itineraryActions = {
     getItineraries: (cityId) => {
         return (dispatch, getState) => {
-            // localhost
             axios.get('http://localhost:4000/api/itineraries/' + cityId)
                 .then(response => {
                     if (response.data.success) {
@@ -12,13 +11,12 @@ const itineraryActions = {
                         dispatch({ type: 'ERROR_ITINERARY', payload: { error: true, preloader: false } })
                     }
                 })
-            .catch(() => alert('Se ha producido un error, por favor recargue la página.'))
+            .catch(error => alert('An error happened, please reload the page!'))
         }
     },
 
     getOneCity: (cityId) => {
         return (dispatch, getState) => {
-            // localhost
             axios.get('http://localhost:4000/api/city/' + cityId)
                 .then(response => {
                     if (response.data.success) {
@@ -27,6 +25,7 @@ const itineraryActions = {
                         dispatch({ type: 'ERROR_ITINERARY', payload: { error: true, preloader: false } })
                     }
                 })
+                .catch(error => alert('An error happened, please reload the page!'))
         }
     },
 

@@ -12,7 +12,6 @@ const itineraryReducer = (state = initialState, action) => {
             break
 
         case 'GET_ONECITY':
-            // console.log(action.payload)
             return { ...state, ...action.payload }
             break
 
@@ -27,7 +26,6 @@ const itineraryReducer = (state = initialState, action) => {
         default:
             return state
     }
-
 }
 
 
