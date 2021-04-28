@@ -50,9 +50,9 @@ a {
     font-weight: 400;
 }
 
-.active {
+/* .active {
     color: #ffa871;
-}
+} */
 
 .link:hover {
     color: #ffa871;
@@ -556,7 +556,6 @@ a {
 }
 
 
-
 .noItineraries p {
     z-index: 30;
     color: var(--scolor);
@@ -595,7 +594,7 @@ a {
 
 
 
-/* ----------------------------------------------------------------------------------------------ITINERARY */
+/* ------------------------------------------------------------------------------ ITINERARY */
 
 .itinerary,
 .showItinerary{
@@ -814,7 +813,38 @@ a {
     transition: .2s;
 }
 
+/* -------------------------------------------------------------------------------------- SIGN IN - SIGN UP */
 
+.formContainer{
+    /* background-color: red; */
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+
+.signin{
+    height: 40vh;
+}
+
+
+.formContainer .form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    box-shadow: #00000055 0px 5px 10px 0px ;
+    border-radius: 5px;
+    padding: 6vh 0;
+
+}
+
+
+.form input,
+.form select{
+    width: 70%;
+    padding: 1.3vh 1vw;
+}
 
 
 
@@ -1003,7 +1033,7 @@ a {
 
 .active > *{
     border-bottom: #ffffffbb solid 2px;
-    padding: 2px;
+    padding-bottom: 6px;
 }
 
 /* PRELOADER */
@@ -1125,7 +1155,7 @@ a {
  
 
 
-/* --------------------------------------------------------------------- RESPONSIVE DESKTOP ----------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- RESPONSIVE TABLET LANDSCAPE ------------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .header,
     .headerItinerary {

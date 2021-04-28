@@ -3,7 +3,6 @@ import axios from 'axios'
 const cityActions = {
     allCities: () => {
         return (dispatch, getState) => {
-            // localhost
             axios.get('http://localhost:4000/api/cities')
                 .then(response => {
                     if (response.data.success) {

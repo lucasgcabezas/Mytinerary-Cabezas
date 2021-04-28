@@ -8,9 +8,7 @@ import cityActions from '../redux/actions/cityActions'
 
 const MainCities = ({ loadAllCities, filterCity, loading, citiesFiltered }) => {
 
-    useEffect(() => {
-        loadAllCities()
-    }, []);
+    useEffect(() => { loadAllCities() }, []);
 
     return (
         <>
@@ -23,7 +21,6 @@ const MainCities = ({ loadAllCities, filterCity, loading, citiesFiltered }) => {
                         </div>
                         {
                             citiesFiltered.length === 0
-                                // ? <div className="notCities"><div style={{ backgroundImage: 'url("/assets/suitcase.png")' }} className="img" ></div><p>The destination you are looking for is not available yet!</p></div>
                                 ? <div className="notCities" style={{ backgroundImage : "url('/assets/pattern.png')"}}><span className="fas fa-suitcase-rolling img"></span><p>The destination you are looking for is not available yet!</p></div>
                                 : citiesFiltered.map((city) => <City key={city._id} city={city} />)
                         }

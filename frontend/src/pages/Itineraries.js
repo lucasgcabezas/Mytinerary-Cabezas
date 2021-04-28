@@ -4,10 +4,8 @@ import { connect } from 'react-redux'
 
 import itineraryActions from '../redux/actions/itineraryActions'
 
-import Header from '../components/Header'
 import Preloader from '../components/Preloader'
 import Itinerary from '../components/Itinerary'
-import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
 
 
@@ -48,7 +46,7 @@ const Itineraries = (props) => {
     return (
         <>
             <ScrollToTop />
-            <Header headerItineraries={headerItineraries} />
+            {/* <Header headerItineraries={headerItineraries} /> */}
             <div className="itinerariesContainer" >
                 <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${cityState.oneCity.img}')` }}>
                     <p className="cityTitle"> {oneCity.name}</p>
@@ -64,7 +62,7 @@ const Itineraries = (props) => {
                     <Link to="/cities"><button className="cta"><p>Back to Cities</p></button></Link>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

@@ -10,7 +10,7 @@ const Itinerary = ({ itinerary: { title, authorName, authorPic, price, duration,
         let actualposition = e.pageX
         switch (actualposition > 200 && actualposition < 1150) {
 
-            case actualposition > 250 && actualposition < 230:
+            case actualposition > 220 && actualposition < 230:
                 setAngleToApply(-4)
                 break;
 
@@ -59,10 +59,10 @@ const Itinerary = ({ itinerary: { title, authorName, authorPic, price, duration,
     }
 
     return (
-        <div className={cardTrigger ? 'showItinerary' : 'itinerary'} onMouseMove={(e) => positionMouse(e)}>
-            <div className="info" style={{ backgroundImage: `url('/assets/itineraries/${img}')` }}>
-                <div className="mouseMove" style={{ transform: `rotate(${angleToApply}deg)`, transition: '.1s' }}></div>
-                <div className="titleSectionItinerary">
+        <div className={cardTrigger ? 'showItinerary' : 'itinerary'}  >
+            <div className="info" style={{ backgroundImage: `url('/assets/itineraries/${img}')` }} >
+                <div className="mouseMove" style={{ transform: `rotate(${angleToApply}deg)`, transition: '.1s' }} ></div>
+                <div className="titleSectionItinerary" onMouseMove={(e) => positionMouse(e)}>
                     <p className="titleItinerary">{title}</p>
                 </div>
                 <div className="authorItinerary">
