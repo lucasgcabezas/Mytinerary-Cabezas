@@ -1,28 +1,26 @@
 import { useState } from "react"
-import axios from 'axios'
+import { connect } from 'react-redux'
 
 import Hero from './Hero'
+import authActions from "../redux/actions/authActions"
 
-const SignIn = () => {
+const SignIn = (props) => {
 
-    const [signInUser, setSignInUser] = useState({ email: '', password: '' })
+    const [userToSignIn, setUserToSignIn] = useState({ email: '', password: '' })
 
-    const getInputSignIn = e => { setSignInUser({ ...signInUser, [e.target.name]: e.target.value }) }
+    const getInputSignIn = e => { setUserToSignIn({ ...userToSignIn, [e.target.name]: e.target.value }) }
 
     const sendSignInUser = e => {
         e.preventDefault()
-        axios.post('http://localhost:4000/api/user/signin', signInUser)
-            // Falta cacheo
-            .then(response => console.log(response.data))
-
-        setSignInUser({ email: '', password: '' })
+        props.signInUSer(userToSignIn)
+        setUserToSignIn({ email: '', password: '' })
     }
 
-    const { email, password } = signInUser
+    const { email, password } = userToSignIn
 
     return (
         <>
-            <Hero />
+            {/* <Hero /> */}
             <div className="formContainer signin">
                 <form className="form">
                     <input type="text" placeholder="Email" name="email" value={email} onChange={getInputSignIn} ></input>
@@ -34,4 +32,8 @@ const SignIn = () => {
     )
 }
 
-export default SignIn
+
+const mapDispatchToProps = {
+    signInUSer: authActions.signInUSer
+}
+export default connect(null, mapDispatchToProps)(SignIn)

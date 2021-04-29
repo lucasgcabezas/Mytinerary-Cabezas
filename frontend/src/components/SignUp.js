@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
-import Preloader from './Preloader'
 import Hero from './Hero'
+import Preloader from './Preloader'
+import authActions from '../redux/actions/authActions'
 
-const SignUp = () => {
+const SignUp = (props) => {
 
     const [newUser, setNewUser] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
 
@@ -12,7 +14,6 @@ const SignUp = () => {
 
     useEffect(() => {
         axios.get('https://restcountries.eu/rest/v2/all')
-            // Falta cacheo
             .then(response => setallCountries({ countries: response.data, preloader: false }))
     }, [])
 
@@ -20,13 +21,9 @@ const SignUp = () => {
 
     const sendNewUser = e => {
         e.preventDefault()
-        axios.post('http://localhost:4000/api/user/signup', newUser)
-            // Falta cacheo
-            .then(response => console.log(response.data))
-
+        props.signUpUser(newUser)
         setNewUser({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
     }
-
 
     if (allCountries.preloader) {
         return <Preloader />
@@ -36,7 +33,7 @@ const SignUp = () => {
 
     return (
         <>
-            <Hero />
+            {/* <Hero /> */}
             <div className="formContainer">
                 <form className="form">
                     <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput}></input>
@@ -44,11 +41,11 @@ const SignUp = () => {
                     <input type="text" placeholder="Email" name="email" value={email} onChange={getInput}></input>
                     <input type="password" placeholder="Password" name="password" value={password} onChange={getInput}></input>
                     <input type="text" placeholder="Picture" name="userPic" value={userPic} onChange={getInput}></input>
-                    <select name="country" defaultValue={country} onChange={getInput}>
-                        <option>Countries</option>
+                    <select name="country" value={country} onChange={getInput}>
+                        <option disabled selected value=''>Countries</option>
                         {
-                            allCountries.countries.map((country, i) => {
-                                return <option key={i} value={country.name} >{country.name}</option>
+                            allCountries.countries.map((c, i) => {
+                                return <option key={i} value={c.name} >{c.name}</option>
                             })
                         }
                     </select>
@@ -59,4 +56,8 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+const mapDispatchToProps = {
+    signUpUser: authActions.signUpUser
+}
+
+export default connect(null, mapDispatchToProps)(SignUp)
