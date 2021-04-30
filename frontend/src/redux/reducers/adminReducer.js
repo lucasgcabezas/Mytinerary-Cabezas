@@ -9,17 +9,18 @@ const adminReducer = (state = initialState, action) => {
             return { ...state, ...action.payload }
             break
 
-        // case 'GET_ONECITY':
-        //     return { ...state, ...action.payload }
-        //     break
+        case 'ADD_CITY':
+            console.log('reducer:' + action.payload)
+            return { ...state, ...action.payload }
+            break
 
-        // case 'ERROR_ITINERARY':
-        //     return { ...state, ...action.payload }
-        //     break
-
-        // case 'REMOVE_ITINERARIES':
-        //     return { ...state, ...action.payload }
-        //     break
+        case 'DELETE_CITY':
+            console.log('reducer:' + action.payload)
+            return {
+                ...state,
+                arrayOf: state.arrayOf.filter(city => city._id !== action.payload._id)
+            }
+            break
 
         default:
             return state

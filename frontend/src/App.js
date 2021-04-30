@@ -18,8 +18,14 @@ import authActions from './redux/actions/authActions'
 class App extends React.Component {
     render() {
 
-        if (!this.props.userLogged && localStorage.getItem('userLogged')) {
-            this.props.signInLocalStorage(JSON.parse(localStorage.getItem('userLogged')))
+        if (!this.props.userLogged && localStorage.getItem('token')) {
+
+            const userData = JSON.parse(localStorage.getItem('userLogged'))
+            const userLS = {
+              token: localStorage.getItem('token'),
+              ...userData
+            }
+            this.props.signInLocalStorage(userLS)
         }
 
         return (

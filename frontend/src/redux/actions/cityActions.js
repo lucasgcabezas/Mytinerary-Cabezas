@@ -18,8 +18,6 @@ const cityActions = {
                     }
                 })
             .catch(error => dispatch({ type: 'ERROR_CITY', payload: true }))
-
-            // console.log('pudimos importar todas las cities! -cityActions-')
         }
     },
 

@@ -70,8 +70,16 @@ const Itinerary = ({ itinerary: { title, authorName, authorPic, price, duration,
                     <p>{authorName}</p>
                 </div>
                 <div className="priceSection">
-                    <span className="text">Price: {counter(price).map((c, i) => <span key={i} className="far fa-usd-circle price"></span>)} </span>
-                    <span className="text">Duration: {counter(duration).map((c, i) => <span key={i} className="far fa-clock duration"></span>)} </span>
+                    <span className="text">Price:
+                    {
+                            counter(price).map((c, i) => <span key={i} className="far fa-usd-circle price"></span>)
+                        }
+                    </span>
+                    <span className="text">Duration:
+                     {
+                            counter(duration).map((c, i) => <span key={i} className="far fa-clock duration"></span>)
+                        }
+                    </span>
                     <span className="text"><span className="far fa-heart heart"></span>{likes || ''}</span>
                     {/* <i class="fas fa-heart"></i> */}
                 </div>
