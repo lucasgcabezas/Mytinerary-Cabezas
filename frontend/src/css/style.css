@@ -30,19 +30,17 @@ a {
     width: 100%;
     font-size: 1.3rem;
     color: white;
-    padding: 2vh 4vw;
+    padding: 1.5vh 2vw;
     z-index: 50;
     transition: 1s;
-    background-color: #00000011;
-    backdrop-filter: blur(4px);
+    background-color: var(--fcolor);
+    /* background-color: #00000011; */
+    /* backdrop-filter: blur(4px); */
     /* box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.45); */
 
 
 }
 
-/* .headerItinerary{
-    background-color: #00000077;
-}  */
 
 .link {
     transition: .5s;
@@ -51,10 +49,6 @@ a {
     margin: 0 .6vw;
     cursor: pointer;
 }
-
-/* .active {
-    color: #ffa871;
-} */
 
 .link:hover {
     color: #ffa871;
@@ -102,6 +96,7 @@ a {
     min-height: 100vh;
     background: url('../assets/hero.jpg') no-repeat;
     background-size: cover;
+    background-position:bottom;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -133,10 +128,23 @@ a {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
+  
+}
+
+.slogan div {
+    backdrop-filter: blur(5px);
+    border: var(--fcolor) solid 2px;
+    padding: 1vh 1vw;
+    color: var(--fcolor);
+    text-align: center;
+    width: 45%;
 }
 
 .slogan h1 {
     font-size: 1.8rem;
+    /* background-color: #2d003d99; */
+   
 }
 
 .unlog-img {
@@ -158,7 +166,7 @@ a {
 .cta {
     width: 23vw;
     height: 8.5vh;
-    background-color: var(--scolor);
+    background-color: var(--fcolor);
     border: none;
     border: #ffffff11 solid 4px;
     border-radius: 10px;
@@ -237,7 +245,7 @@ a {
 .containerSlider {
     position: relative;
     width: 70%;
-    margin: 0 auto;
+    margin: 0 auto 15vh auto;
 }
 
 .carousel {
@@ -315,9 +323,11 @@ a {
 /* -------------------------------------------------------------------------------------- CITIES */
 
 .citiesHero {
-    min-height: 50vh;
+    min-height: 65vh;
     background-size: cover;
-    background-position: center;
+    /* background-repeat: no-repeat; */
+    background-position-y: 500px;
+    /* background-position: center; */
     display: flex;
     align-items: center;
     padding-top: 10vh;
@@ -333,8 +343,8 @@ a {
 }
 
 .citiesHero .logo .logo-img {
-    width: 400px;
-    height: 200px;
+    width: 30%;
+    height: 50%;
     background-repeat: no-repeat;
     background-size: 95%;
     background-position: center;
@@ -344,6 +354,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 5vh 0 10vh 0;
 }
 
 .citiesContainer a {
@@ -351,12 +362,12 @@ a {
 }
 
 .filterContainer{
-    background-color: #00000099;
-    background-color: var(--fcolor);
+    /* background-color: #00000099; */
+    /* background-color: var(--fcolor); */
     /* background-color: #ffffff55; */
-    /* position: absolute; */
-    /* top: 75vh; */
-    height: 12vh;
+    position: absolute;
+    top: 50vh;
+    height: 15vh;
     width: 100%;
     display: flex;
     
@@ -372,6 +383,7 @@ a {
     border-radius: 5px;
     border: none;
     outline: none;
+    background-color: #ffffffcc;
     border: var(--fcolor) solid 2px;
     font-size: 1.1rem;
     
@@ -503,6 +515,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 15vh;
 }
 
 .cityItinerariesHero {
@@ -814,38 +827,223 @@ a {
     transition: .2s;
 }
 
+
+
 /* -------------------------------------------------------------------------------------- SIGN IN - SIGN UP */
 
-.formContainer{
-    /* background-color: red; */
-    height: 80vh;
+
+
+
+
+.formContainer,
+.formContainerSignIn{
+    position: relative;
+    /* height: 100vh; */
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: 15vh 0;
 }
 
-.signin{
-    height: 40vh;
+.singUpImg {
+    position: relative;
+    left: -10vw;
+    height: 95vh;
+    width: 50vw;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: #00000055 0px 5px 10px 0px ;
+    overflow: hidden;
 }
 
+.singUpImg .signUpImgContainer{
+    position: absolute;
+    background-color: #2d003dcc;
+    width: 100%;
+    height: 100%;
+}
 
+.signUpImgContainer .callToActionContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10vh 0 20vh 0;
+    width: 60%;
+    height: 100%;
+}
+
+.callToActionContainer div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 25%;
+}
+
+.callToActionContainer  h3{
+    color: white;
+    font-size: 2.5rem;
+}
+
+.callToActionSignIn{
+    /* background-color: red; */
+    width: 100%;
+}
+
+.callToActionSignIn span {
+    color:white;
+    font-size: 1.1rem;
+}
+
+.callToActionSignIn button{
+    background-color: transparent;
+    padding: 1.5vh 8vw;
+    border: 1px solid white;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: .8s;
+
+}
+
+.callToActionSignIn button:hover{
+    background-color: #ffffff22;
+    transition: .8s;
+}
+
+.formContainerSignIn .form,
 .formContainer .form{
+    position: absolute;
+    right: 20vw;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    height: 85vh;
     width: 40%;
-    box-shadow: #00000055 0px 5px 10px 0px ;
-    border-radius: 5px;
+    width: 35vw;
     padding: 6vh 0;
+    border-radius: 5px;
+
+    box-shadow: #00000055 0px 5px 10px 0px ;
+    transition: 1.2s;
+}
+
+
+.formContainerSignIn .form{
+    height: 75vh;
+    transition: 1.2s;
+
+}
+
+.formContainerSignIn  .separatorFormSignIn{
+    height: 10%;
+}
+
+.formContainer .form:hover,
+.formContainerSignIn .form:hover{
+    transform: scale(1.01);
+    box-shadow: #000000aa 0px 5px 15px 0px ;
+    transition: 1.2s;
 
 }
 
 
-.form input,
+.form .inputContainer{
+    width: 70%;
+    height: 8vh;
+    position: relative;
+}
+
+.passwordEye{
+    position: absolute;
+    right: 6px;
+    top: 12px;
+    opacity: .5;
+    cursor: pointer;
+}
+
+
+.form input{
+    width: 100%;
+    padding: 1.3vh 0vw;
+    border: none;
+    border-bottom: 1px solid grey;
+    outline: none;
+}
+
+.form input:focus{
+    /* transform: scale(1.02); */
+    /* background-color: grey; */
+    border-bottom: 1px solid var(--fcolor);
+    /* padding: 1.3vh 0vw 0vh 0; */
+
+
+    transition: 1s;
+    /* box-shadow: #00000055 0px 10px 15px -2px ; */
+
+
+}
+
 .form select{
     width: 70%;
-    padding: 1.3vh 1vw;
+    padding: 1.3vh 0vw;
+    border: none;
+    border-bottom: 1px solid grey;
 }
+
+.errorSignUp{
+    color: #ff0000ff;
+    font-size: .7rem;
+}
+
+.signButton{
+    background-color: var(--fcolor);
+    width: 70%;
+    height: 7vh;
+    margin: 5vh 0 0 0;
+    border: none;
+    color: white;
+    box-shadow: #00000066 0px 5px 10px 0px ;
+    font-size: 1.1rem;
+    transition: .9s;
+    cursor: pointer;
+
+}
+
+.signButton:hover{
+    opacity: .9;
+    transition: .9s;
+    transform: scale(1.03);
+    box-shadow: #00000066 0px 5px 10px 2px ;
+
+}
+
+.googleButton{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center  !important;
+    
+    background-color: var(--fcolor);
+    box-shadow: #00000044 0px 5px 10px 0px !important;
+
+}
+
+.or{
+    margin: 2vh 0 ;
+    color: grey;
+    font-size: .9rem;
+}
+
+.callToActionResponsive{ 
+    display: none;
+}
+
 
 
 
@@ -988,13 +1186,14 @@ a {
     transition: .5s;
     text-decoration: none;
     color: white;
-    margin: 6vh 0;
+    margin: 4vh 0;
 }
 
 .responsiveNavClose .link {
     opacity: 0;
     transition: .5s;
     font-size: 2rem;
+    margin: 4vh 0;
 }
 
 .responsiveNavOpen {
@@ -1017,7 +1216,7 @@ a {
     transition: .5s;
     text-decoration: none;
     color: white;
-    margin: 6vh 0;
+    margin: 4vh 0;
 
 }
 
@@ -1025,6 +1224,8 @@ a {
     opacity: 1;
     transition: .5s;
     font-size: 2rem;
+    margin: 4vh 0;
+
 
 }
 
@@ -1107,54 +1308,10 @@ a {
 
 
 /* ADMIN PANEL */
-/* .adminContainer {
-    display: flex;
-   
-    height: 90vh;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    background-color: white
-}
 
-.adminContainer form {
-    display: flex;
-    flex-direction: column;
-    width: 40vw;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-}
-
-.adminContainer form > * {
-    margin: 1vh 0;
-    width: 70%;
-    padding: 2vh 3vw;
-    background-color: var(--fcolor);
-    color: var(--scolor);
-    border: none;
-    font-size: 1.1rem;
-    transition: .5s;
-}
-
-.adminContainer form button {
-    cursor: pointer;
-}
-
-.adminContainer form button:hover {
-    cursor: pointer;
-    background-color: var(--scolor);
-    color: var(--fcolor);
-    transition: .5s;
-}
-
-.adminContainer>*::placeholder {
-    color: #088d1daa;
-} */
 .adminContainer{
     display: flex;
 }
-
 
 .adminNav{
     width: 10%;
@@ -1201,11 +1358,11 @@ a {
 
 .adminCard{
     position: relative;
-    height: 5vh;
+    /* height: 50vh; */
     display: flex;
     width: 100%;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 1vh 1vw;
     margin-top: .6vh;
     border-radius: 5px;
@@ -1216,10 +1373,11 @@ a {
     width: 90%;
     height: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    /* align-items: center; */
 }
 .adminCarEditDelete{
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     top: 25%;
     right: 1%;
@@ -1227,7 +1385,6 @@ a {
     font-size: 1.2rem;
     justify-content: space-around;
 }
-
 
 
 .editAdmin,
@@ -1242,7 +1399,6 @@ a {
 
 .deleteAdmin:hover{
     color: #ff0000a4;
-
 }
 
 .adminConfirmM{
@@ -1260,15 +1416,12 @@ a {
 
 .adminConfirmM:hover{
     background-color: #118311dd;
-
 }
 
-
-
-
 .adminCardInfo span{
-    width: 25%;
+    /* width: 25%; */
     font-size: .8rem;
+    height: 5vh;
 }
 
 .adminCardInfo form{
@@ -1283,12 +1436,6 @@ a {
 .adminCardInfo form input{
     padding: .5vh .5vw;
 }
-
-
-
-/* span.phraseAdminCard{
-    width: 60%;
-} */
 
 .newCityModalVisible{
     visibility: visible;
@@ -1313,7 +1460,6 @@ a {
     top: 9vh;
     transition: .5s;
 }
-
 
 .newCityModalVisible form {
     visibility: visible;
@@ -1363,7 +1509,6 @@ a {
     font-size: 0;
     text-align: center;
     transition: .5s;
-
 }
 
 
@@ -1378,11 +1523,9 @@ a {
     .headerItinerary {
         position: fixed;
         background-color: #470e68;
-        /* background-color: var(--scolor); */
         height: 8vh;
         padding: 3vw 3vh;
         box-shadow: 0px 0px 10px 2px #000000;
-
     }
 
     .navbar {
@@ -1451,6 +1594,7 @@ a {
         width: 90vw;
     }
 
+  
     .notCities{
         width: 90vw;
     }  
@@ -1478,7 +1622,24 @@ a {
     .noItineraries p {
         font-size: 1.5rem;
     }
-    
+
+    .singUpImg {       
+        left: -10vw;
+        height: 95vh;
+        width: 65vw;
+    }
+
+    .formContainer,
+    .formContainerSignIn{
+       margin: 10vh 0;
+    }
+
+    .formContainerSignIn .form,
+    .formContainer .form{
+        right: 5vw;  
+        width: 50vw;
+    }
+
 }
 
 /* --------------------------------------------------------------------- RESPONSIVE TABLET ----------------------------------------------------------------------------------------- */
@@ -1494,48 +1655,60 @@ a {
     .flickity-button {
         display: none;
     }
- 
+
+    .citiesHero{
+        background-position-y: 400px;
+    }
+
+    .citiesHero .logo .logo-img {
+        width: 50%;
+        height: 50%;
+        background-repeat: no-repeat;
+        background-size: 95%;
+        background-position: center;
+    }
+    
     .hero .slogan {
         padding: 0 3vw;
     }
+
     .slogan h1 {
         text-align: center;
         font-size: 1.3rem;
     }
+
     .cta-plane {
         position: relative;
         z-index: 40;
         overflow: hidden;
     }
+
     .cta {
         width: 40vw;
         height: 8.5vh;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
+
     .plane {
         width: 3.5vh;
         top: 3.1vh;
     }
-    .transitionHero {
-        position: absolute;
-        top: 80vh;
-        width: 100%;
-        height: 20vh;
-        background-image: linear-gradient(180deg, transparent, #151515);
-    }
+ 
     .titImgSlider .tit {
         font-size: 2rem;
     }
+
     .footer {
         margin-top: 20vh;
     }
+
     .notCities .img {
        font-size: 7rem;
     }
+
     .notCities p{
         font-size: 1.5rem;
     }
-
 
     .itinerary{
         height: 50vh;    
@@ -1551,10 +1724,9 @@ a {
     }
     
     .titleSectionItinerary .titleItinerary{
-        font-size: 2rem;
+        font-size: 1.4rem;
         margin-top: 2vh;
     }
-    
 
     .authorItinerary{
         left: 0;
@@ -1594,7 +1766,6 @@ a {
         margin-top: 20vh;
     }
     
-    
     .showDivOn{
         height: 20vh;
         margin-top: 10vh;
@@ -1608,6 +1779,51 @@ a {
         font-size: 1.1rem;
     }
     
+    .formContainer,
+    .formContainerSignIn{
+        margin: 10vh 0;
+    }
+
+    .singUpImg {
+        left: 0;
+        height: 110vh;
+        width: 80vw;
+    }
+
+    .signUpImgContainer .callToActionContainer{
+        padding: 3vh 0 5vh 0;
+        width: 100%;
+    }
+
+    .callToActionContainer  h3{
+        color: white;
+        font-size: 2.3rem;
+    }
+   
+    .formContainerSignIn .form,
+    .formContainer .form{
+        right: auto;
+        left: auto;
+        height: 85vh;
+        width: 60vw;
+        padding: 5vh 0;
+    }
+
+
+    .formContainerSignIn .form{
+        height: 75vh;
+    }
+
+    .callToActionResponsive{
+        display: block;
+        color: white;
+    }
+
+    .callToActionResponsive > * {
+        color: white;
+        text-decoration: underline;
+        font-weight: bold;
+    }
 }
 
 /* --------------------------------------------------------------------- RESPONSIVE MOBILE ----------------------------------------------------------------------------------------- */
@@ -1615,22 +1831,41 @@ a {
     .header {
         padding: 3vw 2vh;
     }
+
     .unlog-img {
         width: 5vh;
         height: 5vh;
     }
+
     .hero {
         min-height: 100vh;
         background-position: center;
     }
+
+    .citiesHero{
+        background-position-y: 400px;
+
+    }
+
+    .cityFilter::placeholder {
+        font-size: .95rem;
+    }
+    
+    .citiesHero .logo .logo-img {
+        width: 60%;
+        height: 30%;
+    }
+
     .citySlider {
         min-width: 80vw;
     }
+    
     .containerSlider {
         position: relative;
         width: 98%;
         margin: 0 auto;
     }
+
     .flickity-button {
         display: none;
     }
@@ -1638,32 +1873,33 @@ a {
     .hero .slogan {
         padding: 0 3vw;
     }
+
+    .slogan div {
+        width: 70%;
+    }
+
     .slogan h1 {
         text-align: center;
         font-size: 1.3rem;
     }
+
     .cta-plane {
         position: relative;
         z-index: 40;
         overflow: hidden;
     }
+
     .cta {
         width: 70vw;
         height: 8.5vh;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
+
     .plane {
         width: 3.5vh;
         top: 3.1vh;
     }
-    .transitionHero {
-        position: absolute;
-        top: 80vh;
-        width: 100%;
-        height: 20vh;
-        background-image: linear-gradient(180deg, transparent, #151515);
-    }
-    
+
     .cardCity p {
         font-size: 3rem;
     }
@@ -1699,7 +1935,6 @@ a {
         font-size: 1rem;
         max-width: 90%;
     }
-
           
     .priceSection{
         height: 10vh;
@@ -1710,7 +1945,6 @@ a {
     .priceSection >*{
         margin: 0 .8vw;
         font-size: .9rem;
-        
     }
     
     .hashtag {
@@ -1726,5 +1960,68 @@ a {
 
     .noItineraries p {
         font-size: .7rem;
+    }
+
+    .formContainer,
+    .formContainerSignIn{
+        margin: 10vh 0;
+    }
+
+    .singUpImg {
+        left: 0;
+        height: 110vh;
+        width: 100vw;
+    }
+
+
+    .signUpImgContainer .callToActionContainer{
+        padding: 1vh 0 3vh 0;
+    }
+
+    .callToActionContainer  h3{
+        font-size: 2.2rem;
+    }
+
+    .formContainerSignIn .form,
+    .formContainer .form{
+        right: auto;
+        left: auto;
+        height: 90vh;
+        width: 95vw;
+        padding: 5vh 0;
+    }
+
+    .formContainerSignIn .form{
+        height: 75vh;
+        transition: 1.2s;
+    }
+
+    .formContainerSignIn  .separatorFormSignIn{
+        height: 0;
+    }
+
+    .form .inputContainer{
+        width: 85%;
+        height: 9vh;
+    }
+
+    .form select{
+        width: 85%;
+    }
+   
+    .callToActionResponsive{
+        display: flex;
+        color: white;
+        font-size: .95rem;
+        max-width: 90%;
+        flex-wrap: wrap;
+        justify-content: center;    
+    }
+
+    .callToActionResponsive > * {
+        color: white;
+        text-decoration: underline;
+        font-weight: bold;
+        margin-left: 3px;
     }
 }

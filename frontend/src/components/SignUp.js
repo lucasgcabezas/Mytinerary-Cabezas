@@ -4,7 +4,6 @@ import GoogleLogin from 'react-google-login'
 import { store } from 'react-notifications-component'
 import { Link } from 'react-router-dom'
 
-import Hero from './Hero'
 import Preloader from './Preloader'
 import authActions from '../redux/actions/authActions'
 
@@ -12,11 +11,13 @@ import authActions from '../redux/actions/authActions'
 const SignUp = (props) => {
 
     const [newUser, setNewUser] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
-
     const [errors, setErrors] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
-
     const [allCountries, setAllCountries] = useState({ countries: [], preloader: true })
+    const [passwordEyeTrigger, setPasswordEyeTrigger] = useState(true)
+
     const { firstName, lastName, email, password, userPic, country } = newUser
+    let passwordClass = passwordEyeTrigger ? "fas fa-eye passwordEye" : "fas fa-eye-slash passwordEye"
+    let passwordType = passwordEyeTrigger ? 'password' : 'text'
 
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const SignUp = (props) => {
     const sendNewUser = async (e = null, user) => {
         e && e.preventDefault()
 
-        if (user.firstName, user.lastName, user.email, user.password, user.userPic, user.country) {
+        if (user.firstName && user.lastName && user.email && user.password && user.userPic && user.country) {
             const catchErrors = await props.signUpUser(user)
             if (catchErrors) {
                 setErrors({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
@@ -67,20 +68,54 @@ const SignUp = (props) => {
 
     return (
         <>
-            <Hero />
-            <div className="formContainer">
+            <div style={{ backgroundColor: 'var(--fcolor)', height: '5vh' }}></div>
+            <div className="formContainer" >
+                <div className="singUpImg" style={{ backgroundImage: "url('/assets/signup.jpg')" }}>
+                    <div className="signUpImgContainer">
+                        <div className="callToActionContainer">
+                            <h3>Welcome</h3>
+                            <div className="callToActionSignIn">
+                                <span>Already have an account? </span>
+                                <Link to="/user/signin">
+                                    <button>Sign In</button>
+                                </Link>
+
+                            </div>
+                                <span className="callToActionResponsive">Already have an account? <Link to="/user/signin">Sign in here!</Link></span>
+                        </div>
+                    </div>
+                </div>
+
                 <form className="form">
-                    {/* <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput} style={{ border: errors.firstName.length > 2 ? 'solid red 2px' : '' }}></input> */}
-                    <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput} ></input>
-                    <span>{errors.firstName}</span>
-                    <input type="text" placeholder="Last Name" name="lastName" value={lastName} onChange={getInput}></input>
-                    <span>{errors.lastName}</span>
-                    <input type="text" placeholder="Email" name="email" value={email} onChange={getInput}></input>
-                    <span>{errors.email}</span>
-                    <input type="password" placeholder="Password" name="password" value={password} onChange={getInput}></input>
-                    <span>{errors.password}</span>
-                    <input type="text" placeholder="Picture" name="userPic" value={userPic} onChange={getInput}></input>
-                    <span>{errors.userPic}</span>
+                    {/* <input type="text" placeholder="First Name" name="firstName" value={firstName} 
+                    onChange={getInput} style={{ border: errors.firstName.length > 2 ? 'solid red 2px' : '' }}></input> */}
+                    <div className="inputContainer">
+                        <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput} ></input>
+                        <span className="errorSignUp">{errors.firstName}</span>
+                    </div>
+
+                    <div className="inputContainer">
+                        <input type="text" placeholder="Last Name" name="lastName" value={lastName} onChange={getInput}></input>
+                        <span className="errorSignUp">{errors.lastName}</span>
+                    </div>
+
+                    <div className="inputContainer">
+                        <input type="text" placeholder="Email" name="email" value={email} onChange={getInput}></input>
+                        <span className="errorSignUp">{errors.email}</span>
+                    </div>
+
+                    <div className="inputContainer">
+                        <input type={passwordType} placeholder="Password" name="password" value={password} onChange={getInput}></input>
+                        <span className={passwordClass} onClick={()=>setPasswordEyeTrigger(!passwordEyeTrigger)}></span>
+                        <span className="errorSignUp">{errors.password}</span>
+
+                    </div>
+
+                    <div className="inputContainer">
+                        <input type="text" placeholder="Picture" name="userPic" value={userPic} onChange={getInput}></input>
+                        <span className="errorSignUp">{errors.userPic}</span>
+                    </div>
+
                     <select name="country" value={country} onChange={getInput}>
                         <option disabled defaultValue value=''>Countries</option>
                         {
@@ -90,12 +125,14 @@ const SignUp = (props) => {
                         }
                     </select>
                     <span>{errors.country}</span>
-                    <button onClick={(e) => sendNewUser(e, newUser)}>Send!</button>
 
-                    <span>Already have an account? <Link exact to="/user/signin">Sign in here!</Link></span>
-                    <span> Or you can sign up with Google</span>
+
+                    <button className="signButton" onClick={(e) => sendNewUser(e, newUser)}>Sign Up</button>
+
+                    <span className="or"> Or you can sign up with Google</span>
 
                     <GoogleLogin
+                        className="googleButton"
                         clientId="970781340482-k7vb4liqmeip3ti8kd0gmf87ik8j0785.apps.googleusercontent.com"
                         buttonText="Sign Up with Google"
                         onSuccess={responseGoogle}

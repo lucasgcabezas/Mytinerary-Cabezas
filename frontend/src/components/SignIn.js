@@ -5,7 +5,6 @@ import { store } from 'react-notifications-component'
 import { Link } from 'react-router-dom'
 
 
-import Hero from './Hero'
 import authActions from "../redux/actions/authActions"
 
 
@@ -13,13 +12,17 @@ const SignIn = (props) => {
 
     const [userToSignIn, setUserToSignIn] = useState({ email: '', password: '' })
     const { email, password } = userToSignIn
+    const [passwordEyeTrigger, setPasswordEyeTrigger] = useState(true)
+
+    let passwordClass = passwordEyeTrigger ? "fas fa-eye passwordEye" : "fas fa-eye-slash passwordEye"
+    let passwordType = passwordEyeTrigger ? 'password' : 'text'
 
 
     const getInputSignIn = e => { setUserToSignIn({ ...userToSignIn, [e.target.name]: e.target.value }) }
 
     const sendSignInUser = (e = null, user) => {
         e && e.preventDefault()
-        if (user.email || user.password) {
+        if (user.email && user.password) {
             props.signInUSer(user)
             e && setUserToSignIn({ email: '', password: '' })
         } else {
@@ -44,23 +47,46 @@ const SignIn = (props) => {
 
     return (
         <>
-            <Hero />
-            <div className="formContainer signin">
+            <div style={{ backgroundColor: 'var(--fcolor)', height: '5vh' }}></div>
+            <div className="formContainerSignIn">
+                <div className="singUpImg" style={{ backgroundImage: "url('/assets/signin.jpg')" }}>
+                    <div className="signUpImgContainer">
+                        <div className="callToActionContainer">
+                            <h3>Hello, Friend!</h3>
+
+                            <div className="callToActionSignIn">
+                                <span>Don't have an account yet?  </span>
+                                <Link to="/user/signup">
+                                    <button>Sign Up</button>
+                                </Link>
+                            </div>
+                            <span className="callToActionResponsive">Don't have an account yet? <Link to="/user/signup">Sign up here!</Link></span>
+
+                        </div>
+                    </div>
+                </div>
                 <form className="form">
-                    <input type="text" placeholder="Email" name="email" value={email} onChange={getInputSignIn} ></input>
-                    <input type="password" placeholder="Password" name="password" value={password} onChange={getInputSignIn} ></input>
-                    <button onClick={(e) => sendSignInUser(e, userToSignIn)}>Send!</button>
+                    <div className="inputContainer">
+                        <input type="text" placeholder="Email" name="email" value={email} onChange={getInputSignIn} ></input>
+                    </div>
 
-                    <span> Or you can sign in with your Google account</span>
+                    <div className="inputContainer">
+                        <input type={passwordType} placeholder="Password" name="password" value={password} onChange={getInputSignIn} ></input>
+                        <span className={passwordClass} onClick={()=>setPasswordEyeTrigger(!passwordEyeTrigger)}></span>
+                    </div>
 
+                    <div className="separatorFormSignIn"></div>
+
+                    <button className="signButton" onClick={(e) => sendSignInUser(e, userToSignIn)}>Sign In</button>
+                    <span className="or"> Or you can sign in with Google</span>
                     <GoogleLogin
+                        className="googleButton"
                         clientId="970781340482-k7vb4liqmeip3ti8kd0gmf87ik8j0785.apps.googleusercontent.com"
                         buttonText="Sign In with Google"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
                     />
-                    <span>Don't have an account?  <Link exact to="/user/signup">Sign up here!</Link></span>
                 </form>
             </div>
         </>

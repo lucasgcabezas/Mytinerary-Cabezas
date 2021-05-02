@@ -20,7 +20,9 @@ const AdminCard = (props) => {
 
     return (
         <div className="adminCard">
+            <h4>Hola</h4>
             <div className="adminCardInfo">
+                <span style={{ display: editShowPanel ? 'none' : 'block' }} >{name}</span>
                 <span style={{ display: editShowPanel ? 'none' : 'block' }} >Name: {name}</span>
                 <span style={{ display: editShowPanel ? 'none' : 'block' }} >Country: {country}</span>
                 <span style={{ display: editShowPanel ? 'none' : 'block' }} >Img: {img}</span>

@@ -63,7 +63,7 @@ const authActions = {
                         container: "top-right",
                         animationIn: ["animate__animated", "animate__flipInX"],
                         animationOut: ["animate__animated", "animate__fadeOutDown"],
-                        dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
+                        dismiss: { duration: 4000, onScreen: true, pauseOnHover: true, showIcon: true }
                     })
 
                 } else {

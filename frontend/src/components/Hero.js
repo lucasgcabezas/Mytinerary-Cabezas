@@ -8,7 +8,9 @@ const Hero = () => {
                 <div className="logo-img" style={{ backgroundImage: "url('./assets/logotype.png')" }}></div>
             </div>
             <div className="slogan">
-                <h1>Find your perfect trip, designed by insiders who know and love their cities!</h1>
+                <div>
+                    <h1>Find your perfect trip, designed by insiders who know and love their cities!</h1>
+                </div>
             </div>
             <Link to="/cities">
                 <div className="cta-plane">
