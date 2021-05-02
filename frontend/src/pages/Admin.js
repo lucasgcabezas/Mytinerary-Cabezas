@@ -1,10 +1,11 @@
 import React from 'react'
-import AdminSection from '../components/AdminSection'
+import AdminSection from '../components/admin/AdminSection'
+import AdminSectionItinerary from '../components/admin/AdminSectionItinerary'
 
 export default class Admin extends React.Component {
 
     state = {
-        sectionToShow: "cities"
+        sectionToShow: <AdminSection />
     }
 
     render() {
@@ -13,11 +14,11 @@ export default class Admin extends React.Component {
                 <div style={{ backgroundColor: 'var(--fcolor)', height: '10vh' }}></div>
                 <div className="adminContainer">
                     <div className="adminNav">
-                        <span>Cities</span>
-                        <span>Itineraries</span>
+                        <span onClick={()=> this.setState({ sectionToShow: <AdminSection /> })}>Cities</span>
+                        <span onClick={()=> this.setState({ sectionToShow: <AdminSectionItinerary />})}>Itineraries</span>
                         <span>Users</span>
                     </div>
-                    <AdminSection />
+                    {this.state.sectionToShow}
                 </div>
             </div>
         )

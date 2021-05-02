@@ -58,7 +58,7 @@ const citiesControllers = {
             const updateItinerary = await ItineraryModel.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true })
             res.json({ success: true, response: updateItinerary })
         } catch (error) {
-            res.json({ success: false, response: 'An error occurred while processing your request'  })
+            res.json({ success: false, response: 'An error occurred while processing your request' })
             console.log('The controller updateCity has failed')
         }
     }

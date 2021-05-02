@@ -20,7 +20,7 @@ const itineraryActions = {
             axios.get('http://localhost:4000/api/city/' + cityId)
                 .then(response => {
                     if (response.data.success) {
-                        dispatch({ type: 'GET_ONECITY', payload: { oneCity: response.data.answer, error: false, preloader: false } })
+                        dispatch({ type: 'GET_ONECITY', payload: { oneCity: response.data.response, error: false, preloader: false } })
                     } else {
                         dispatch({ type: 'ERROR_ITINERARY', payload: { error: true, preloader: false } })
                     }

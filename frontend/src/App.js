@@ -13,38 +13,44 @@ import Admin from './pages/Admin'
 import Itineraries from './pages/Itineraries'
 import Footer from './components/Footer'
 import authActions from './redux/actions/authActions'
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+
+
 
 
 class App extends React.Component {
     render() {
 
         if (!this.props.userLogged && localStorage.getItem('token')) {
-
             const userData = JSON.parse(localStorage.getItem('userLogged'))
-            const userLS = {
-              token: localStorage.getItem('token'),
-              ...userData
-            }
+            const userLS = { ...userData, token: localStorage.getItem('token') }
             this.props.signInLocalStorage(userLS)
         }
 
         return (
-            <BrowserRouter>
-                <Header />
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/cities" component={Cities} />
-                    {!this.props.userLogged && <Route path="/user/signin" component={SignIn} />}
-                    {!this.props.userLogged && <Route path="/user/signup" component={SignUp} />}
-                    <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/itineraries/:id" component={Itineraries} />
-                    <Redirect to="/" />
-                </Switch>
-                <Footer />
-            </BrowserRouter>
+            <>
+                <ReactNotification />
+                <BrowserRouter>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/cities" component={Cities} />
+                        {!this.props.userLogged && <Route path="/user/signin" component={SignIn} />}
+                        {!this.props.userLogged && <Route path="/user/signup" component={SignUp} />}
+                        {/* <Route path="/user/signup" component={SignUp} /> */}
+                        {/* {this.props.userLogged && <Route exact path="/admin" component={Admin} />} */}
+                        <Route exact path="/admin" component={Admin} />
+                        <Route exact path="/itineraries/:id" component={Itineraries} />
+                        <Redirect to="/" />
+                    </Switch>
+                    <Footer />
+                </BrowserRouter>
+            </>
         )
     }
 }
+
 
 const mapStateToProps = state => {
     return {

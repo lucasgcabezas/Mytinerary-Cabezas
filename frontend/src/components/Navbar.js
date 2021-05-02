@@ -16,7 +16,6 @@ const Navbar = (props) => {
                     : <>
                         <NavLink exact to="/user/signup"><span className="link">Sign Up</span></NavLink>
                         <NavLink exact to="/user/signin"><span className="link">Sign In</span></NavLink>
-
                     </>
             }
         </>

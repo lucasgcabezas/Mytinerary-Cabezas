@@ -7,17 +7,13 @@ const cityActions = {
                 .then(response => {
                     if (response.data.success) {
                         dispatch({
-                            type: 'ALL_CITIES', payload: {
-                                citiesArray: response.data.answer,
-                                citiesFiltered: response.data.answer,
-                                loading: false, error: false
-                            }
+                            type: 'ALL_CITIES', payload: { citiesArray: response.data.response, citiesFiltered: response.data.response, loading: false, error: false }
                         })
                     } else {
                         dispatch({ type: 'ERROR_CITY', payload: true })
                     }
                 })
-            .catch(error => dispatch({ type: 'ERROR_CITY', payload: true }))
+                .catch(error => dispatch({ type: 'ERROR_CITY', payload: true }))
         }
     },
 

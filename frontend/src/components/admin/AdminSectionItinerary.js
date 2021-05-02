@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { connect } from 'react-redux'
-import adminActions from "../redux/actions/adminActions"
-import AdminCard from "./AdminCard"
+import adminActions from "../../redux/actions/adminActions"
+import AdminCardItinerary from "./AdminCardItinerary"
+import Preloader from "../Preloader"
 
 
 const AdminSection = (props) => {
@@ -11,7 +12,7 @@ const AdminSection = (props) => {
     const [newElementButton, setNewElementButton] = useState(false)
 
     useEffect(() => {
-        props.loadAllCities()
+        props.loadAllCities("itineraries")
         // return () => { cleanup }    
     }, [])
 
@@ -32,8 +33,8 @@ const AdminSection = (props) => {
             </div>
             {
                 props.preloader
-                    ? <p>hola</p>
-                    : props.allCities.map((city, i) => <AdminCard key={city._id} city={city} />)
+                    ? <Preloader />
+                    : props.allCities.map((city, i) => <AdminCardItinerary key={city._id} city={city} />)
             }
             <div className={newElementButton ? "newCityModalVisible" : "newCityModalHidden"}>
                 <form>

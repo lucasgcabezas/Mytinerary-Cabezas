@@ -22,7 +22,7 @@ const userControllers = {
                 const token = jwt.sign({ ...newUser }, process.env.SECRET_OR_KEY)
                 response = { token, userPic: newUser.userPic, firstName: newUser.firstName }
             } catch {
-                error = "An error occurred during registration, please try again"
+                error = "An error occurred during registration, please try later"
             }
         } else {
             error = "Email is already registered"
@@ -48,7 +48,7 @@ const userControllers = {
             if (passwordMatch) {
                 const token = jwt.sign({ ...userToSignIn }, process.env.SECRET_OR_KEY)
                 response = { token, userPic: userToSignIn.userPic, firstName: userToSignIn.firstName }
-            } else {    
+            } else {
                 error = "User or password incorrect. Please try again!"
             }
         } else {
@@ -63,7 +63,10 @@ const userControllers = {
 
 
     signInForLS: (req, res) => {
-        res.json({ success: true, response: { userPic: req.user.userPic, firstName: req.user.firstName } })
+        res.json({
+            success: true,
+            response: { userPic: req.user.userPic, firstName: req.user.firstName }
+        })
     }
 
 }

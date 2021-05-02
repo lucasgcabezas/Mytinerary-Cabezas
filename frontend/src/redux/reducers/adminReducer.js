@@ -10,15 +10,20 @@ const adminReducer = (state = initialState, action) => {
             break
 
         case 'ADD_CITY':
-            console.log('reducer:' + action.payload)
             return { ...state, ...action.payload }
             break
 
         case 'DELETE_CITY':
-            console.log('reducer:' + action.payload)
             return {
                 ...state,
                 arrayOf: state.arrayOf.filter(city => city._id !== action.payload._id)
+            }
+            break
+
+        case 'MODIFY_CITY':
+            return {
+                ...state,
+                arrayOf: action.payload
             }
             break
 

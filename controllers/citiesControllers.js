@@ -4,9 +4,9 @@ const citiesControllers = {
     allCities: async (req, res) => {
         try {
             const totalCities = await CityModel.find()
-            res.json({ success: true, answer: totalCities })
+            res.json({ success: true, response: totalCities })
         } catch (error) {
-            res.json({ success: false, answer: 'An error occurred while processing your request' })
+            res.json({ success: false, response: 'An error occurred while processing your request' })
             console.log('The controller allCities has failed')
         }
     },
@@ -16,9 +16,9 @@ const citiesControllers = {
             const cityToSave = new CityModel(req.body)
             await cityToSave.save()
             const totalCities = await CityModel.find()
-            res.json({ success: true, answer: totalCities })
+            res.json({ success: true, response: totalCities })
         } catch (error) {
-            res.json({ success: false, answer: 'An error occurred while processing your request'  })
+            res.json({ success: false, response: 'An error occurred while processing your request'  })
             console.log('The controller addNewCity has failed')
         }
     },
@@ -26,9 +26,9 @@ const citiesControllers = {
     obtainOneCity: async (req, res) => {
         try {
             const oneCity = await CityModel.findById(req.params.id)
-            res.json({ success: true, answer: oneCity })
+            res.json({ success: true, response: oneCity })
         } catch (error) {
-            res.json({ success: false, answer: 'An error occurred while processing your request'  })
+            res.json({ success: false, response: 'An error occurred while processing your request'  })
             console.log('The controller obtainCityModel has failed')
         }
     },
@@ -36,19 +36,20 @@ const citiesControllers = {
     deleteCity: async (req, res) => {
         try {
             const deletedCity = await CityModel.findOneAndDelete({ _id: req.params.id })
-            res.json({ success: true, answer: deletedCity })
+            res.json({ success: true, response: deletedCity })
         } catch (error) {
-            res.json({ success: false, answer: 'An error occurred while processing your request'  })
+            res.json({ success: false, response: 'An error occurred while processing your request'  })
             console.log('The controller deleteCity has failed')
         }
     },
 
     updateCity: async (req, res) => {
         try {
-            const updatedCity = await CityModel.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true })
-            res.json({ success: true, answer: updatedCity })
+            await CityModel.findByIdAndUpdate({ _id: req.params.id }, req.body , { new: true })
+            const totalCities = await CityModel.find()
+            res.json({ success: true, response: totalCities })
         } catch (error) {
-            res.json({ success: false, answer: 'An error occurred while processing your request'  })
+            res.json({ success: false, response: 'An error occurred while processing your request'  })
             console.log('The controller updateCity has failed')
         }
     }

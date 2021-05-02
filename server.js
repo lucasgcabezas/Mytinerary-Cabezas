@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express = require('express')
-const passport = require('passport')
-require('dotenv').config()
-
 const cors = require('cors')
-require('./config/database')
 const router = require('./routes/index')
+const passport = require('passport')
+// Hay que importar todo capo
+require('dotenv').config()
+require('./config/database')
 require('./config/passport')
 
 
