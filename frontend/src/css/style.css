@@ -11,7 +11,6 @@ html * {
     font-family: 'IBM Plex Sans', sans-serif;
 
     font-family: 'Oxygen', sans-serif;
-    /* font-family: 'Lexend', sans-serif; */
 }
 
 a {
@@ -30,21 +29,17 @@ a {
     width: 100%;
     font-size: 1.3rem;
     color: white;
-    padding: 1.5vh 2vw;
+    padding: 1vh 2vw;
     z-index: 50;
     transition: 1s;
     background-color: var(--fcolor);
-    /* background-color: #00000011; */
-    /* backdrop-filter: blur(4px); */
-    /* box-shadow: 0px 3px 10px 0px rgba(0,0,0,0.45); */
-
-
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 3px 6px 0px #000000aa;
 }
-
 
 .link {
     transition: .5s;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
     margin: 0 .6vw;
     cursor: pointer;
@@ -71,13 +66,13 @@ a {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 50%;
+    width: 42%;
 }
 
 .navbar {
     color: white;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .navbar a {
@@ -86,7 +81,7 @@ a {
 }
 
 .unlog {
-    margin-left: 5vw;
+    margin-left: 2vw;
 }
 
 
@@ -161,6 +156,8 @@ a {
     z-index: 40;
     overflow: hidden;
     margin-top: 2vh;
+    box-shadow: 0px 3px 8px 2px #000000aa;
+
 }
 
 .cta {
@@ -169,12 +166,13 @@ a {
     background-color: var(--fcolor);
     border: none;
     border: #ffffff11 solid 4px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     color: white;
     font-size: 1.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     cursor: pointer;
     z-index: 40;
+
 }
 
 .planeIcon {
@@ -365,6 +363,8 @@ a {
     /* background-color: #00000099; */
     /* background-color: var(--fcolor); */
     /* background-color: #ffffff55; */
+    /* background-color: #2d003ddd; */
+    
     position: absolute;
     top: 50vh;
     height: 15vh;
@@ -383,11 +383,18 @@ a {
     border-radius: 5px;
     border: none;
     outline: none;
-    background-color: #ffffffcc;
+    /* background-color: #ffffffcc; */
+    background-color: transparent;
     border: var(--fcolor) solid 2px;
+    /* border: white solid 2px; */
     font-size: 1.1rem;
     
     /* background-color: black; */
+}
+
+.cityFilter::placeholder{
+    color: #2d003dcc;
+    /* color: white; */
 }
 
 .notCities{
@@ -937,11 +944,11 @@ a {
 .formContainerSignIn .form{
     height: 75vh;
     transition: 1.2s;
-
+    padding: 10vh 0;
 }
 
 .formContainerSignIn  .separatorFormSignIn{
-    height: 10%;
+    height: 20%;
 }
 
 .formContainer .form:hover,
@@ -1512,17 +1519,13 @@ a {
 }
 
 
-
-
- 
-
-
 /* --------------------------------------------------------------------- RESPONSIVE TABLET LANDSCAPE ------------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .header,
     .headerItinerary {
         position: fixed;
         background-color: #470e68;
+        background-color: var(--fcolor);
         height: 8vh;
         padding: 3vw 3vh;
         box-shadow: 0px 0px 10px 2px #000000;

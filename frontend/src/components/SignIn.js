@@ -4,7 +4,6 @@ import GoogleLogin from 'react-google-login'
 import { store } from 'react-notifications-component'
 import { Link } from 'react-router-dom'
 
-
 import authActions from "../redux/actions/authActions"
 
 
@@ -47,7 +46,7 @@ const SignIn = (props) => {
 
     return (
         <>
-            <div style={{ backgroundColor: 'var(--fcolor)', height: '5vh' }}></div>
+            <div style={{ height: '10vh' }}></div>
             <div className="formContainerSignIn">
                 <div className="singUpImg" style={{ backgroundImage: "url('/assets/signin.jpg')" }}>
                     <div className="signUpImgContainer">
@@ -78,7 +77,7 @@ const SignIn = (props) => {
                     <div className="separatorFormSignIn"></div>
 
                     <button className="signButton" onClick={(e) => sendSignInUser(e, userToSignIn)}>Sign In</button>
-                    <span className="or"> Or you can sign in with Google</span>
+                    <span className="or"> - or - </span>
                     <GoogleLogin
                         className="googleButton"
                         clientId="970781340482-k7vb4liqmeip3ti8kd0gmf87ik8j0785.apps.googleusercontent.com"

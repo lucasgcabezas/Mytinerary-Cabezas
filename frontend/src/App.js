@@ -26,6 +26,8 @@ class App extends React.Component {
             const userData = JSON.parse(localStorage.getItem('userLogged'))
             const userLS = { ...userData, token: localStorage.getItem('token') }
             this.props.signInLocalStorage(userLS)
+            return null
+
         }
 
         return (

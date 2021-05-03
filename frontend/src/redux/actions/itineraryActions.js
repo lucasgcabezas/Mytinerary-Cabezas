@@ -11,7 +11,7 @@ const itineraryActions = {
                         dispatch({ type: 'ERROR_ITINERARY', payload: { error: true, preloader: false } })
                     }
                 })
-            .catch(error => alert('An error happened, please reload the page!'))
+                .catch(error => alert('An error happened, please reload the page!'))
         }
     },
 

@@ -9,7 +9,6 @@ import authActions from '../redux/actions/authActions'
 
 
 const SignUp = (props) => {
-
     const [newUser, setNewUser] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
     const [errors, setErrors] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
     const [allCountries, setAllCountries] = useState({ countries: [], preloader: true })
@@ -25,12 +24,10 @@ const SignUp = (props) => {
             .then(response => setAllCountries({ countries: response, preloader: false }))
     }, [])
 
-
     const getInput = e => { setNewUser({ ...newUser, [e.target.name]: e.target.value }) }
 
     const sendNewUser = async (e = null, user) => {
         e && e.preventDefault()
-
         if (user.firstName && user.lastName && user.email && user.password && user.userPic && user.country) {
             const catchErrors = await props.signUpUser(user)
             if (catchErrors) {
@@ -41,7 +38,6 @@ const SignUp = (props) => {
             }
             e && !catchErrors
                 && setNewUser({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
-
         } else {
             store.addNotification({
                 title: "Error",
@@ -56,19 +52,17 @@ const SignUp = (props) => {
         }
     }
 
-
     const responseGoogle = response => {
         const { givenName, familyName, email, googleId, imageUrl } = response.profileObj
         sendNewUser(null, { firstName: givenName, lastName: familyName, email, password: 'l' + googleId, userPic: imageUrl, country: 'Narnia' })
     }
-
 
     allCountries.preloader
         && <Preloader />
 
     return (
         <>
-            <div style={{ backgroundColor: 'var(--fcolor)', height: '5vh' }}></div>
+            <div style={{ height: '10vh' }}></div>
             <div className="formContainer" >
                 <div className="singUpImg" style={{ backgroundImage: "url('/assets/signup.jpg')" }}>
                     <div className="signUpImgContainer">
@@ -79,7 +73,6 @@ const SignUp = (props) => {
                                 <Link to="/user/signin">
                                     <button>Sign In</button>
                                 </Link>
-
                             </div>
                                 <span className="callToActionResponsive">Already have an account? <Link to="/user/signin">Sign in here!</Link></span>
                         </div>
@@ -87,8 +80,6 @@ const SignUp = (props) => {
                 </div>
 
                 <form className="form">
-                    {/* <input type="text" placeholder="First Name" name="firstName" value={firstName} 
-                    onChange={getInput} style={{ border: errors.firstName.length > 2 ? 'solid red 2px' : '' }}></input> */}
                     <div className="inputContainer">
                         <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput} ></input>
                         <span className="errorSignUp">{errors.firstName}</span>
@@ -112,7 +103,7 @@ const SignUp = (props) => {
                     </div>
 
                     <div className="inputContainer">
-                        <input type="text" placeholder="Picture" name="userPic" value={userPic} onChange={getInput}></input>
+                        <input type="text" placeholder="Picture (Url)" name="userPic" value={userPic} onChange={getInput}></input>
                         <span className="errorSignUp">{errors.userPic}</span>
                     </div>
 
@@ -125,12 +116,9 @@ const SignUp = (props) => {
                         }
                     </select>
                     <span>{errors.country}</span>
-
-
+                    
                     <button className="signButton" onClick={(e) => sendNewUser(e, newUser)}>Sign Up</button>
-
-                    <span className="or"> Or you can sign up with Google</span>
-
+                    <span className="or"> - or - </span>
                     <GoogleLogin
                         className="googleButton"
                         clientId="970781340482-k7vb4liqmeip3ti8kd0gmf87ik8j0785.apps.googleusercontent.com"
