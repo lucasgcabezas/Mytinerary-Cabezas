@@ -16,7 +16,6 @@ const SignIn = (props) => {
     let passwordClass = passwordEyeTrigger ? "fas fa-eye passwordEye" : "fas fa-eye-slash passwordEye"
     let passwordType = passwordEyeTrigger ? 'password' : 'text'
 
-
     const getInputSignIn = e => { setUserToSignIn({ ...userToSignIn, [e.target.name]: e.target.value }) }
 
     const sendSignInUser = (e = null, user) => {

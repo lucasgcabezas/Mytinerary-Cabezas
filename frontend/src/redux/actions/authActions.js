@@ -1,51 +1,38 @@
 import axios from 'axios'
 import { store } from 'react-notifications-component'
 
+const myAlert = async (alertTitle, alertMessage, alertType) => {
+      await store.addNotification({
+        title: alertTitle,
+        message: alertMessage,
+        type: alertType,
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__flipInX"],
+        animationOut: ["animate__animated", "animate__fadeOutDown"],
+        dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
+    })
+}
 
 const authActions = {
     signUpUser: (user) => {
         return async (dispatch, getState) => {
+
             try {
                 const response = await axios.post('http://localhost:4000/api/user/signup', user)
                 if (response.data.errorsValidator) {
                     return response.data.errorsValidator
 
                 } else if (response.data.error) {
-                    store.addNotification({
-                        title: "Error",
-                        message: response.data.error,
-                        type: "danger",
-                        insert: "top",
-                        container: "top-right",
-                        animationIn: ["animate__animated", "animate__flipInX"],
-                        animationOut: ["animate__animated", "animate__fadeOutDown"],
-                        dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
-                    })
+                    myAlert('Error',response.data.error, 'danger')
 
                 } else {
                     dispatch({ type: 'LOG_USER', payload: response.data.response })
-                    store.addNotification({
-                        title: response.data.response.firstName,
-                        message: `Welcome to Mytinerary!`,
-                        type: "success",
-                        insert: "top",
-                        container: "top-right",
-                        animationIn: ["animate__animated", "animate__flipInX"],
-                        animationOut: ["animate__animated", "animate__fadeOutDown"],
-                        dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
-                    })
+                    myAlert(response.data.response.firstName,`Welcome to Mytinerary!`, 'success')
                 }
             } catch {
-                store.addNotification({
-                    title: "Error",
-                    message: "Internal server error, please try later!",
-                    type: "danger",
-                    insert: "top",
-                    container: "top-right",
-                    animationIn: ["animate__animated", "animate__flipInX"],
-                    animationOut: ["animate__animated", "animate__fadeOutDown"],
-                    dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
-                })
+                myAlert('Error','Internal server error, please try later!', 'danger')
+
             }
         }
     },
@@ -55,41 +42,13 @@ const authActions = {
             try {
                 const response = await axios.post('http://localhost:4000/api/user/signin', userToSignIn)
                 if (!response.data.success) {
-                    store.addNotification({
-                        title: "Oops",
-                        message: response.data.error,
-                        type: "danger",
-                        insert: "top",
-                        container: "top-right",
-                        animationIn: ["animate__animated", "animate__flipInX"],
-                        animationOut: ["animate__animated", "animate__fadeOutDown"],
-                        dismiss: { duration: 4000, onScreen: true, pauseOnHover: true, showIcon: true }
-                    })
-
+                    myAlert('Oops',response.data.error, 'danger')
                 } else {
                     dispatch({ type: 'LOG_USER', payload: response.data.response })
-                    store.addNotification({
-                        title: response.data.response.firstName,
-                        message: `Welcome to Mytinerary!`,
-                        type: "success",
-                        insert: "top",
-                        container: "top-right",
-                        animationIn: ["animate__animated", "animate__flipInX"],
-                        animationOut: ["animate__animated", "animate__fadeOutDown"],
-                        dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
-                    })
+                    myAlert(response.data.response.firstName,`Welcome to Mytinerary!`, 'success')
                 }
             } catch {
-                store.addNotification({
-                    title: "Error",
-                    message: "Internal server error, please try later!",
-                    type: "danger",
-                    insert: "top",
-                    container: "top-right",
-                    animationIn: ["animate__animated", "animate__flipInX"],
-                    animationOut: ["animate__animated", "animate__fadeOutDown"],
-                    dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
-                })
+                myAlert('Error','Internal server error, please try later!', 'danger')
             }
         }
     },
@@ -123,16 +82,7 @@ const authActions = {
                 return response.data
 
             } catch {
-                store.addNotification({
-                    title: "Error",
-                    message: "Internal server error, please try later!",
-                    type: "danger",
-                    insert: "top",
-                    container: "top-right",
-                    animationIn: ["animate__animated", "animate__flipInX"],
-                    animationOut: ["animate__animated", "animate__fadeOutDown"],
-                    dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
-                })
+                myAlert('Error','Internal server error, please try later!', 'danger')
             }
         }
     }

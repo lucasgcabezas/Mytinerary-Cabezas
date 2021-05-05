@@ -4,13 +4,14 @@ import GoogleLogin from 'react-google-login'
 import { store } from 'react-notifications-component'
 import { Link } from 'react-router-dom'
 
-import Preloader from './Preloader'
+import Preloader from '../components/Preloader'
 import authActions from '../redux/actions/authActions'
+import InputSign from '../components/InputSign'
 
 
 const SignUp = (props) => {
     const [newUser, setNewUser] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
-    const [errors, setErrors] = useState({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
+    const [errors, setErrors] = useState({})
     const [allCountries, setAllCountries] = useState({ countries: [], preloader: true })
     const [passwordEyeTrigger, setPasswordEyeTrigger] = useState(true)
 
@@ -28,16 +29,16 @@ const SignUp = (props) => {
 
     const sendNewUser = async (e = null, user) => {
         e && e.preventDefault()
-        if (user.firstName && user.lastName && user.email && user.password && user.userPic && user.country) {
+        if (!Object.values(user).some(value => value === '')) {
             const catchErrors = await props.signUpUser(user)
             if (catchErrors) {
-                setErrors({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
+                setErrors({})
                 catchErrors.details.map(err => setErrors(prevState => {
                     return { ...prevState, [err.context.label]: err.message }
                 }))
+            } else if (e) {
+                setNewUser({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
             }
-            e && !catchErrors
-                && setNewUser({ firstName: '', lastName: '', email: '', password: '', userPic: '', country: '' })
         } else {
             store.addNotification({
                 title: "Error",
@@ -74,12 +75,35 @@ const SignUp = (props) => {
                                     <button>Sign In</button>
                                 </Link>
                             </div>
-                                <span className="callToActionResponsive">Already have an account? <Link to="/user/signin">Sign in here!</Link></span>
+                            <span className="callToActionResponsive">Already have an account? <Link to="/user/signin">Sign in here!</Link></span>
                         </div>
                     </div>
                 </div>
 
                 <form className="form">
+
+                    {/* {
+                        Object.keys(newUser).map(field => {
+                            if (field === 'password') {
+                                return <InputSign
+                                    type='password'
+                                    inputName={field}
+                                    getInput={getInput}
+                                    passwordClass={passwordClass}
+                                    passwordType={passwordType}
+                                    passwordEyeTrigger={passwordEyeTrigger}
+                                    setPasswordEyeTrigger={setPasswordEyeTrigger}
+                                    error={errors[field]}
+                                />
+                            }
+                        })
+
+
+                    }
+ */}
+
+
+                                       
                     <div className="inputContainer">
                         <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput} ></input>
                         <span className="errorSignUp">{errors.firstName}</span>
@@ -97,9 +121,8 @@ const SignUp = (props) => {
 
                     <div className="inputContainer">
                         <input type={passwordType} placeholder="Password" name="password" value={password} onChange={getInput}></input>
-                        <span className={passwordClass} onClick={()=>setPasswordEyeTrigger(!passwordEyeTrigger)}></span>
+                        <span className={passwordClass} onClick={() => setPasswordEyeTrigger(!passwordEyeTrigger)}></span>
                         <span className="errorSignUp">{errors.password}</span>
-
                     </div>
 
                     <div className="inputContainer">
@@ -115,8 +138,9 @@ const SignUp = (props) => {
                             })
                         }
                     </select>
-                    <span>{errors.country}</span>
-                    
+                    <span>{errors.country}</span> 
+
+
                     <button className="signButton" onClick={(e) => sendNewUser(e, newUser)}>Sign Up</button>
                     <span className="or"> - or - </span>
                     <GoogleLogin

@@ -11,7 +11,7 @@ export default class Admin extends React.Component {
     render() {
         return (
             <div>
-                <div style={{ backgroundColor: 'var(--fcolor)', height: '10vh' }}></div>
+                <div style={{ height: '9vh' }}></div>
                 <div className="adminContainer">
                     <div className="adminNav">
                         <span onClick={()=> this.setState({ sectionToShow: <AdminSection /> })}>Cities</span>

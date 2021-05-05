@@ -1,9 +1,10 @@
 const ItineraryModel = require('../models/ItineraryModel')
+const UserModel = require('../models/ItineraryModel')
 
 const citiesControllers = {
     allItineraries: async (req, res) => {
         try {
-            const allItineraries = await ItineraryModel.find()
+            const allItineraries = await ItineraryModel.find().populate('cityId')
             res.json({ success: true, response: allItineraries })
         } catch (error) {
             res.json({ success: false, response: 'An error occurred while processing your request' })
@@ -35,7 +36,7 @@ const citiesControllers = {
 
     itinerariesForCity: async (req, res) => {
         try {
-            const selectedItineraries = await ItineraryModel.find({ cityId: req.params.id })
+            const selectedItineraries = await ItineraryModel.find({ cityId: req.params.id }) 
             res.json({ success: true, response: selectedItineraries })
         } catch (error) {
             res.json({ success: false, response: 'An error occurred while processing your request' })
@@ -61,7 +62,32 @@ const citiesControllers = {
             res.json({ success: false, response: 'An error occurred while processing your request' })
             console.log('The controller updateCity has failed')
         }
+    },
+
+    likeItinerary: async (req, res) => {
+
+        const loQueSeEncontro = await ItineraryModel.findOne({ "_id": req.params.id, "usersLike": req.user._id })
+
+        
+        // try {
+        //     const updateItinerary = await ItineraryModel.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true })
+        //     res.json({ success: true, response: updateItinerary })
+        // } catch (error) {
+        //     res.json({ success: false, response: 'An error occurred while processing your request' })
+        //     console.log('The controller updateCity has failed')
+        // }
     }
 }
 
 module.exports = citiesControllers
+
+// deleteComment: async (req, res) => {
+
+//     const loQueSeEncontro = await ItineraryModel.findOne({ "comments._id": req.params.id, "comments.userId": req.user._id })
+//     const arrayComments = await ItineraryModel.findOneAndUpdate({ "comments._id": req.params.id }, { $pull: { 'comments': { '_id': req.params.id } } }, { new: true })
+
+//     res.json({ response: arrayComments.comments })
+
+
+// },
+

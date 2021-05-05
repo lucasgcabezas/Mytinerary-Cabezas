@@ -12,8 +12,11 @@ const AdminSection = (props) => {
     const [newElementButton, setNewElementButton] = useState(false)
 
     useEffect(() => {
+        props.cleanAdminStore()     
         props.loadAllCities("itineraries")
-        // return () => { cleanup }    
+        props.getAllCities()
+        return () => props.cleanAdminStore()     
+
     }, [])
 
     const getInput = e => { setNewElement({ ...newElement, [e.target.name]: e.target.value }) }
@@ -29,10 +32,10 @@ const AdminSection = (props) => {
         <div className="adminSection">
             <div className="adminTitle">
                 <h2>Cities</h2>
-                <button onClick={() => setNewElementButton(!newElementButton)} style={{backgroundColor: !newElementButton ? '#118311': 'red'}}>{!newElementButton ? 'Add new city +' : ' Close X'}</button>
+                <button onClick={() => setNewElementButton(!newElementButton)} style={{ backgroundColor: !newElementButton ? '#118311' : 'red' }}>{!newElementButton ? 'Add new city +' : ' Close X'}</button>
             </div>
             {
-                props.preloader
+                props.preloader 
                     ? <Preloader />
                     : props.allCities.map((city, i) => <AdminCardItinerary key={city._id} city={city} />)
             }
@@ -53,13 +56,16 @@ const AdminSection = (props) => {
 const mapStateToProps = state => {
     return {
         allCities: state.adminReducer.arrayOf,
-        preloader: state.adminReducer.preloader
+        preloader: state.adminReducer.preloader,
+        preloaderCity: state.adminReducer.preloaderCity
     }
 }
 
 const mapDispatchToProps = {
     loadAllCities: adminActions.getCities,
-    sendNewCity: adminActions.sendNewCity
+    sendNewCity: adminActions.sendNewCity,
+    getAllCities: adminActions.getAllCities,
+    cleanAdminStore: adminActions.cleanAdminStore
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminSection)

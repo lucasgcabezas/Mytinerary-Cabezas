@@ -7,11 +7,14 @@ const passport = require('passport')
 const citiesControllers = require('../controllers/citiesControllers')
 const itineraryControllers = require('../controllers/itineraryControllers')
 const usersControllers = require('../controllers/usersControllers')
+const commentsControllers = require('../controllers/commentsControllers')
 
 
 const { allCities, addNewCity, obtainOneCity, deleteCity, updateCity } = citiesControllers
-const { allItineraries, addNewItinerary, deleteItinerary, obtainOneItinerary, itinerariesForCity, updateItinerary } = itineraryControllers
+const { allItineraries, addNewItinerary, deleteItinerary, obtainOneItinerary, itinerariesForCity, updateItinerary, likeItinerary } = itineraryControllers
 const { signUp, signIn, signInForLS } = usersControllers
+const { addNewComment, deleteComment, editComment } = commentsControllers
+
 
 // CITIES
 router.route('/cities')
@@ -35,6 +38,18 @@ router.route('/itinerary/:id')
     .get(obtainOneItinerary)
     .delete(deleteItinerary)
     .put(updateItinerary)
+
+router.route('/like')
+    .put(likeItinerary)
+
+
+// ITINERARIES
+router.route('/comments/:id')
+    .post(passport.authenticate('jwt', { session: false }), addNewComment)
+
+router.route('/comment/:id')
+    .delete(passport.authenticate('jwt', { session: false }), deleteComment)
+    .put(passport.authenticate('jwt', { session: false }), editComment)
 
 // USERS 
 router.route('/user/signup')

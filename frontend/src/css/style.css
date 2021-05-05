@@ -360,11 +360,6 @@ a {
 }
 
 .filterContainer{
-    /* background-color: #00000099; */
-    /* background-color: var(--fcolor); */
-    /* background-color: #ffffff55; */
-    /* background-color: #2d003ddd; */
-    
     position: absolute;
     top: 50vh;
     height: 15vh;
@@ -383,18 +378,15 @@ a {
     border-radius: 5px;
     border: none;
     outline: none;
-    /* background-color: #ffffffcc; */
-    background-color: transparent;
+    background-color: #ffffff99;
+    color: var(--fcolor);
     border: var(--fcolor) solid 2px;
-    /* border: white solid 2px; */
     font-size: 1.1rem;
-    
-    /* background-color: black; */
 }
 
 .cityFilter::placeholder{
-    color: #2d003dcc;
-    /* color: white; */
+    color: #2d003da9;
+    font-size: 1.2rem;
 }
 
 .notCities{
@@ -632,6 +624,7 @@ a {
     box-shadow: #00000055 0px 5px 10px 0px ;
     overflow: hidden;
 
+
 }
 
 .itinerary:hover,
@@ -649,10 +642,14 @@ a {
     flex-direction: column;
     align-items: center;
     height: 32vh;
+
 }
 
 .showItinerary{
-    min-height: 70vh;
+
+    min-height: 150vh;
+
+
 }
 
 .mouseMove{
@@ -788,7 +785,7 @@ a {
 .showDivOff, 
 .showDivOn{
     visibility: hidden;
-    display: flex;
+    display: none;
     width: 100%;
     height: 0;
     margin-top: 10vh;
@@ -797,17 +794,21 @@ a {
 }
 
 .showDivOn{
+    display: flex;
     z-index: 30;
     visibility: visible;
     display: flex;
-    height: 20vh;
+    /* height: 20vh; */
     transition: 1s;
 }
 
 .commentsItinerary{
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--fcolor);
+    margin-top: 5vh;
+    background-color: red;
+    width: 90%;
+    /* font-size: 2rem; */
+    /* font-weight: bold; */
+    /* color: var(--fcolor); */
 }
 
 .buttonShow {
@@ -834,6 +835,12 @@ a {
     transition: .2s;
 }
 
+
+.comment{
+    background-color: yellow;
+    margin: 2vh 1vw;
+    padding: .5vh .5vw;
+}
 
 
 /* -------------------------------------------------------------------------------------- SIGN IN - SIGN UP */
@@ -1321,14 +1328,14 @@ a {
 }
 
 .adminNav{
-    width: 10%;
+    width: 12%;
     min-height: 100vh;
     border-right: solid 3px  var(--scolor);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    padding-top: 3vh;
+    /* align-items: center; */
+    padding: 8vh 0 0 1vw;
 }
 
 .adminNav >*{
@@ -1367,30 +1374,81 @@ a {
     position: relative;
     /* height: 50vh; */
     display: flex;
+    flex-direction: column;
     width: 100%;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: flex-start;
-    padding: 1vh 1vw;
+    padding: 0vh 1vw;
     margin-top: .6vh;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     box-shadow: 0px 1px 8px -2px #00000055;
 }
 
+.adminCardHeader{
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    width: 100%;
+    padding: 1vh 0;
+    /* background-color: red; */
+    justify-content: space-between;
+}
+
+.adminCardHeader .moreButton,
+.adminCardHeader .closeButton{
+    cursor: pointer;
+    color: var(--fcolor);
+    font-size: 1.4rem;
+    transition: .5s;
+}
+
+.adminCardHeader .closeButton{
+    color: grey;
+}
+
 .adminCardInfo{
-    width: 90%;
+    width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    padding-top: 1vh;
+    /* flex-direction: column; */
+    /* background-color: yellow; */
     /* align-items: center; */
 }
+
+.adminElementInfo{
+    flex-direction: column;
+    justify-content: center;
+}
+
+.adminCardFields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 7%;
+}
+
+.adminCardInfo form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 86%;
+    /* flex-grow: 1; */
+}
+
+
+
 .adminCarEditDelete{
     /* position: absolute; */
     display: flex;
     top: 25%;
     right: 1%;
-    width: 5%;
-    font-size: 1.2rem;
+    width: 5vw;
+    font-size: 1.3rem;
     justify-content: space-around;
+    /* background-color: blue; */
 }
 
 
@@ -1408,17 +1466,21 @@ a {
     color: #ff0000a4;
 }
 
+
+
 .adminConfirmM{
-    position: absolute;
+    /* position: absolute; */
     /* top: auto; */
+    height: 20%;
     bottom: 15px;
-    right: 1%;
-    padding: .5vh .3vw;
+    /* right: 1%; */
+    padding: .5vh .5vw;
     background-color: #118311;
     border: none;
     color: white;
     border-radius: 5px;    
     cursor: pointer;
+    margin-left: 2vw;
 }
 
 .adminConfirmM:hover{
@@ -1437,12 +1499,33 @@ a {
 }
 
 .adminCardInfo form span{
-    width: 19.7vw;
+    width: 100%;
 }
 
 .adminCardInfo form input{
-    padding: .5vh .5vw;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-bottom: solid 1px grey;
+    /* padding: .5vh .5vw; */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .newCityModalVisible{
     visibility: visible;

@@ -33,6 +33,16 @@ const itineraryActions = {
         return (dispatch, getState) => {
             dispatch({ type: 'REMOVE_ITINERARIES', payload: { selectedItineraries: [], preloader: true } })
         }
+    },
+
+    likeItinerary: async () =>{
+        return (dispatch, getState) => {
+            const response = axios.put('http://localhost:4000/api/like')
+            console.log(response)
+            // return response.data.response
+        }
     }
+
+
 }
 export default itineraryActions

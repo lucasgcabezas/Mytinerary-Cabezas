@@ -59,6 +59,7 @@ const userControllers = {
             success: true,
             response: { userPic: req.user.userPic, firstName: req.user.firstName }
         })
+        // console.log(req.user)
     }
 
 }

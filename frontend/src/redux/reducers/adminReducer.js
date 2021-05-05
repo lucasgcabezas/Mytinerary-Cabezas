@@ -1,6 +1,8 @@
 const initialState = {
     arrayOf: [],
+    citiesArray: [],
     preloader: true,
+    preloaderCity: true
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -8,6 +10,8 @@ const adminReducer = (state = initialState, action) => {
         case 'GET_CITIES':
             return { ...state, ...action.payload }
             break
+
+
 
         case 'ADD_CITY':
             return { ...state, ...action.payload }
@@ -25,6 +29,14 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
                 arrayOf: action.payload
             }
+            break
+
+        case 'ALL_CITIES':
+            return { ...state, ...action.payload }
+            break
+
+        case 'CLEAN':
+            return {...state, ...action.payload}
             break
 
         default:

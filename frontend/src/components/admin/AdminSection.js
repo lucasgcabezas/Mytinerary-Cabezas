@@ -12,8 +12,9 @@ const AdminSection = (props) => {
     const [newElementButton, setNewElementButton] = useState(false)
 
     useEffect(() => {
+        props.cleanAdminStore()     
         props.loadAllCities("cities")
-        // return () => { cleanup }    
+        return () => props.cleanAdminStore()     
     }, [])
 
     const getInput = e => { setNewElement({ ...newElement, [e.target.name]: e.target.value }) }
@@ -59,7 +60,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     loadAllCities: adminActions.getCities,
-    sendNewCity: adminActions.sendNewCity
+    sendNewCity: adminActions.sendNewCity,
+    cleanAdminStore: adminActions.cleanAdminStore
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminSection)
