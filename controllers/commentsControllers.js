@@ -29,15 +29,11 @@ const commentsControllers = {
     },
 
     editComment: async (req, res) => {
-        const loQueSeEncontro = await ItineraryModel.findOne({ "comments._id": req.params.id, "comments.userId": '608e15c462077f24cc89730a' })
+        const loQueSeEncontro = await ItineraryModel.findOne({ "comments._id": req.params.id, "comments.userId": req.user._id })
         const itineraryModified = await ItineraryModel.findOneAndUpdate({ "comments._id": req.params.id }, { $set: { "comments.$.text": req.body.text } }, { new: true })
 
         res.send({ response: itineraryModified.comments })
-
     }
-
-
-
 }
 
 module.exports = commentsControllers

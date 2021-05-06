@@ -14,7 +14,7 @@ const Comment = (props) => {
         setMessageComment({ text: e.target.value })
     }
 
-    console.log(messageComment)
+    // console.log(messageComment)
 
 
     const sendDeleteComment = async () => {
@@ -26,7 +26,6 @@ const Comment = (props) => {
         let commentsModified = await editComment(userLogged.token, _id, messageComment)
         setCommentsState(commentsModified)
     }
-
 
 
     return (

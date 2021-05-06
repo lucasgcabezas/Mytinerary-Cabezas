@@ -1,43 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import commentActions from '../redux/actions/commentActions'
+import itineraryActions from '../redux/actions/itineraryActions'
 import Comment from './Comment'
 
-
-// const Itinerary = ({ itinerary: { _id, title, authorName, authorPic, price, duration, likes, hashtags, img, comments }, sendNewComment, userLogged, idItineraryOfComments, allComments }) => {
 const Itinerary = (props) => {
 
-    const { itinerary, sendNewComment, userLogged, idItineraryOfComments, allComments, cleanCommentsStore } = props
-    const { _id, title, authorName, authorPic, price, duration, likes, hashtags, img, comments, usersLike } = itinerary
-
-
-    // console.log(comments)
-
+    const { itinerary, sendNewComment, userLogged, likeItinerary } = props
+    const { _id, title, authorName, authorPic, price, duration, likes, hashtags, img, comments } = itinerary
     const [cardTrigger, setCardTrigger] = useState(false)
     const [angleToApply, setAngleToApply] = useState(0)
     const [commentText, setCommentText] = useState({ text: '' })
-
     const [commentsState, setCommentsState] = useState(comments)
+    const [itineraryLike, setItineraryLike] = useState({ likesCount: likes, liked: false, repeatLikeFilter: false })
 
-    const [itineraryLike, setItineraryLike] = useState ({
-        liked : false
-    })
+    let heartIconClass = itineraryLike.liked ? "fas fa-heart heart" : "far fa-heart heart"
 
 
-    const getInput = (e) => {
-        setCommentText({ text: e.target.value })
+    const getInput = (e) => { setCommentText({ text: e.target.value }) }
+
+    const sendIikeItinerary = async () => {
+        if (!itineraryLike.repeatLikeFilter) {
+            await setItineraryLike({ ...itineraryLike, repeatLikeFilter: true })
+            const response = await likeItinerary(_id, userLogged)
+            setItineraryLike({ likesCount: response.likes, liked: response.liked, repeatLikeFilter: false })
+        }
     }
 
-    const likeItinerary = () => {
-        
-    }
-    
     const sendComment = async () => {
         const newComments = await sendNewComment(userLogged.token, _id, commentText)
         setCommentsState(newComments)
         setCommentText({ text: '' })
     }
-
 
     const positionMouse = (e) => {
         let actualposition = e.pageX
@@ -91,7 +85,6 @@ const Itinerary = (props) => {
         return arrayElement
     }
 
-
     return (
         <div className={cardTrigger ? 'showItinerary' : 'itinerary'}  >
             <div className="info" style={{ backgroundImage: `url('/assets/itineraries/${img}')` }} >
@@ -114,8 +107,7 @@ const Itinerary = (props) => {
                             counter(duration).map((c, i) => <span key={i} className="far fa-clock duration"></span>)
                         }
                     </span>
-                    <span className="text"><span className="far fa-heart heart"></span>{usersLike.length || ''}</span>
-                    {/* <i class="fas fa-heart"></i> */}
+                    <span className="text"><span className={heartIconClass} onClick={sendIikeItinerary}></span>{itineraryLike.likesCount || ''}</span>
                 </div>
                 <div className="hashtag" >
                     {
@@ -125,31 +117,15 @@ const Itinerary = (props) => {
             </div>
             {/* <div className="showDiv" style={{display: showMore.visible ? 'flex' : 'none'}}> */}
 
-
-
-
             <div className={cardTrigger ? 'showDivOn' : 'showDivOff'}>
                 <div className="commentsItinerary">
                     <div>{commentsState.map(comment => {
-
-
                         return <Comment key={comment._id} comment={comment} commentsState={commentsState} setCommentsState={setCommentsState} />
-
-
                     })}</div>
                     <input type="text" value={commentText.text} onChange={getInput}></input>
                     <button onClick={sendComment}>Send</button>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
 
             <div className="buttonShow" onClick={() => setCardTrigger(!cardTrigger)}>
                 {
@@ -168,16 +144,14 @@ const Itinerary = (props) => {
 
 const mapStateToProps = state => {
     return {
-        userLogged: state.authReducer.userLogged,
-        allComments: state.commentReducer.allComments,
-        idItineraryOfComments: state.commentReducer.idItineraryOfComments
+        userLogged: state.authReducer.userLogged
     }
 }
 
 const mapDispatchToProps = {
     sendNewComment: commentActions.sendNewComment,
-    cleanCommentsStore: commentActions.cleanCommentsStore
-
+    cleanCommentsStore: commentActions.cleanCommentsStore,
+    likeItinerary: itineraryActions.likeItinerary
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary)

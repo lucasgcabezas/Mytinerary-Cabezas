@@ -35,14 +35,18 @@ const itineraryActions = {
         }
     },
 
-    likeItinerary: async () =>{
-        return (dispatch, getState) => {
-            const response = axios.put('http://localhost:4000/api/like')
-            console.log(response)
-            // return response.data.response
+    likeItinerary: (itineraryId, user) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/like/' + itineraryId, {
+                    headers: { 'Authorization': 'Bearer ' + user.token }
+                })
+                return response.data.response
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
-
 
 }
 export default itineraryActions

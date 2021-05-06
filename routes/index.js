@@ -39,13 +39,12 @@ router.route('/itinerary/:id')
     .delete(deleteItinerary)
     .put(updateItinerary)
 
-router.route('/like')
-    .put(likeItinerary)
-
+router.route('/like/:id')
+    .get(passport.authenticate('jwt', { session: false }), likeItinerary)
 
 // ITINERARIES
 router.route('/comments/:id')
-    .post(passport.authenticate('jwt', { session: false }), addNewComment)
+    .get(passport.authenticate('jwt', { session: false }), addNewComment)
 
 router.route('/comment/:id')
     .delete(passport.authenticate('jwt', { session: false }), deleteComment)

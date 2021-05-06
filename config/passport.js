@@ -8,9 +8,11 @@ module.exports = passport.use(new jwtStrategy({
     jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET_OR_KEY
 }, (payload, done) => {
+    
     UserModel.findById(payload._doc._id)
     
         .then(user => {
+            
             if (!user) {
                 return done(null, false)
             } else {
