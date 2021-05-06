@@ -6,31 +6,67 @@ import Comment from './Comment'
 
 const Itinerary = (props) => {
 
-    const { itinerary, sendNewComment, userLogged, likeItinerary } = props
+    const { itinerary, sendNewComment, userLogged, likeItinerary, checkUser, getActivities } = props
     const { _id, title, authorName, authorPic, price, duration, likes, hashtags, img, comments } = itinerary
+
+    const [userChecked, setUserChecked] = useState([])
     const [cardTrigger, setCardTrigger] = useState(false)
     const [angleToApply, setAngleToApply] = useState(0)
-    const [commentText, setCommentText] = useState({ text: '' })
-    const [commentsState, setCommentsState] = useState(comments)
     const [itineraryLike, setItineraryLike] = useState({ likesCount: likes, liked: false, repeatLikeFilter: false })
+    const [commentsState, setCommentsState] = useState(comments)
+    const [commentText, setCommentText] = useState({ text: '' })
+    const [activitiesState, setActivitiesState] = useState({
+        activities: [],
+        preloader: true
+    })
+
 
     let heartIconClass = itineraryLike.liked ? "fas fa-heart heart" : "far fa-heart heart"
 
+    useEffect(() => {
+        checkOwnerUser()
+    }, [])
+
+    const checkOwnerUser = async () => {
+        // CACHEOS
+        if (userLogged) {
+            const response = await checkUser(_id, userLogged)
+            setUserChecked(response.arrayOwnerCheck)
+            if (response.likedChek) {
+                setItineraryLike({ ...itineraryLike, liked: true })
+            }
+        }
+    }
 
     const getInput = (e) => { setCommentText({ text: e.target.value }) }
 
+    const viewMoreLess = async () => {
+        setCardTrigger(!cardTrigger)
+        const response = await getActivities(_id)
+        setActivitiesState({ activities: response, preloader: false })
+    }
+
     const sendIikeItinerary = async () => {
-        if (!itineraryLike.repeatLikeFilter) {
-            await setItineraryLike({ ...itineraryLike, repeatLikeFilter: true })
+        // CACHEOS
+        if (!itineraryLike.repeatLikeFilter && userLogged) {
+            await setItineraryLike({ ...itineraryLike, repeatLikeFilter: true, liked: true })
             const response = await likeItinerary(_id, userLogged)
             setItineraryLike({ likesCount: response.likes, liked: response.liked, repeatLikeFilter: false })
+        } else if (!userLogged) {
+            alert('registrate')
         }
     }
 
     const sendComment = async () => {
-        const newComments = await sendNewComment(userLogged.token, _id, commentText)
-        setCommentsState(newComments)
-        setCommentText({ text: '' })
+        // CACHEOS
+        if (userLogged && commentText.text.length > 0 ) {
+            let newComments = await sendNewComment(userLogged.token, _id, commentText)
+            setCommentsState(newComments.response)
+            setCommentText({ text: '' })
+            setUserChecked(newComments.arrayOwnerCheck)
+        } else {
+            alert('te tenes que registrar pa')
+        }
     }
 
     const positionMouse = (e) => {
@@ -85,6 +121,7 @@ const Itinerary = (props) => {
         return arrayElement
     }
 
+
     return (
         <div className={cardTrigger ? 'showItinerary' : 'itinerary'}  >
             <div className="info" style={{ backgroundImage: `url('/assets/itineraries/${img}')` }} >
@@ -115,28 +152,38 @@ const Itinerary = (props) => {
                     }
                 </div>
             </div>
-            {/* <div className="showDiv" style={{display: showMore.visible ? 'flex' : 'none'}}> */}
-
             <div className={cardTrigger ? 'showDivOn' : 'showDivOff'}>
+                <div>
+                    {
+                        activitiesState.preloader
+                            ? <span>Cargando...</span>
+                            : activitiesState.activities.map(activity => <span>{activity.name}</span>)
+                    }
+                </div>
+
+
                 <div className="commentsItinerary">
                     <div>{commentsState.map(comment => {
-                        return <Comment key={comment._id} comment={comment} commentsState={commentsState} setCommentsState={setCommentsState} />
-                    })}</div>
-                    <input type="text" value={commentText.text} onChange={getInput}></input>
-                    <button onClick={sendComment}>Send</button>
+
+                        return <Comment key={comment._id} comment={comment} commentsState={commentsState} setCommentsState={setCommentsState} userChecked={userChecked} />
+                    })}
+                    </div>
+
+                    <div>
+                        <input type="text" value={commentText.text} onChange={getInput}></input>
+                        <button onClick={sendComment}>Send</button>
+                    </div>
                 </div>
+
             </div>
 
-            <div className="buttonShow" onClick={() => setCardTrigger(!cardTrigger)}>
+            <div className="buttonShow" onClick={viewMoreLess}>
                 {
                     cardTrigger
                         ? <span>View less <span className="fas fa-chevron-circle-up"></span></span>
                         : <span>View more <span className="fas fa-chevron-circle-down"> </span></span>
                 }
             </div>
-            {/* <p>The section is under contruction!</p> */}
-            {/* <p>{usersLike}</p> */}
-            {/* <p className="underConstruction">{infoCity.city.name} itineraries are under construction!</p> */}
         </div>
     )
 }
@@ -150,8 +197,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     sendNewComment: commentActions.sendNewComment,
-    cleanCommentsStore: commentActions.cleanCommentsStore,
-    likeItinerary: itineraryActions.likeItinerary
+    likeItinerary: itineraryActions.likeItinerary,
+    checkUser: itineraryActions.checkUser,
+    getActivities: itineraryActions.getActivities
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary)

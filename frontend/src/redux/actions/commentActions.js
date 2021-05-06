@@ -8,7 +8,7 @@ const commentActions = {
                 const response = await axios.post('http://localhost:4000/api/comments/' + itineraryId, commentText, {
                     headers: { 'Authorization': 'Bearer ' + userToken }
                 })
-                return response.data.response
+                return response.data
             } catch {
                 console.log('error')
             }

@@ -646,8 +646,10 @@ a {
 }
 
 .showItinerary{
+    display: flex;
+    flex-grow: 1;
 
-    min-height: 150vh;
+    /* min-height: 150vh; */
 
 
 }
@@ -795,18 +797,27 @@ a {
 
 .showDivOn{
     display: flex;
+    flex-direction: column;
     z-index: 30;
     visibility: visible;
     display: flex;
-    /* height: 20vh; */
+    height: 100%;
     transition: 1s;
+    margin-bottom: 8vh;
 }
 
 .commentsItinerary{
-    margin-top: 5vh;
-    background-color: red;
+    /* margin-top: 5vh; */
+    /* background-color: red; */
     width: 90%;
-    /* font-size: 2rem; */
+    /* min-height: 40vh; */
+    max-height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    
+    font-size: .9rem;
+
+
     /* font-weight: bold; */
     /* color: var(--fcolor); */
 }
@@ -837,7 +848,9 @@ a {
 
 
 .comment{
-    background-color: yellow;
+    /* background-color: yellow; */
+    box-shadow: #00000055 0px 5px 10px 0px ;
+    border-radius: 5px;
     margin: 2vh 1vw;
     padding: .5vh .5vw;
 }

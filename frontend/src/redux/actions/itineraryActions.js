@@ -35,6 +35,20 @@ const itineraryActions = {
         }
     },
 
+    checkUser: (itineraryId, user) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/checkuser/' + itineraryId, {
+                    headers: { 'Authorization': 'Bearer ' + user.token }
+                })
+                return response.data.response
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+    },
+
     likeItinerary: (itineraryId, user) => {
         return async (dispatch, getState) => {
             try {
@@ -46,7 +60,17 @@ const itineraryActions = {
                 console.log(error)
             }
         }
-    }
+    },
 
+    getActivities: (itineraryId) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/activities/' + itineraryId)
+                return response.data.response
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 }
 export default itineraryActions

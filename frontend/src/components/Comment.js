@@ -5,17 +5,17 @@ import commentActions from '../redux/actions/commentActions'
 
 const Comment = (props) => {
 
-    const { comment, setCommentsState, deleteComment, editComment, userLogged } = props
+    const { comment, setCommentsState, deleteComment, editComment, userLogged, userChecked } = props
     const { _id, userName, userPic, text } = comment
 
     const [messageComment, setMessageComment] = useState({ text: text })
+    const [editTrigger, setEditTrigger] = useState(false)
 
-    const getInput = (e) => {
-        setMessageComment({ text: e.target.value })
-    }
+    let triggerStyle = editTrigger ? 'block' : 'none'
 
-    // console.log(messageComment)
+    const getInput = (e) => { setMessageComment({ text: e.target.value }) }
 
+    let userOwner = userChecked.some(commentId => commentId === _id)
 
     const sendDeleteComment = async () => {
         let commentsFiltered = await deleteComment(userLogged.token, _id)
@@ -25,6 +25,7 @@ const Comment = (props) => {
     const confimrEditComment = async () => {
         let commentsModified = await editComment(userLogged.token, _id, messageComment)
         setCommentsState(commentsModified)
+        setEditTrigger(false)
     }
 
 
@@ -33,11 +34,14 @@ const Comment = (props) => {
             {/* <span>{userPic}</span> */}
             <span>{userName}</span>
             <div>
-                <p>{text}</p>
-                <textarea value={messageComment.text} onChange={getInput}>Hola</textarea>
+                <p style={{ display: editTrigger ? 'none' : 'block' }}>{text}</p>
+                <textarea value={messageComment.text} onChange={getInput} style={{ display: triggerStyle }}>Hola</textarea>
             </div>
-            <button onClick={sendDeleteComment}>Delete</button>
-            <button onClick={confimrEditComment}>Edit</button>
+            <div style={{ display: userOwner ? 'block' : 'none' }}>
+                <button onClick={sendDeleteComment}>Delete</button>
+                <button onClick={() => setEditTrigger(!editTrigger)}>Edit</button>
+                <button onClick={confimrEditComment} style={{ display: triggerStyle }}>Confirm Edit</button>
+            </div>
         </div>
     )
 }
@@ -51,8 +55,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     deleteComment: commentActions.deleteComment,
     editComment: commentActions.editComment
-
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment)

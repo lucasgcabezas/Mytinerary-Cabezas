@@ -63,37 +63,48 @@ const itineraryControllers = {
         }
     },
 
-
-
-
-
-    
     likeItinerary: async (req, res) => {
+        const { id } = req.params
+        const { _id } = req.user
+        let response;
+        let error;
 
-        const loQueSeEncontro = await ItineraryModel.findOne({ "_id": req.params.id, "usersLike": req.user._id })
+        try {
+            const itineraryToLike = await ItineraryModel.findOne({ "_id": id, "usersLike": _id })
 
-        if (loQueSeEncontro) {
-            const itinerarioConLike = await ItineraryModel.findOneAndUpdate({ "_id": req.params.id }, { $pull: { 'usersLike': req.user._id  } }, { new: true })
-            const itineraryModified = await ItineraryModel.findOneAndUpdate({ "_id": req.params.id }, { $set: { "likes": itinerarioConLike.usersLike.length } }, { new: true })
-            res.json({ response: {likes: itineraryModified.likes, liked: false} })
+            let pullOrPush = itineraryToLike ? '$pull' : '$push'
+            let liked = itineraryToLike ? false : true
+            let itineraryLiked = await ItineraryModel.findOneAndUpdate({ "_id": id }, { [pullOrPush]: { 'usersLike': _id } }, { new: true })
+            let itineraryModified = await ItineraryModel.findOneAndUpdate({ "_id": id }, { $set: { "likes": itineraryLiked.usersLike.length } }, { new: true })
 
-        } else {
-            const itinerarioConLike = await ItineraryModel.findOneAndUpdate({ "_id": req.params.id }, { $push: { 'usersLike': req.user._id } }, { new: true })
-            const itineraryModified = await ItineraryModel.findOneAndUpdate({ "_id": req.params.id }, { $set: { "likes": itinerarioConLike.usersLike.length } }, { new: true })
-            res.json({ response: {likes: itineraryModified.likes, liked: true} })
+            response = { likes: itineraryModified.likes, liked }
+        } catch {
+            error = "An error occurred during process, please try later."
         }
+
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+    },
+
+
+// HACER CACHEO
+    checkUserLogged: async (req, res) => {
+        // const loQueSeEncontro = await ItineraryModel.findById({ "_id": req.params.id, "usersLike": req.user._id })
+        const itineraryToCheck = await ItineraryModel.findById(req.params.id)
+
+        let commentsOwnerArray = itineraryToCheck.comments.map(comment => {
+            if (comment.userId.toString() === req.user._id.toString()) {
+                return comment._id
+            }
+        })
+
+        let likedChek = itineraryToCheck.usersLike.some(userId => userId == req.user._id)
+        res.json({ response: { arrayOwnerCheck: commentsOwnerArray, likedChek } })
     }
 }
 
 module.exports = itineraryControllers
-
-// deleteComment: async (req, res) => {
-
-//     const loQueSeEncontro = await ItineraryModel.findOne({ "comments._id": req.params.id, "comments.userId": req.user._id })
-//     const arrayComments = await ItineraryModel.findOneAndUpdate({ "comments._id": req.params.id }, { $pull: { 'comments': { '_id': req.params.id } } }, { new: true })
-
-//     res.json({ response: arrayComments.comments })
-
-
-// },
 
