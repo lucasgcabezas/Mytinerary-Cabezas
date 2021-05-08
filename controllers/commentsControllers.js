@@ -10,9 +10,7 @@ const commentsControllers = {
 
         try {
             const itineraryToUpdate = await ItineraryModel.findOneAndUpdate({ _id: req.params.id }, {
-                $push: {
-                    comments: { userId: _id, userName: firstName + ' ' + lastName, userPic, ...req.body }
-                }
+                $push: { comments: { userId: _id, userName: firstName + ' ' + lastName, userPic, ...req.body } }
             }, { new: true })
 
             let commentsOwnerArray = itineraryToUpdate.comments.map(comment => {
@@ -27,12 +25,7 @@ const commentsControllers = {
             error = "An error occurred during process, please try later."
         }
 
-        res.json({
-            success: !error ? true : false,
-            response,
-            arrayOwnerCheck,
-            error
-        })
+        res.json({ success: !error ? true : false, response, arrayOwnerCheck, error })
     },
 
     deleteComment: async (req, res) => {
@@ -51,13 +44,8 @@ const commentsControllers = {
             error = "An error occurred during process, please try later."
         }
 
-        res.json({
-            success: !error ? true : false,
-            response,
-            error
-        })
+        res.json({ success: !error ? true : false, response, error })
     },
-
 
     editComment: async (req, res) => {
         let response;
@@ -75,16 +63,11 @@ const commentsControllers = {
             error = "An error occurred during process, please try later."
         }
 
-        res.json({
-            success: !error ? true : false,
-            response,
-            error
-        })
-
+        res.json({ success: !error ? true : false, response, error })
     }
 }
 
 module.exports = commentsControllers
 
 // const comments = await ItineraryModel.updateMany({"comments.userId": req.params.id}, {$set:{"comments.$[e].text": req.body.text}})
-        // const comments = await ItineraryModel.updateMany({"comments.userId": req.params.id}, {"comments.$[e].text": req.body.text}, { arrayFilters: [{ 'e.userId': req.params.id }] })
+// const comments = await ItineraryModel.updateMany({"comments.userId": req.params.id}, {"comments.$[e].text": req.body.text}, { arrayFilters: [{ 'e.userId': req.params.id }] })

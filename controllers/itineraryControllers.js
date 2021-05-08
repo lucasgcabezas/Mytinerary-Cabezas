@@ -82,27 +82,32 @@ const itineraryControllers = {
             error = "An error occurred during process, please try later."
         }
 
-        res.json({
-            success: !error ? true : false,
-            response,
-            error
-        })
+        res.json({ success: !error ? true : false, response, error })
     },
 
 
-// HACER CACHEO
+    // HACER CACHEO
     checkUserLogged: async (req, res) => {
-        // const loQueSeEncontro = await ItineraryModel.findById({ "_id": req.params.id, "usersLike": req.user._id })
-        const itineraryToCheck = await ItineraryModel.findById(req.params.id)
 
-        let commentsOwnerArray = itineraryToCheck.comments.map(comment => {
-            if (comment.userId.toString() === req.user._id.toString()) {
-                return comment._id
-            }
-        })
+        let response;
+        let error;
 
-        let likedChek = itineraryToCheck.usersLike.some(userId => userId == req.user._id)
-        res.json({ response: { arrayOwnerCheck: commentsOwnerArray, likedChek } })
+        try {
+            const itineraryToCheck = await ItineraryModel.findById(req.params.id)
+
+            let commentsOwnerArray = itineraryToCheck.comments.map(comment => {
+                if (comment.userId.toString() === req.user._id.toString()) {
+                    return comment._id
+                }
+            })
+            let likedChek = itineraryToCheck.usersLike.some(userId => userId == req.user._id)
+            
+            response = { arrayOwnerCheck: commentsOwnerArray, likedChek }
+        } catch {
+            error = "An error occurred during process, please try later."
+        }
+
+        res.json({ success: !error ? true : false, response, error })
     }
 }
 

@@ -71,7 +71,9 @@ const authActions = {
 
     signOut: () => {
         return async (dispatch, getState) => {
+            myAlert('Goodbye!', 'Hope to see you soon!', 'info')
             dispatch({ type: 'LOGOUT_USER' })
+
         }
     },
 

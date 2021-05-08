@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 import Preloader from '../components/Preloader'
 import authActions from '../redux/actions/authActions'
-import InputSign from '../components/InputSign'
 
 
 const SignUp = (props) => {
@@ -80,30 +79,7 @@ const SignUp = (props) => {
                     </div>
                 </div>
 
-                <form className="form">
-
-                    {/* {
-                        Object.keys(newUser).map(field => {
-                            if (field === 'password') {
-                                return <InputSign
-                                    type='password'
-                                    inputName={field}
-                                    getInput={getInput}
-                                    passwordClass={passwordClass}
-                                    passwordType={passwordType}
-                                    passwordEyeTrigger={passwordEyeTrigger}
-                                    setPasswordEyeTrigger={setPasswordEyeTrigger}
-                                    error={errors[field]}
-                                />
-                            }
-                        })
-
-
-                    }
- */}
-
-
-                                       
+                <form className="form">                                     
                     <div className="inputContainer">
                         <input type="text" placeholder="First Name" name="firstName" value={firstName} onChange={getInput} ></input>
                         <span className="errorSignUp">{errors.firstName}</span>

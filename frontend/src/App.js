@@ -40,8 +40,6 @@ class App extends React.Component {
                         <Route exact path="/cities" component={Cities} />
                         {!this.props.userLogged && <Route path="/user/signin" component={SignIn} />}
                         {!this.props.userLogged && <Route path="/user/signup" component={SignUp} />}
-                        {/* <Route path="/user/signup" component={SignUp} /> */}
-                        {/* {this.props.userLogged && <Route exact path="/admin" component={Admin} />} */}
                         <Route exact path="/admin" component={Admin} />
                         <Route exact path="/itineraries/:id" component={Itineraries} />
                         <Redirect to="/" />

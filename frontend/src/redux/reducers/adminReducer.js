@@ -11,8 +11,6 @@ const adminReducer = (state = initialState, action) => {
             return { ...state, ...action.payload }
             break
 
-
-
         case 'ADD_CITY':
             return { ...state, ...action.payload }
             break

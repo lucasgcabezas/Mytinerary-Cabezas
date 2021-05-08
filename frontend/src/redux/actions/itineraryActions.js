@@ -1,4 +1,18 @@
 import axios from 'axios'
+import { store } from 'react-notifications-component'
+
+const myAlert = async (alertTitle, alertMessage, alertType) => {
+    await store.addNotification({
+        title: alertTitle,
+        message: alertMessage,
+        type: alertType,
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__flipInX"],
+        animationOut: ["animate__animated", "animate__fadeOutDown"],
+        dismiss: { duration: 3000, onScreen: true, pauseOnHover: true, showIcon: true }
+    })
+}
 
 const itineraryActions = {
     getItineraries: (cityId) => {
@@ -11,7 +25,7 @@ const itineraryActions = {
                         dispatch({ type: 'ERROR_ITINERARY', payload: { error: true, preloader: false } })
                     }
                 })
-                .catch(error => alert('An error happened, please reload the page!'))
+                .catch(error => myAlert('Error', 'An error happened, please reload the page!', 'danger'))
         }
     },
 
@@ -25,7 +39,7 @@ const itineraryActions = {
                         dispatch({ type: 'ERROR_ITINERARY', payload: { error: true, preloader: false } })
                     }
                 })
-                .catch(error => alert('An error happened, please reload the page!'))
+                .catch(error => myAlert('Error', 'An error happened, please reload the page!', 'danger'))
         }
     },
 
@@ -41,11 +55,14 @@ const itineraryActions = {
                 const response = await axios.get('http://localhost:4000/api/checkuser/' + itineraryId, {
                     headers: { 'Authorization': 'Bearer ' + user.token }
                 })
-                return response.data.response
+                if (response.data.success) {
+                    return response.data.response
+                } else {
+                    myAlert('Error', response.data.error, 'danger')
+                }
             } catch (error) {
-                console.log(error)
+                myAlert('Error', 'Internal server error, please try later!', 'danger')
             }
-
         }
     },
 
@@ -55,9 +72,13 @@ const itineraryActions = {
                 const response = await axios.get('http://localhost:4000/api/like/' + itineraryId, {
                     headers: { 'Authorization': 'Bearer ' + user.token }
                 })
-                return response.data.response
+                if (response.data.success) {
+                    return response.data.response
+                } else {
+                    myAlert('Error', response.data.error, 'danger')
+                }
             } catch (error) {
-                console.log(error)
+                myAlert('Error', 'Internal server error, please try later!', 'danger')
             }
         }
     },
@@ -66,9 +87,13 @@ const itineraryActions = {
         return async (dispatch, getState) => {
             try {
                 const response = await axios.get('http://localhost:4000/api/activities/' + itineraryId)
-                return response.data.response
+                if (response.data.success) {
+                    return response.data.response
+                } else {
+                    myAlert('Error', response.data.error, 'danger')
+                }
             } catch (error) {
-                console.log(error)
+                myAlert('Error', 'Internal server error, please try later!', 'danger')
             }
         }
     }

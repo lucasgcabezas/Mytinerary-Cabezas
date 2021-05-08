@@ -1,6 +1,5 @@
 :root {
     --fcolor: #2d003d;
-    --scolor: #fadbb9;
     --scolor: #d88d1d;
 }
 
@@ -16,6 +15,24 @@ html * {
 a {
     text-decoration: none;
 }
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+   }
+::-webkit-scrollbar-thumb {
+    background: #2D003D;
+    border-radius: 15px;
+   }
+::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, #2d003d 14%,#f9d4ff 64%);
+   }
+::-webkit-scrollbar-track{
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: inset 7px 10px 12px #f0f0f0;
+   }
+
 
 
 
@@ -664,15 +681,12 @@ a {
     left: -10%;
     transform: rotate(4deg);
     transition: .1s;
-
     filter: blur(5);
-    /* backface-visibility: hidden; */
     outline: 1px solid transparent;
 
 }
 .itinerary:hover .prueba,
 .showItinerary:hover .prueba{
-    /* transform: rotate(-4deg); */
     transition: .5s ease-in-out ;
 }
 
@@ -763,8 +777,6 @@ a {
     transition: .5s;
 }
 
-
-
 .hashtag {
     
     height: 8vh;
@@ -806,25 +818,83 @@ a {
     margin-bottom: 8vh;
 }
 
+.showDivOn >h4 {
+    color: var(--fcolor);
+    font-size: 1.6rem;
+    margin: 1vh 0 1vh 0;
+    width: 95%;
+    text-align: center;
+    padding: .5vh 0;
+    border-bottom: solid 2px var(--fcolor);
+    border-bottom: solid 2px #dddddd;
+}
+
+
+
+.activitiesContainer{
+    display: flex;
+    justify-content: space-evenly;
+    height: 25vh;
+    /* background-color: #fafafa; */
+    width: 95%;
+    margin-bottom: 3vh;
+    padding: 1vh 0;
+    /* box-shadow: inset #00000022 0px 3px 5px 0px ; */
+
+}
+
+.activity{
+
+    background-color: white;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    width: 15vw;
+    border-radius: 5px;
+    /* padding: 1vh .5vw; */
+    box-shadow: #00000077 0px 3px 5px 0px ;
+    overflow: hidden;
+    opacity: .8;
+    transition-duration: .8s;
+
+}
+
+.activity:hover {
+    opacity: 1;
+    transition-duration: .8s;
+    box-shadow: #00000077 0px 3px 5px 2px ;
+}
+
+.activity .activityTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    color: white;
+    font-size: 1.2rem;
+    background-color: #000000bb;
+    
+    /* padding-top: 1vh; */
+}
+
+
+/* COMMENTS */
+
 .commentsItinerary{
-    /* margin-top: 5vh; */
-    /* background-color: red; */
-    width: 90%;
-    /* min-height: 40vh; */
+    background-color: #dddddd44;
+    border-radius: 5px;
+    width: 95%;
+    min-height: 30vh;
     max-height: 60vh;
     overflow-y: scroll;
     overflow-x: hidden;
-    
     font-size: .9rem;
-
-
-    /* font-weight: bold; */
-    /* color: var(--fcolor); */
 }
+
 
 .buttonShow {
     z-index: 30;
-
     position: absolute;
     bottom: 0;
     height: 5vh;
@@ -846,14 +916,225 @@ a {
     transition: .2s;
 }
 
+.newComment  {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+    width: 94%;
+}
+
+.newComment textarea {
+    width: 92%;
+    resize: none;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    border: none;
+    padding: .8vh .5vw;
+    box-shadow: #00000044 0px 3px 5px 0px ;
+
+    /* border: solid 1px var(--fcolor); */
+}
+
+.newComment textarea:focus{
+    outline: none;
+    box-shadow: #00000044 0px 3px 5px 0px ;
+}
+
+.newComment button {
+    background-color: var(--fcolor);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: .3vh 1vw;
+    height: 4vh;
+    transition-duration: .1s;
+    border: solid 1px white;
+    cursor: pointer;
+    transition-duration: .5s;
+}
+
+.newComment button:hover,
+.newComment button:focus {
+    color: var(--fcolor);
+    background-color: white;
+    border: solid 1px var(--fcolor);
+    transition-duration: .5s;
+    outline: none;
+}
 
 .comment{
-    /* background-color: yellow; */
-    box-shadow: #00000055 0px 5px 10px 0px ;
+    background-color: white;
+    position: relative;
+    display: flex;
+    min-height: 10vh;
     border-radius: 5px;
-    margin: 2vh 1vw;
-    padding: .5vh .5vw;
+    margin: 1.5vh .5vw;
+    padding: 1vh .5vw;
+    box-shadow: #00000044 0px 3px 5px 0px ;
+    overflow: hidden;
 }
+
+.userPicComment{
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.commentNameText{
+    display: flex;
+    flex-direction: column;
+    width: 87%;
+    /* margin-left: 3vw; */
+    margin-left: .5vw;
+} 
+
+
+.commentsUserName{
+    color: var(--fcolor);
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: .5vh;
+}
+
+
+.commentsButtons{
+    position: absolute;
+    justify-content: space-around;
+    top: 1vh;
+    right: .5vw;
+    width: 6%;
+    font-size: 1rem;
+    transition-duration: 1s;
+}
+
+
+.commentsButtons >*{
+    color: #555555;
+    transition-duration: 1s;
+    cursor: pointer;
+}
+
+.commentEditButton:hover{
+    color: #470e68ee;
+    transition-duration: .3s;
+}
+.commentDeleteButton:hover{
+    color: #ce0e0e;
+    transition-duration: .3s;
+}
+
+.textAreaEditComment{
+    min-height: 5vh;
+    /* resize: vertical; */
+    width: 100%;
+    resize:none;
+    height: inherit;
+    margin-bottom: 1vh;
+    padding: .5vh .3vw;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    border: none;
+}
+
+.textAreaEditComment:focus{
+    outline: none;
+    box-shadow: #00000044 0px 3px 5px 0px ;
+}
+
+.commentNameText > div {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.commentNameText > div > button {
+    align-self: center;
+    background-color: var(--fcolor);
+    border: solid 1px var(--fcolor);
+    border-radius: 5px;
+    color: white;
+    padding: .5vh .5vw;
+    width: 5vw;
+    transition-duration: .5s;
+    cursor: pointer;
+}
+
+.commentNameText > div > button:hover {
+    background-color: white;
+    color: var(--fcolor);
+    border: solid 1px var(--fcolor);
+    transition-duration: .5s;
+}
+
+.deleteCommentModalClose,
+.deleteCommentModalOpen {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--fcolor);
+    z-index: 45;
+}
+
+.deleteCommentModalOpen{
+    display: flex;
+    position: absolute;
+    top: 0;
+    justify-content: center;    
+    align-items: center;
+}
+
+.deleteComment{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 0 2vw;
+    box-shadow: #00000055 0px 5px 10px 0px ;
+}
+
+.deleteCommentButtons{
+    display: flex;
+    width: 25%;
+}
+
+.deleteComment p{
+    font-size: 1rem;
+    color: white;
+}
+
+.deleteCommentButtons button{
+    padding: .8vh 1.3vw;
+    margin-left: .8vw;
+    background-color: white;
+    font-size: .9rem;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: var(--fcolor);
+    transition-duration: .5s;
+}
+
+.deleteCommentButtons button:hover{
+    background-color: white;
+    color: var(--fcolor);
+    transition-duration: .2s;
+}
+
+.deleteCommentButtons :last-child:hover{
+    background-color: #ff0000dd;
+    border: none;
+    color: white;
+}
+
 
 
 /* -------------------------------------------------------------------------------------- SIGN IN - SIGN UP */
@@ -1134,10 +1415,6 @@ a {
 .ubi-tel{
     font-size: .9rem;
 }
-/* 
-.contactIcon>* {
-    margin-right: 2vw;
-} */
 
 .social {
     font-size: 2rem;
@@ -1205,7 +1482,6 @@ a {
     align-items: center;
     padding-top: 5vh;
     transition: .5s;
-
 }
 
 .responsiveNavClose a {
@@ -1244,7 +1520,6 @@ a {
     text-decoration: none;
     color: white;
     margin: 4vh 0;
-
 }
 
 .responsiveNavOpen .link {
@@ -1252,8 +1527,6 @@ a {
     transition: .5s;
     font-size: 2rem;
     margin: 4vh 0;
-
-
 }
 
 .toggleNav {
@@ -1451,8 +1724,6 @@ a {
     /* flex-grow: 1; */
 }
 
-
-
 .adminCarEditDelete{
     /* position: absolute; */
     display: flex;
@@ -1463,7 +1734,6 @@ a {
     justify-content: space-around;
     /* background-color: blue; */
 }
-
 
 .editAdmin,
 .deleteAdmin{
@@ -1522,23 +1792,6 @@ a {
     border-bottom: solid 1px grey;
     /* padding: .5vh .5vw; */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .newCityModalVisible{
     visibility: visible;
@@ -1613,7 +1866,6 @@ a {
     text-align: center;
     transition: .5s;
 }
-
 
 /* --------------------------------------------------------------------- RESPONSIVE TABLET LANDSCAPE ------------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
@@ -1693,7 +1945,6 @@ a {
         width: 90vw;
     }
 
-  
     .notCities{
         width: 90vw;
     }  
@@ -1739,6 +1990,14 @@ a {
         width: 50vw;
     }
 
+    .activity .activityTitle{
+        font-size: .9rem;
+    }
+
+    .commentNameText > div > button {
+        padding: .5vh .5vw;
+        width: 10vw;
+    } 
 }
 
 /* --------------------------------------------------------------------- RESPONSIVE TABLET ----------------------------------------------------------------------------------------- */
@@ -1813,10 +2072,6 @@ a {
         height: 50vh;    
     }
 
-    .showItinerary{
-        height: 80vh;
-    }
-
     .titleSectionItinerary{
         height: 20vh;
         align-items: flex-start;
@@ -1843,7 +2098,6 @@ a {
         height: 10vh;
         margin-top: 8vh;
         width: 100%;
-
     }
     
     .priceSection >*{
@@ -1866,8 +2120,7 @@ a {
     }
     
     .showDivOn{
-        height: 20vh;
-        margin-top: 10vh;
+        margin-top: 15vh;
     }
     
     .commentsItinerary{
@@ -1908,7 +2161,6 @@ a {
         padding: 5vh 0;
     }
 
-
     .formContainerSignIn .form{
         height: 75vh;
     }
@@ -1922,6 +2174,82 @@ a {
         color: white;
         text-decoration: underline;
         font-weight: bold;
+    }  
+
+    .activitiesContainer{
+        justify-content: space-around;
+        width: 100%;
+    }
+    
+    .activity{
+        width: 20vw;    
+    }
+
+    .activity .activityTitle{
+        font-size: .8rem;
+    }
+
+    .comment{
+        padding: 1vh .5vw;
+    }
+
+    .commentsButtons{
+        right: 1vw;
+        width: 8%;
+        font-size: .9rem;
+    }
+
+    .userPicComment{
+        width: 40px;
+        height: 40px;   
+    }
+
+    .commentNameText{
+        width: 85%;
+        margin-left: 1vw;
+    } 
+
+    .textAreaEditComment{
+        padding: .5vh 1vw;
+    }
+
+    .commentNameText > div > button {
+        padding: .5vh .5vw;
+        width: 15vw;
+    } 
+
+    .newComment  {
+        width: 94%;
+    }
+    
+    .newComment textarea {
+        width: 86%;
+        padding: .8vh 1vw;
+    }
+    
+    .commentNameText > div > p {
+        font-size: .8rem;
+    }
+
+    .commentsUserName{
+        color: var(--fcolor);
+        font-weight: bold;
+        font-size: .85rem;
+        margin-bottom: .2vh;
+    }
+
+    .showDivOn >h4 {
+        font-size: 1.3rem;
+        margin: .8vh 0 1.5vh 0;
+        width: 40%;
+    }
+
+    .deleteComment p{
+        font-size: .8rem;
+    }
+    
+    .deleteCommentButtons button{
+        font-size: .8rem;
     }
 }
 
@@ -2072,7 +2400,6 @@ a {
         width: 100vw;
     }
 
-
     .signUpImgContainer .callToActionContainer{
         padding: 1vh 0 3vh 0;
     }
@@ -2122,5 +2449,74 @@ a {
         text-decoration: underline;
         font-weight: bold;
         margin-left: 3px;
+    }
+
+    .activitiesContainer{
+        justify-content: space-between;
+        height: auto;
+        width: 90%;
+        overflow-x: scroll;
+    }
+    
+    .activity{
+        min-width: 40vw;
+        height: 20vh;
+        margin: 1vh 1.5vw;
+    }
+
+    .commentNameText > div > p {
+        font-size: .8rem;
+    }
+
+    .commentsUserName{
+        color: var(--fcolor);
+        font-weight: bold;
+        font-size: .8rem;
+        margin-bottom: .3vh;
+    }
+    
+    .comment{
+        padding: 1vh 1vw;
+    }
+
+    .commentsButtons{
+        right: 1vw;
+        width: 15%;
+        font-size: .9rem;
+    }
+
+    .userPicComment{
+        width: 35px;
+        height: 35px;   
+    }
+
+    .commentNameText{
+        width: 70%;
+        margin-left: 1vw;
+    } 
+
+    .commentNameText > div > button {
+        padding: .5vh .5vw;
+        width: 15vw;
+    }
+
+    .showDivOn >h4 {
+        font-size: 1.2rem;
+        margin: .8vh 0;
+        width: 60%;
+    }
+    
+    .deleteCommentButtons{
+        width: 35%;
+    }
+    
+    .deleteComment p{
+        font-size: .7rem;
+    }
+    
+    .deleteCommentButtons button{
+        padding: .5vh 1vw;
+        font-size: .7rem;
+        color: white;
     }
 }

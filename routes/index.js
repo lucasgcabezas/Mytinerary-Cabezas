@@ -48,26 +48,21 @@ router.route('/activities')
 router.route('/activities/:id')
     .get(activityForItinerary)
 
-
-
-
-router.route('/checkuser/:id')
-    .get(passport.authenticate('jwt', { session: false }), checkUserLogged)
-//CORREGIR COMPROBACION
-
-router.route('/like/:id')
-    .get(passport.authenticate('jwt', { session: false }), likeItinerary)
-
-
-
-    
-// ITINERARIES
+// COMMENTS
 router.route('/comments/:id')
     .post(passport.authenticate('jwt', { session: false }), addNewComment)
 
 router.route('/comment/:id')
     .delete(passport.authenticate('jwt', { session: false }), deleteComment)
     .put(passport.authenticate('jwt', { session: false }), editComment)
+
+// LIKES
+router.route('/like/:id')
+    .get(passport.authenticate('jwt', { session: false }), likeItinerary)
+
+// CHECK USER LOGGED
+router.route('/checkuser/:id')
+    .get(passport.authenticate('jwt', { session: false }), checkUserLogged)
 
 // USERS 
 router.route('/user/signup')
