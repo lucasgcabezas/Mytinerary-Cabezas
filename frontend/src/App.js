@@ -32,9 +32,7 @@ class App extends React.Component {
         if (this.props.userLogged) {
             this.props.checkAdmin(this.props.userLogged)
         }
-
-        console.log(this.props.userAdm)
-
+        
         return (
             <>
                 <ReactNotification />
