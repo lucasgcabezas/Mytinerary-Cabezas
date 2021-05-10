@@ -5,7 +5,7 @@ import Preloader from '../Preloader'
 
 
 const AdminCard = (props) => {
-    const { _id, title, img, authorName, authorPic, price, duration, likes, hashtags, cityId, country, phrase } = props.city
+    const { _id, title, img, authorName, authorPic, price, duration, hashtags, cityId } = props.city
     const [editShowPanel, setEditShowPanel] = useState(false)
     const [moreInfoShow, setMoreInfoShow] = useState(false)
     const [elementsToModify, setElementsToModify] = useState()
@@ -25,7 +25,7 @@ const AdminCard = (props) => {
 
     const sendModify = e => {
         e.preventDefault()
-        props.modifyCity(_id, elementsToModify)
+        props.modifyItinerary("itinerary", _id, elementsToModify)
         setEditShowPanel(false)
         // e.target.parentElement.reset()
     }
@@ -39,7 +39,7 @@ const AdminCard = (props) => {
                 <div>
                     <div className="adminCarEditDelete">
                         <span className="fas fa-edit editAdmin" onClick={() => setEditShowPanel(!editShowPanel)}></span>
-                        <span className="fas fa-trash-alt deleteAdmin" onClick={() => props.deleteCity(_id)}></span>
+                        <span className="fas fa-trash-alt deleteAdmin" onClick={() => props.deleteItinerary("itinerary", _id)}></span>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,6 @@ const AdminCard = (props) => {
                     <span >Author pic:</span>
                     <span >Price:</span>
                     <span >Duration:</span>
-                    <span >Likes:</span>
                     <span >Hashtags:</span>
                     <span >City:</span>
                 </div>
@@ -65,11 +64,10 @@ const AdminCard = (props) => {
                     <span >{authorPic}</span>
                     <span >{price}</span>
                     <span >{duration}</span>
-                    <span >{likes}</span>
                     <span >{hashtags}</span>
                     {cityId !== undefined && <span >{cityId.name}</span>}
                 </div>
-                
+
                 <form style={{ display: editShowPanel ? 'flex' : 'none' }}>
                     <span><input type="text" placeholder={title} name="title" onChange={getInput}></input></span>
                     <span><input type="text" placeholder={img} name="img" onChange={getInput}></input></span>
@@ -77,20 +75,19 @@ const AdminCard = (props) => {
                     <span><input type="text" placeholder={authorPic} name="authorPic" onChange={getInput}></input></span>
                     <span><input type="text" placeholder={price} name="price" onChange={getInput}></input></span>
                     <span><input type="text" placeholder={duration} name="duration" onChange={getInput}></input></span>
-                    <span><input type="text" placeholder={likes} name="likes" onChange={getInput}></input></span>
                     <span><input type="text" placeholder={hashtags} name="hashtags" onChange={getInput}></input></span>
                     {/* <span><input type="text" placeholder={cityId} name="cityId" onChange={getInput}></input></span> */}
                     <span>
-                        <select>
-                            <option>PrimeraOption</option>
+                        <select name="cityId" onChange={getInput}>
+                            <option selected disabled>Select a City</option>
                             {
                                 props.citiesArray.map(city => {
-                                    return <option key={city._id}>{city.name}</option>
+                                    return <option key={city._id} value={city._id}>{city.name}</option>
                                 })
                             }
                         </select>
                     </span>
-                <button onClick={sendModify} style={{ display: editShowPanel ? 'block' : 'none' }} className="adminConfirmM">Confirm</button>
+                    <button onClick={sendModify} style={{ display: editShowPanel ? 'block' : 'none' }} className="adminConfirmM">Confirm</button>
                 </form>
 
 
@@ -101,13 +98,13 @@ const AdminCard = (props) => {
 
 const mapStateToProps = state => {
     return {
-        citiesArray: state.adminReducer.citiesArray
+        citiesArray: state.adminReducer.citiesArrayOrItineraries
     }
 }
 
 const mapDispatchToProps = {
-    deleteCity: adminActions.deleteCity,
-    modifyCity: adminActions.modifyCity
+    deleteItinerary: adminActions.deleteElement,
+    modifyItinerary: adminActions.modifyElement
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminCard)

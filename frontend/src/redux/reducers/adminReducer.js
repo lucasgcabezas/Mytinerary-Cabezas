@@ -1,35 +1,35 @@
 const initialState = {
     arrayOf: [],
-    citiesArray: [],
+    citiesArrayOrItineraries: [],
     preloader: true,
-    preloaderCity: true
+    preloaderCityOrIti: true
 }
 
 const adminReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'GET_CITIES':
+        case 'GET_ELEMENTS':
             return { ...state, ...action.payload }
             break
 
-        case 'ADD_CITY':
+        case 'ADD_ELEMENT':
             return { ...state, ...action.payload }
             break
 
-        case 'DELETE_CITY':
+        case 'DELETE_ELEMENT':
             return {
                 ...state,
                 arrayOf: state.arrayOf.filter(city => city._id !== action.payload._id)
             }
             break
 
-        case 'MODIFY_CITY':
+        case 'MODIFY_ELEMENT':
             return {
                 ...state,
                 arrayOf: action.payload
             }
             break
 
-        case 'ALL_CITIES':
+        case 'ALL_CITIES_OR_ITINERARIES':
             return { ...state, ...action.payload }
             break
 

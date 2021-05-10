@@ -1,15 +1,25 @@
 const ActivityModel = require('../models/ActivityModel')
 
 const activityControllers = {
+    allActivities: async (req, res) => {
+        try {
+            const allActivities = await ActivityModel.find().populate('itineraryId')
+            res.json({ success: true, response: allActivities })
+        } catch (error) {
+            res.json({ success: false, response: 'An error occurred while processing your request' })
+            console.log('ERROR: The controller allActivities has failed')
+        }
+    },
+
     addNewActivity: async (req, res) => {
         try {
             const activityToAdd = new ActivityModel(req.body)
             await activityToAdd.save()
-            const allActivities = await ActivityModel.find()
+            const allActivities = await ActivityModel.find().populate('itineraryId')
             res.json({ success: true, response: allActivities })
         } catch (error) {
             res.json({ success: false, response: 'An error occurred while processing your request' })
-            console.log('ERROR: The controller addNewItinerary has failed')
+            console.log('ERROR: The controller addNewActivity has failed')
         }
     },
 
@@ -19,29 +29,30 @@ const activityControllers = {
             res.json({ success: true, response: selectedActivities })
         } catch (error) {
             res.json({ success: false, response: 'An error occurred while processing your request' })
-            console.log('ERROR: The controller itinerariesForCity has failed')
+            console.log('ERROR: The controller activityForItinerary has failed')
         }
     },
 
-    // deleteItinerary: async (req, res) => {
-    //     try {
-    //         const deleteItinerary = await ItineraryModel.findOneAndDelete({ _id: req.params.id })
-    //         res.json({ success: true, response: deleteItinerary })
-    //     } catch (error) {
-    //         res.json({ success: false, response: 'An error occurred while processing your request' })
-    //         console.log('ERROR: The controller deleteItinerary has failed')
-    //     }
-    // },
+    deleteActivity: async (req, res) => {
+        try {
+            const deleteActivity = await ActivityModel.findOneAndDelete({ _id: req.params.id })
+            res.json({ success: true, response: deleteActivity })
+        } catch (error) {
+            res.json({ success: false, response: 'An error occurred while processing your request' })
+            console.log('ERROR: The controller deleteActivity has failed')
+        }
+    },
 
-    // updateItinerary: async (req, res) => {
-    //     try {
-    //         const updateItinerary = await ItineraryModel.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true })
-    //         res.json({ success: true, response: updateItinerary })
-    //     } catch (error) {
-    //         res.json({ success: false, response: 'An error occurred while processing your request' })
-    //         console.log('The controller updateCity has failed')
-    //     }
-    // }
+    modifyActivity: async (req, res) => {
+        try {
+            await ActivityModel.findOneAndUpdate({ _id: req.params.id }, { ...req.body }, { new: true })
+            const allActivities = await ActivityModel.find().populate('itineraryId')
+            res.json({ success: true, response: allActivities })
+        } catch (error) {
+            res.json({ success: false, response: 'An error occurred while processing your request' })
+            console.log('The controller modifyActivity has failed')
+        }
+    }
 }
 
 module.exports = activityControllers

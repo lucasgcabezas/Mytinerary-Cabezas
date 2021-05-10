@@ -15,7 +15,7 @@ const AdminCard = (props) => {
 
     const sendModify = e => {
         e.preventDefault()
-        props.modifyCity(_id, elementsToModify)
+        props.modifyCity("city",_id, elementsToModify)
         setEditShowPanel(false)
         // e.target.parentElement.reset()
     }
@@ -28,7 +28,7 @@ const AdminCard = (props) => {
                 <div>
                     <div className="adminCarEditDelete">
                         <span className="fas fa-edit editAdmin" onClick={() => setEditShowPanel(!editShowPanel)}></span>
-                        <span className="fas fa-trash-alt deleteAdmin" onClick={() => props.deleteCity(_id)}></span>
+                        <span className="fas fa-trash-alt deleteAdmin" onClick={() => props.deleteCity("city",_id)}></span>
                     </div>
                 </div>
             </div>
@@ -62,8 +62,8 @@ const AdminCard = (props) => {
 }
 
 const mapDispatchToProps = {
-    deleteCity: adminActions.deleteCity,
-    modifyCity: adminActions.modifyCity
+    deleteCity: adminActions.deleteElement,
+    modifyCity: adminActions.modifyElement
 }
 
 export default connect(null, mapDispatchToProps)(AdminCard)

@@ -2,45 +2,45 @@ import axios from 'axios'
 
 const adminActions = {
 
-    getCities: (route) => {
+    getAllElements: (route) => {
         return (dispatch, getState) => {
-            axios.get('http://localhost:4000/api/' + route)
+            axios.get(`http://localhost:4000/api/${route}`)
                 // .then(response => console.log(response.data.response))
-                .then(response => dispatch({ type: 'GET_CITIES', payload: { arrayOf: response.data.response, preloader: false } }))
+                .then(response => dispatch({ type: 'GET_ELEMENTS', payload: { arrayOf: response.data.response, preloader: false } }))
         }
     },
 
-    sendNewCity: (route, newElement) => {
+    sendNewElement: (route, newElement) => {
         return (dispatch, getState) => {
-            axios.post('http://localhost:4000/api/'+ route, newElement)
-                .then(response => dispatch({ type: 'ADD_CITY', payload: { arrayOf: response.data.response } }))
+            axios.post(`http://localhost:4000/api/${route}`, newElement)
+                .then(response => dispatch({ type: 'ADD_ELEMENT', payload: { arrayOf: response.data.response } }))
         }
     },
 
-    deleteCity: (idElementDelete) => {
+    deleteElement: (route, idElementDelete) => {
         return (dispatch, getState) => {
-            axios.delete('http://localhost:4000/api/city/' + idElementDelete)
-                .then(response => { dispatch({ type: 'DELETE_CITY', payload: response.data.response }) })
+            axios.delete(`http://localhost:4000/api/${route}/${idElementDelete}`)
+                .then(response => { dispatch({ type: 'DELETE_ELEMENT', payload: response.data.response }) })
         }
     },
 
-    modifyCity: (idElementModify, elementsToModify) => {
+    modifyElement: (route, idElementModify, elementsToModify) => {
         return (dispatch, getState) => {
-            axios.put('http://localhost:4000/api/city/' + idElementModify, elementsToModify)
-                .then(response => { dispatch({ type: 'MODIFY_CITY', payload: response.data.response }) })
+            axios.put(`http://localhost:4000/api/${route}/${idElementModify}`, elementsToModify)
+                .then(response => { dispatch({ type: 'MODIFY_ELEMENT', payload: response.data.response }) })
         }
     },
 
     cleanAdminStore: () => {
         return (dispatch, getState) => {
-            dispatch({ type: 'CLEAN', payload: { arrayOf: [], preloader: true } })
+            dispatch({ type: 'CLEAN', payload: { arrayOf: [], preloader: true, citiesArrayOrItineraries: [], preloaderCityOrIti: true } })
         }
     },
 
-    getAllCities: () => {
+    getForSelect: (route) => {
         return (dispatch, getState) => {
-            axios.get('http://localhost:4000/api/cities')
-                .then(response => dispatch({ type: 'ALL_CITIES', payload: { citiesArray: response.data.response, preloaderCity: false, preloader: false } }))
+            axios.get(`http://localhost:4000/api/${route}`)
+                .then(response => dispatch({ type: 'ALL_CITIES_OR_ITINERARIES', payload: { citiesArrayOrItineraries: response.data.response, preloaderCityOrIti: false, preloader: false } }))
         }
     },
 }

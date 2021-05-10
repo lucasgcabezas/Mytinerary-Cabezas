@@ -50,7 +50,6 @@ const Comment = (props) => {
 
             <div className={deleteTrigger ? 'deleteCommentModalOpen' : 'deleteCommentModalClose'}>
                 <div className="deleteComment">
-                    {/* <h4>Delete comment</h4> */}
                     <p>Are you sure you want to delete this comment? This cannot be undone.</p>
                     <div className="deleteCommentButtons">
                         <button onClick={() => setDeleteTrigger(false)}>Cancel</button>

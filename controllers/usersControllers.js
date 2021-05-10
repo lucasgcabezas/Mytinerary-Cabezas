@@ -59,8 +59,27 @@ const userControllers = {
             success: true,
             response: { userPic: req.user.userPic, firstName: req.user.firstName }
         })
-        // console.log(req.user)
-    }
+    },
+
+
+
+    checkAdmin: async (req, res) => {
+        const checkExistingUser = await UserModel.findOne(req.user._id)
+        let response
+        let error
+
+        if (checkExistingUser && checkExistingUser.admin) {
+            response = true
+            console.log('Adm user ' + req.user.firstName + ' connect')
+        } else {
+            error = "User its not a administrator"
+        }
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+    },
 
 }
 

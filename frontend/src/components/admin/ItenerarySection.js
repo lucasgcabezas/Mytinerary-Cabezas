@@ -9,14 +9,12 @@ const AdminSection = (props) => {
 
     const [newElement, setNewElement] = useState({ title: '', img: '', authorName: '', authorPic: '', price: '', duration: '', likes: '', hashtags: [], cityId: '' })
 
-    console.log(newElement)
-
     const [newElementButton, setNewElementButton] = useState(false)
 
     useEffect(() => {
         props.cleanAdminStore()
         props.loadAllCities("itineraries")
-        props.getAllCities()
+        props.getAllCities("cities")
         return () => props.cleanAdminStore()
 
     }, [])
@@ -60,8 +58,8 @@ const AdminSection = (props) => {
                     {/* <input type="text" placeholder="Hashtags" name="hashtags" value={newElement.hashtags} onChange={getInput}></input> */}
                     <input type="text" placeholder="Hashtags" name="hashtags" value={newElement.hashtags.length > 1 ? newElement.hashtags.join(' ') : newElement.hashtags} onChange={getInput}></input>
                     {/* <input type="text" placeholder="City of Itinerary" name="phrase" value={newElement.phrase} onChange={getInput}></input> */}
-                    <select name="cityId" value={newElement.cityId} onChange={getInput}>
-                        <option>City of Itinerary</option>
+                    <select name="cityId" onChange={getInput}>
+                        <option selected defaultValue value="" disabled>City of Itinerary</option>
                         {
                             props.citiesArray.map(city => {
                                 return <option key={city._id} value={city._id} >{city.name}</option>
@@ -69,7 +67,7 @@ const AdminSection = (props) => {
                         }
                     </select>
 
-                    <button onClick={sendNewElement}>Send!</button>
+                    <button onClick={sendNewElement}>Send new</button>
                 </form>
             </div>
         </div>
@@ -80,15 +78,15 @@ const mapStateToProps = state => {
     return {
         allCities: state.adminReducer.arrayOf,
         preloader: state.adminReducer.preloader,
-        preloaderCity: state.adminReducer.preloaderCity,
-        citiesArray: state.adminReducer.citiesArray
+        preloaderCity: state.adminReducer.preloaderCityOrIti,
+        citiesArray: state.adminReducer.citiesArrayOrItineraries
     }
 }
 
 const mapDispatchToProps = {
-    loadAllCities: adminActions.getCities,
-    sendNewCity: adminActions.sendNewCity,
-    getAllCities: adminActions.getAllCities,
+    loadAllCities: adminActions.getAllElements,
+    sendNewCity: adminActions.sendNewElement,
+    getAllCities: adminActions.getForSelect,
     cleanAdminStore: adminActions.cleanAdminStore
 }
 

@@ -1,5 +1,6 @@
 const initialState = {
     userLogged: null,
+    userAdm: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -13,6 +14,10 @@ const authReducer = (state = initialState, action) => {
         case 'LOGOUT_USER':
             localStorage.clear()
             return { ...state, userLogged: null }
+
+        case 'CHECK_ADMIN':
+            // console.log(action.payload)
+            return { ...state, userAdm: action.payload }
 
         default:
             return state

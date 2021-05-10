@@ -27,8 +27,13 @@ class App extends React.Component {
             const userLS = { ...userData, token: localStorage.getItem('token') }
             this.props.signInLocalStorage(userLS)
             return null
-
         }
+
+        if (this.props.userLogged) {
+            this.props.checkAdmin(this.props.userLogged)
+        }
+
+        console.log(this.props.userAdm)
 
         return (
             <>
@@ -40,7 +45,8 @@ class App extends React.Component {
                         <Route exact path="/cities" component={Cities} />
                         {!this.props.userLogged && <Route path="/user/signin" component={SignIn} />}
                         {!this.props.userLogged && <Route path="/user/signup" component={SignUp} />}
-                        <Route exact path="/admin" component={Admin} />
+                        {this.props.userLogged && this.props.userAdm && <Route exact path="/admin" component={Admin} />}
+                        {/* <Route exact path="/admin" component={Admin} /> */}
                         <Route exact path="/itineraries/:id" component={Itineraries} />
                         <Redirect to="/" />
                     </Switch>
@@ -54,12 +60,14 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userLogged: state.authReducer.userLogged
+        userLogged: state.authReducer.userLogged,
+        userAdm: state.authReducer.userAdm
     }
 }
 
 const mapDispatchToProps = {
-    signInLocalStorage: authActions.signInLocalStorage
+    signInLocalStorage: authActions.signInLocalStorage,
+    checkAdmin: authActions.checkAdmin
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

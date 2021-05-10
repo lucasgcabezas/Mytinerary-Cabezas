@@ -20,19 +20,18 @@ a {
     width: 7px;
     height: 7px;
    }
-::-webkit-scrollbar-thumb {
-    background: #2D003D;
+   ::-webkit-scrollbar-thumb {
+    background: #2d003d;
     border-radius: 15px;
    }
-::-webkit-scrollbar-thumb:hover{
-    background: linear-gradient(13deg, #2d003d 14%,#f9d4ff 64%);
+   ::-webkit-scrollbar-thumb:hover{
+    background: #d88d1d;
    }
-::-webkit-scrollbar-track{
+   ::-webkit-scrollbar-track{
     background: #ffffff;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: inset 7px 10px 12px #f0f0f0;
-   }
-
+    }
 
 
 
@@ -65,6 +64,14 @@ a {
 .link:hover {
     color: #ffa871;
     transition: .5s;
+}
+
+.linkAdm{
+    color: var(--scolor);
+    font-weight: bold;
+    /* background-color: white; */
+    /* padding: .5vh .5vw; */
+    /* border-radius: 5px; */
 }
 
 .isologo {
@@ -246,11 +253,9 @@ a {
 }
 
 
-
-
 /* SLIDER */
 .titSlider {
-    /* color: white; */
+    color: var(--scolor);
 
     text-align: center;
     font-size: 3rem;
@@ -1359,16 +1364,25 @@ a {
 
 /* FOOTER */
 .footer {
-    /* background-image: linear-gradient(0deg, #2d003d, #151515); */
-    background-color: #2d003d;
+    position: relative;
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: white;
-    padding: 5vh 0 .5vh 0 ;
-    height: 35vh;
+    padding: 10vh 0 .5vh 0 ;
+    height: 45vh;
     /* margin-top: 18vh; */
+}
+
+.footerFilter{
+    position: absolute;
+    top: 0;
+    background-color: #2d003ddd;
+    width: 100%;
+    height: 100%;
 }
 
 .footer .active >* {
@@ -1379,14 +1393,13 @@ a {
     display: flex;
     width: 80%;
     justify-content: space-between;
+    z-index: 10;
 }
 
 .footerTitle {
     color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 3vh;
     width: 80px;
 }
 
@@ -1411,6 +1424,10 @@ a {
 .contactIcon {
     display: flex;
     flex-direction: column;
+        margin-bottom: .5vh;
+}
+.contactIcon span{
+    margin-bottom: .5vh;
 }
 
 .ubi-tel{
@@ -1418,7 +1435,7 @@ a {
 }
 
 .social {
-    font-size: 2rem;
+    font-size: 1.8rem;
     width: 10%;
     display: flex;
     flex-direction: column;
@@ -1428,21 +1445,34 @@ a {
     display: flex;
 }
 
-.socialIcon>* {
+.socialIcon > * {
     cursor: pointer;
-    margin-right: 2vw;
+    margin-right: 1.2vw;
+    
+}
+
+.social > .footerTitle{
+    margin-left: 4vw;
 }
 
 .linkFooter {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    text-align: center;
+    text-align: flex-start;
+}
+
+.linkFooter a {
+    margin-bottom: .5vh;
 }
 
 .linkFooter .link {
+    margin: 0;
+    margin-bottom: .5vh;
+
+    padding: none;
     font-size: .9rem;
-    text-align: center;
+    text-align: start;
     color: white;
     text-decoration: none;
 }
@@ -1459,11 +1489,12 @@ a {
 .logo-img-footer {
     background-size: 80%;
     background-repeat: no-repeat;
-    height: 5vh;
-    width: 15vw;
+    height: 8vh;
+    width: 20vw;
 }
 
 .copyright{
+    z-index: 10;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1617,18 +1648,28 @@ a {
 .adminNav{
     width: 12%;
     min-height: 100vh;
-    border-right: solid 3px  var(--scolor);
+    border-right: solid 4px  var(--scolor);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* align-items: center; */
-    padding: 8vh 0 0 1vw;
+    padding: 8vh 0 0 0;
 }
 
 .adminNav >*{
-    margin: .5vh 0;
-    font-size: 1rem;
+    text-align: center;
+    margin: 1vh 0;
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: .5s;
+    padding-bottom: 1vh;
+    border-bottom: solid 2px white;
+
+}
+
+.adminNav >*:hover{
+    /* transform: scale(1.08); */
+    border-bottom: solid 2px var(--scolor);
+    transition: .5s;
 }
 
 
@@ -1641,13 +1682,15 @@ a {
 }
 
 .adminTitle {
-    background-color: lightgrey;
-    /* height: 7vh; */
+    background-color: #dddddd;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2vh 2vw 2vh 48%;
+    padding: 1vh 2vw 1vh 45%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--scolor);
 }
 
 .adminTitle button {
@@ -1673,12 +1716,18 @@ a {
 
 .adminCardHeader{
     display: flex;
+    position: relative;
     align-items: center;
     height: 5vh;
     width: 100%;
     padding: 1vh 0;
     /* background-color: red; */
     justify-content: space-between;
+}
+
+.adminCardHeader > h4 {
+    position: absolute;
+    left: 3vw;
 }
 
 .adminCardHeader .moreButton,
@@ -1753,11 +1802,12 @@ a {
 
 
 .adminConfirmM{
-    /* position: absolute; */
-    /* top: auto; */
-    height: 20%;
+    position: absolute;
+    top: auto;
+    height: 5vh;
     bottom: 15px;
-    /* right: 1%; */
+    bottom: auto;
+    right: 1%;
     padding: .5vh .5vw;
     background-color: #118311;
     border: none;
@@ -1867,6 +1917,23 @@ a {
     text-align: center;
     transition: .5s;
 }
+
+.newCityModalVisible form button{
+    background-color: var(--fcolor);
+    border: solid 1px var(--fcolor);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: .5s;
+}
+
+.newCityModalVisible form button:hover{
+    background-color: transparent;
+    border: solid 1px white;
+    font-size: 1.2rem;
+    transition: .5s;
+}
+
 
 /* --------------------------------------------------------------------- RESPONSIVE TABLET LANDSCAPE ------------------------------------------------------------------------------- */
 @media (max-width: 1024px) {

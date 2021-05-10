@@ -18,13 +18,19 @@ const Navbar = (props) => {
                         <NavLink exact to="/user/signin"><span className="link">Sign In</span></NavLink>
                     </>
             }
+            {
+                props.userLogged && props.userAdmin
+                    && <><NavLink exact to="/admin"><span className="link linkAdm">Admin Panel</span></NavLink></>
+
+            }
         </>
     )
 }
 
 const mapStateToProps = state => {
     return {
-        userLogged: state.authReducer.userLogged
+        userLogged: state.authReducer.userLogged,
+        userAdmin: state.authReducer.userAdm
     }
 }
 
@@ -32,4 +38,4 @@ const mapDispatchToProps = {
     signOut: authActions.signOut
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar) 
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

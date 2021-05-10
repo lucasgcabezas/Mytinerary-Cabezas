@@ -87,7 +87,20 @@ const authActions = {
                 myAlert('Error','Internal server error, please try later!', 'danger')
             }
         }
-    }
+    },
+
+    checkAdmin: (user) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/checkadmin',{
+                    headers: { 'Authorization': 'Bearer ' + user.token }
+                })
+                dispatch({ type: 'CHECK_ADMIN', payload: response.data.response })
+            } catch {
+                
+            }
+        }
+    },
 }
 
 export default authActions

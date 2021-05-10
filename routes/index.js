@@ -13,9 +13,9 @@ const activityControllers = require('../controllers/activitesControllers')
 
 const { allCities, addNewCity, obtainOneCity, deleteCity, updateCity } = citiesControllers
 const { allItineraries, addNewItinerary, deleteItinerary, obtainOneItinerary, itinerariesForCity, updateItinerary, likeItinerary, checkUserLogged } = itineraryControllers
-const { signUp, signIn, signInForLS } = usersControllers
+const { signUp, signIn, signInForLS, checkAdmin } = usersControllers
 const { addNewComment, deleteComment, editComment } = commentsControllers
-const { addNewActivity, activityForItinerary } = activityControllers
+const { addNewActivity, activityForItinerary, allActivities, deleteActivity, modifyActivity } = activityControllers
 
 
 // CITIES
@@ -43,10 +43,13 @@ router.route('/itinerary/:id')
 
 // ACTIVITIES
 router.route('/activities')
+    .get(allActivities)
     .post(addNewActivity)
 
 router.route('/activities/:id')
     .get(activityForItinerary)
+    .delete(deleteActivity)
+    .put(modifyActivity)
 
 // COMMENTS
 router.route('/comments/:id')
@@ -63,6 +66,10 @@ router.route('/like/:id')
 // CHECK USER LOGGED
 router.route('/checkuser/:id')
     .get(passport.authenticate('jwt', { session: false }), checkUserLogged)
+
+// CHECK USER ADMIN
+router.route('/checkadmin')
+    .get(passport.authenticate('jwt', { session: false }), checkAdmin)
 
 // USERS 
 router.route('/user/signup')
