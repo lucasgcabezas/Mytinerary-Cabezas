@@ -10,9 +10,9 @@ const adminActions = {
         }
     },
 
-    sendNewCity: (newElement) => {
+    sendNewCity: (route, newElement) => {
         return (dispatch, getState) => {
-            axios.post('http://localhost:4000/api/cities', newElement)
+            axios.post('http://localhost:4000/api/'+ route, newElement)
                 .then(response => dispatch({ type: 'ADD_CITY', payload: { arrayOf: response.data.response } }))
         }
     },

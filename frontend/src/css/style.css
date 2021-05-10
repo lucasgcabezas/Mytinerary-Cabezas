@@ -849,6 +849,7 @@ a {
     display: flex;
     align-items: flex-end;
     background-size: cover;
+    background-position: center;
     width: 15vw;
     border-radius: 5px;
     /* padding: 1vh .5vw; */
@@ -872,7 +873,7 @@ a {
     width: 100%;
     height: 25%;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background-color: #000000bb;
     
     /* padding-top: 1vh; */

@@ -85,10 +85,8 @@ const itineraryControllers = {
         res.json({ success: !error ? true : false, response, error })
     },
 
-
-    // HACER CACHEO
+    
     checkUserLogged: async (req, res) => {
-
         let response;
         let error;
 

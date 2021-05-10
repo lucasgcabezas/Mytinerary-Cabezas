@@ -1,6 +1,6 @@
 import React from 'react'
-import AdminSection from '../components/admin/AdminSection'
-import AdminSectionItinerary from '../components/admin/AdminSectionItinerary'
+import AdminSection from '../components/admin/CitiesSection'
+import AdminSectionItinerary from '../components/admin/ItenerarySection'
 
 export default class Admin extends React.Component {
 
@@ -16,7 +16,7 @@ export default class Admin extends React.Component {
                     <div className="adminNav">
                         <span onClick={()=> this.setState({ sectionToShow: <AdminSection /> })}>Cities</span>
                         <span onClick={()=> this.setState({ sectionToShow: <AdminSectionItinerary />})}>Itineraries</span>
-                        <span>Users</span>
+                        <span>Activities</span>
                     </div>
                     {this.state.sectionToShow}
                 </div>

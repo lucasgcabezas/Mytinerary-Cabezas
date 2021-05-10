@@ -10,7 +10,6 @@ const AdminCard = (props) => {
     const [moreInfoShow, setMoreInfoShow] = useState(false)
     const [elementsToModify, setElementsToModify] = useState()
 
-    // console.log(props.city)
 
     let moreInfoButton = moreInfoShow ? 'fas fa-times-circle closeButton ' : 'fas fa-plus-circle moreButton'
 
@@ -31,7 +30,7 @@ const AdminCard = (props) => {
         // e.target.parentElement.reset()
     }
 
-    console.log(cityId !== undefined)
+    // console.log(cityId !== undefined)
     return (
         <div className="adminCard">
             <div className="adminCardHeader">

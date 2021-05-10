@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { connect } from 'react-redux'
 import adminActions from "../../redux/actions/adminActions"
-import AdminCardItinerary from "./AdminCardItinerary"
+import AdminCard from "./CitiesCard"
 import Preloader from "../Preloader"
 
 
@@ -12,18 +12,16 @@ const AdminSection = (props) => {
     const [newElementButton, setNewElementButton] = useState(false)
 
     useEffect(() => {
-        props.cleanAdminStore()     
-        props.loadAllCities("itineraries")
-        props.getAllCities()
-        return () => props.cleanAdminStore()     
-
+        props.cleanAdminStore()
+        props.loadAllCities("cities")
+        return () => props.cleanAdminStore()
     }, [])
 
     const getInput = e => { setNewElement({ ...newElement, [e.target.name]: e.target.value }) }
 
     const sendNewElement = e => {
         e.preventDefault()
-        props.sendNewCity(newElement)
+        props.sendNewCity("cities", newElement)
         setNewElement({ name: '', img: '', country: '', phrase: '' })
         // setNewElementButton(false)
     }
@@ -35,9 +33,9 @@ const AdminSection = (props) => {
                 <button onClick={() => setNewElementButton(!newElementButton)} style={{ backgroundColor: !newElementButton ? '#118311' : 'red' }}>{!newElementButton ? 'Add new city +' : ' Close X'}</button>
             </div>
             {
-                props.preloader 
+                props.preloader
                     ? <Preloader />
-                    : props.allCities.map((city, i) => <AdminCardItinerary key={city._id} city={city} />)
+                    : props.allCities.map((city, i) => <AdminCard key={city._id} city={city} />)
             }
             <div className={newElementButton ? "newCityModalVisible" : "newCityModalHidden"}>
                 <form>
@@ -56,16 +54,15 @@ const AdminSection = (props) => {
 const mapStateToProps = state => {
     return {
         allCities: state.adminReducer.arrayOf,
-        preloader: state.adminReducer.preloader,
-        preloaderCity: state.adminReducer.preloaderCity
+        preloader: state.adminReducer.preloader
     }
 }
 
 const mapDispatchToProps = {
     loadAllCities: adminActions.getCities,
     sendNewCity: adminActions.sendNewCity,
-    getAllCities: adminActions.getAllCities,
     cleanAdminStore: adminActions.cleanAdminStore
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminSection)
