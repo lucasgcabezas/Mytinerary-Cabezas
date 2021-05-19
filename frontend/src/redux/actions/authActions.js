@@ -19,7 +19,7 @@ const authActions = {
         return async (dispatch, getState) => {
 
             try {
-                const response = await axios.post('http://localhost:4000/api/user/signup', user)
+                const response = await axios.post('https://cabezas-mytinerary.herokuapp.com/api/user/signup', user)
                 if (response.data.errorsValidator) {
                     return response.data.errorsValidator
 
@@ -40,7 +40,7 @@ const authActions = {
     signInUSer: (userToSignIn) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post('http://localhost:4000/api/user/signin', userToSignIn)
+                const response = await axios.post('https://cabezas-mytinerary.herokuapp.com/api/user/signin', userToSignIn)
                 if (!response.data.success) {
                     myAlert('Oops',response.data.error, 'danger')
                 } else {
@@ -56,7 +56,7 @@ const authActions = {
     signInLocalStorage: (userLocalStorage) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('http://localhost:4000/api/user/signinls', {
+                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/user/signinls', {
                     headers: { 'Authorization': 'Bearer ' + userLocalStorage.token }
                 })
                 dispatch({ type: 'LOG_USER', payload: { ...response.data.response, token: userLocalStorage.token } })
@@ -92,7 +92,7 @@ const authActions = {
     checkAdmin: (user) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('http://localhost:4000/api/checkadmin',{
+                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/checkadmin',{
                     headers: { 'Authorization': 'Bearer ' + user.token }
                 })
                 dispatch({ type: 'CHECK_ADMIN', payload: response.data.response })
