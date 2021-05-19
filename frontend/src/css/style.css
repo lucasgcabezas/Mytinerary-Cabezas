@@ -1448,7 +1448,7 @@ a {
 .socialIcon > * {
     cursor: pointer;
     margin-right: 1.2vw;
-    
+
 }
 
 .social > .footerTitle{
@@ -2318,6 +2318,24 @@ a {
     
     .deleteCommentButtons button{
         font-size: .8rem;
+    }
+
+    .socialIcon {
+        display: flex;
+        flex-wrap: wrap;
+        width: 20vw;
+        
+    }
+    
+    .socialIcon > * {
+        cursor: pointer;
+        /* margin-right: 1.2vw; */
+        margin: .7vh 1vw;
+    
+    }
+
+    .social > .footerTitle{
+        margin-left: 2.5vw;
     }
 }
 

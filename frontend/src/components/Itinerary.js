@@ -160,7 +160,6 @@ const Itinerary = (props) => {
                     }
                 </div>
             </div>
-
             <div className={cardTrigger ? 'showDivOn' : 'showDivOff'}>
                 <h4>Activities</h4>
                 {
@@ -172,11 +171,8 @@ const Itinerary = (props) => {
                             }
                         </div>
                 }
-
                 <h4>Comments</h4>
-
                 <div className="commentsItinerary" >
-
                     <div>{commentsState.map(comment => {
                         return <Comment key={comment._id} comment={comment} commentsState={commentsState} setCommentsState={setCommentsState} userChecked={userChecked} />
                     })}
@@ -195,11 +191,9 @@ const Itinerary = (props) => {
                         : <span>View more <span className="fas fa-chevron-circle-down"> </span></span>
                 }
             </div>
-
         </div>
     )
 }
-
 
 const mapStateToProps = state => {
     return {
