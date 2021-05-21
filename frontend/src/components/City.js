@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const City = ({ city: { name, img, country, phrase, _id } }) => {
     return (
         <Link to={`/itineraries/${_id}`}>
-            <div className="cardCity" style={{ backgroundImage: `url('./assets/${img}')` }}>
+            <div className="cardCity" style={{ backgroundImage: `url('${img}')` }}>
                 <div>
                     <span>{phrase}</span>
                     <span>
