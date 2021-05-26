@@ -47,7 +47,7 @@ const Itineraries = (props) => {
         <>
             <ScrollToTop />
             <div className="itinerariesContainer" >
-                <div className="cityItinerariesHero" style={{ backgroundImage: `url('/assets/${cityState.oneCity.img}')` }}>
+                <div className="cityItinerariesHero" style={{ backgroundImage: `url('${cityState.oneCity.img}')` }}>
                     <p className="cityTitle"> {oneCity.name}</p>
                 </div>
                 {

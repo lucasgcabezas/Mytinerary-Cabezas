@@ -4,7 +4,7 @@ const Activity = ({activity}) => {
     const {name, img} = activity
 
     return(
-        <div className="activity" style={{backgroundImage : `url('/assets/activities/${img}')`}}>
+        <div className="activity" style={{backgroundImage : `url('${img}')`}}>
             <span className="activityTitle">{name}</span>
         </div>
     )
