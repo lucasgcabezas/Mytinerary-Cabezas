@@ -132,7 +132,7 @@ const Itinerary = (props) => {
 
     return (
         <div className={cardTrigger ? 'showItinerary' : 'itinerary'}  >
-            <div className="info" style={{ backgroundImage: `url('/assets/itineraries/${img}')` }} >
+            <div className="info" style={{ backgroundImage: `url('${img}')` }} >
                 <div className="mouseMove" style={{ transform: `rotate(${angleToApply}deg)`, transition: '.1s' }} ></div>
                 <div className="titleSectionItinerary" onMouseMove={(e) => positionMouse(e)}>
                     <p className="titleItinerary">{title}</p>
