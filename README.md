@@ -8,7 +8,7 @@ Aplicacion nativa desarrollada para iOS y Android como parte del programa de pro
 
 # Comenzando  🚀
 
-###Instalar dependencias para el cliente
+### Instalar dependencias para el cliente
 `$ npm install`
 
 
