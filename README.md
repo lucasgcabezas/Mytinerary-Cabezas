@@ -27,5 +27,3 @@ Aplicacion nativa desarrollada para iOS y Android como parte del programa de pro
 * [Mongoose](https://mongoosejs.com/) - Framework para modelado de base de datos
 
 
-# Autor ✒️
-* **Lucas Cabezas** - [Lucas](https://github.com/lucasgcabezas)
