@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { store } from 'react-notifications-component'
+import api from '../../utils/api'
 
 const myAlert = async (alertTitle, alertMessage, alertType) => {
-      await store.addNotification({
+    await store.addNotification({
         title: alertTitle,
         message: alertMessage,
         type: alertType,
@@ -19,7 +20,7 @@ const commentActions = {
     sendNewComment: (userToken, itineraryId, commentText) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post('https://cabezas-mytinerary.herokuapp.com/api/comments/' + itineraryId, commentText, {
+                const response = await axios.post(api + '/comments/' + itineraryId, commentText, {
                     headers: { 'Authorization': 'Bearer ' + userToken }
                 })
                 if (response.data.success) {
@@ -36,7 +37,7 @@ const commentActions = {
     deleteComment: (userToken, commentId) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.delete('https://cabezas-mytinerary.herokuapp.com/api/comment/' + commentId, {
+                const response = await axios.delete(api + '/comment/' + commentId, {
                     headers: { 'Authorization': 'Bearer ' + userToken }
                 })
                 if (response.data.success) {
@@ -53,7 +54,7 @@ const commentActions = {
     editComment: (userToken, commentId, message) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.put('https://cabezas-mytinerary.herokuapp.com/api/comment/' + commentId, message, {
+                const response = await axios.put(api + '/comment/' + commentId, message, {
                     headers: { 'Authorization': 'Bearer ' + userToken }
                 })
                 if (response.data.success) {

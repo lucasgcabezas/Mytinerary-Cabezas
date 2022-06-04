@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { store } from 'react-notifications-component'
+import api from '../../utils/api'
 
 const myAlert = async (alertTitle, alertMessage, alertType) => {
     await store.addNotification({
@@ -17,7 +18,7 @@ const myAlert = async (alertTitle, alertMessage, alertType) => {
 const itineraryActions = {
     getItineraries: (cityId) => {
         return (dispatch, getState) => {
-            axios.get('https://cabezas-mytinerary.herokuapp.com/api/itineraries/' + cityId)
+            axios.get(api + '/itineraries/' + cityId)
                 .then(response => {
                     if (response.data.success) {
                         dispatch({ type: 'GET_ITINERARIES', payload: { selectedItineraries: response.data.response, error: false, preloader: false } })
@@ -31,7 +32,7 @@ const itineraryActions = {
 
     getOneCity: (cityId) => {
         return (dispatch, getState) => {
-            axios.get('https://cabezas-mytinerary.herokuapp.com/api/city/' + cityId)
+            axios.get(api + '/city/' + cityId)
                 .then(response => {
                     if (response.data.success) {
                         dispatch({ type: 'GET_ONECITY', payload: { oneCity: response.data.response, error: false, preloader: false } })
@@ -52,7 +53,7 @@ const itineraryActions = {
     checkUser: (itineraryId, user) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/checkuser/' + itineraryId, {
+                const response = await axios.get(api + '/checkuser/' + itineraryId, {
                     headers: { 'Authorization': 'Bearer ' + user.token }
                 })
                 if (response.data.success) {
@@ -69,7 +70,7 @@ const itineraryActions = {
     likeItinerary: (itineraryId, user) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/like/' + itineraryId, {
+                const response = await axios.get(api + '/like/' + itineraryId, {
                     headers: { 'Authorization': 'Bearer ' + user.token }
                 })
                 if (response.data.success) {
@@ -86,7 +87,7 @@ const itineraryActions = {
     getActivities: (itineraryId) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/activities/' + itineraryId)
+                const response = await axios.get(api + '/activities/' + itineraryId)
                 if (response.data.success) {
                     return response.data.response
                 } else {

@@ -22,6 +22,7 @@ const SignUp = (props) => {
     useEffect(() => {
         props.getCountries()
             .then(response => setAllCountries({ countries: response, preloader: false }))
+            .catch(err => console.log(err))
     }, [])
 
     const getInput = e => { setNewUser({ ...newUser, [e.target.name]: e.target.value }) }
@@ -110,7 +111,7 @@ const SignUp = (props) => {
                         <option disabled defaultValue value=''>Countries</option>
                         {
                             allCountries.countries.map((c, i) => {
-                                return <option key={i} value={c.name} >{c.name}</option>
+                                return <option key={i} value={c} >{c}</option>
                             })
                         }
                     </select>

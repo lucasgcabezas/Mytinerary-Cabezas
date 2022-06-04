@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { store } from 'react-notifications-component'
+import api from '../../utils/api'
 
 const myAlert = async (alertTitle, alertMessage, alertType) => {
-      await store.addNotification({
+    await store.addNotification({
         title: alertTitle,
         message: alertMessage,
         type: alertType,
@@ -19,19 +20,19 @@ const authActions = {
         return async (dispatch, getState) => {
 
             try {
-                const response = await axios.post('https://cabezas-mytinerary.herokuapp.com/api/user/signup', user)
+                const response = await axios.post(api + '/user/signup', user)
                 if (response.data.errorsValidator) {
                     return response.data.errorsValidator
 
                 } else if (response.data.error) {
-                    myAlert('Error',response.data.error, 'danger')
+                    myAlert('Error', response.data.error, 'danger')
 
                 } else {
                     dispatch({ type: 'LOG_USER', payload: response.data.response })
-                    myAlert(response.data.response.firstName,`Welcome to Mytinerary!`, 'success')
+                    myAlert(response.data.response.firstName, `Welcome to Mytinerary!`, 'success')
                 }
             } catch {
-                myAlert('Error','Internal server error, please try later!', 'danger')
+                myAlert('Error', 'Internal server error, please try later!', 'danger')
 
             }
         }
@@ -40,15 +41,15 @@ const authActions = {
     signInUSer: (userToSignIn) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post('https://cabezas-mytinerary.herokuapp.com/api/user/signin', userToSignIn)
+                const response = await axios.post(api + '/user/signin', userToSignIn)
                 if (!response.data.success) {
-                    myAlert('Oops',response.data.error, 'danger')
+                    myAlert('Oops', response.data.error, 'danger')
                 } else {
                     dispatch({ type: 'LOG_USER', payload: response.data.response })
-                    myAlert(response.data.response.firstName,`Welcome to Mytinerary!`, 'success')
+                    myAlert(response.data.response.firstName, `Welcome to Mytinerary!`, 'success')
                 }
             } catch {
-                myAlert('Error','Internal server error, please try later!', 'danger')
+                myAlert('Error', 'Internal server error, please try later!', 'danger')
             }
         }
     },
@@ -56,7 +57,7 @@ const authActions = {
     signInLocalStorage: (userLocalStorage) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/user/signinls', {
+                const response = await axios.get(api + '/user/signinls', {
                     headers: { 'Authorization': 'Bearer ' + userLocalStorage.token }
                 })
                 dispatch({ type: 'LOG_USER', payload: { ...response.data.response, token: userLocalStorage.token } })
@@ -80,11 +81,13 @@ const authActions = {
     getCountries: () => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('https://restcountries.eu/rest/v2/all')
-                return response.data
+                // const response = await axios.get('https://restcountries.com/v3.1/all')
+
+                // console.log(response)
+                return ['Argentina', 'Brazil', 'Uruguay', 'Colombia', 'Chile', 'Venezuela']
 
             } catch {
-                myAlert('Error','Internal server error, please try later!', 'danger')
+                myAlert('Error', 'Internal server error, please try later!', 'danger')
             }
         }
     },
@@ -92,12 +95,12 @@ const authActions = {
     checkAdmin: (user) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('https://cabezas-mytinerary.herokuapp.com/api/checkadmin',{
+                const response = await axios.get(api + '/checkadmin', {
                     headers: { 'Authorization': 'Bearer ' + user.token }
                 })
                 dispatch({ type: 'CHECK_ADMIN', payload: response.data.response })
             } catch {
-                
+
             }
         }
     },

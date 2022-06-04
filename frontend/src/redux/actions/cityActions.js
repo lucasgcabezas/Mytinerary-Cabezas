@@ -1,9 +1,10 @@
 import axios from 'axios'
+import api from '../../utils/api'
 
 const cityActions = {
     allCities: () => {
         return (dispatch, getState) => {
-            axios.get('https://cabezas-mytinerary.herokuapp.com/api/cities')
+            axios.get(api +'/cities')
                 .then(response => {
                     if (response.data.success) {
                         dispatch({
